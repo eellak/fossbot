@@ -12,7 +12,7 @@
 ![](images/front_pen.png)
 
 ## Specs 
-####Sensors:
+#### Sensors:
 * Ultrasonic distance sensor
 * Battery Sensor
 * Accelerometer
@@ -22,7 +22,7 @@
 * Line detection sensors
 * Light Sensors
 
-####General Features:
+#### General Features:
 * Lego compatible surface
 * Hole in front for marker/ pencil attachment
 * Special pulling loop

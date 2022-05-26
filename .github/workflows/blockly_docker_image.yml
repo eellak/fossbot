@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v2
         
         with:       
-          context: basic_images
+          context: source
           file: source/Dockerfile
           platforms: linux/arm
           push: true

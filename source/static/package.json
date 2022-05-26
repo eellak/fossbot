@@ -1,0 +1,25 @@
+{
+  "name": "proto-bot-blockly",
+  "version": "1.0.0",
+  "description": "This is the directory for the UI, using html, css, javascript, bootstrap",
+  "main": "workspace.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eleftheria Papageorgiou",
+  "license": "ISC",
+  "devDependencies": {
+    "@blockly/dev-tools": "^2.6.1"
+  },
+  "dependencies": {
+    "blockly": "^6.20210701.0",
+    "bootstrap": "^3.4.1",
+    "es6": "0.0.7",
+    "jquery": "^3.6.0",
+    "node-localstorage": "^2.2.1",
+    "p5": "^1.4.0",
+    "require": "^2.4.20",
+    "xmldoc": "^1.1.2"
+  }
+}

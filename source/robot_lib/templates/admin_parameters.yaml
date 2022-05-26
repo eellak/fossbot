@@ -1,0 +1,9 @@
+motor_left:
+  - name: Βήμα μοτέρ
+  - value: 15
+  - default: 10
+
+sensor_distance:
+  - name: Αισθητήρας απόστασης
+  - value: 15
+  - default: 10

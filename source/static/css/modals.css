@@ -1,0 +1,63 @@
+/* Modal for when trying to export an empty space */
+#modal-empty-space-content{
+    background-color: #F8D7DA;
+    border: #721C24 1px solid;
+}
+
+#modal-empty-space-text{
+    color: #721C24;
+}
+
+#modal-empty-space-close-button{
+    color: #721C24;
+}
+
+#form-filename{
+    margin-top: 3%;
+    width: 100%;
+    padding-right: 2%;
+}
+
+#filename-text{
+    width: 100%;
+    border: #0779f6 1px solid;
+    border-radius: 6px;
+}
+
+/* Modal error for when getting/ saving robot settings  ( panel ) ++ 
+   Modal error in blockly page  */
+#modal-error-content{
+    background-color: #F8D7DA;
+    border: #721C24 1px solid;
+}
+
+#modal-error-text{
+    color: #721C24;
+}
+
+#modal-error-close-button{
+    color: #721C24;
+}
+
+/* Modal success for when saving robot settings ( panel ) */
+/* ++ Modal success in blockly page */
+#modal-success-content{
+    background-color: #D4EDDA;
+    border: #155724 1px solid;
+}
+
+#modal-success-text{
+    color: #155724;
+}
+
+#modal-success-close-button{
+    color: #155724;
+}
+
+
+/* home page, when creating new project */
+#project-folder-text, #project-description-text, #project-name-text {
+    margin-top: 3%;
+    width: 100%;
+    padding-right: 2%;
+}

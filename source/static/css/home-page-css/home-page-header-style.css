@@ -1,0 +1,49 @@
+/* Style the header */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f58220;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 90px;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hua-logo {
+  max-width: 60px;
+  max-height: 60px;
+  margin-right: 0.2rem;
+}
+
+.ellak-logo {
+  max-width: 200px;
+}
+
+@media only screen and (min-width: 768px) {
+  header {
+    background-color: #f58220;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 90px;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+  }
+}

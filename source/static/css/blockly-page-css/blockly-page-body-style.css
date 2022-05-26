@@ -1,0 +1,123 @@
+/* Style the body */
+
+#blocklyDiv {
+  height: 70%;
+  width: 100%;  
+  top: 0px;
+  padding-left: 0.7%;
+  padding-right: 0.7%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  /* overflow: hidden; */
+}
+
+#buttons-container {
+  
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0.5%;
+}
+
+#runButton-wrap {
+  margin: 0;
+  top: 5%;
+  bottom: 5%;
+  width: 50%;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  float: left;
+}
+
+#stopButton-wrap {
+  margin: 0;
+  top: 5%;
+  bottom: 5%;
+  width: 50%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  float: left;
+}
+
+button.run {
+  text-align: center;
+  border: 1px solid #0BA800;
+  background-color: #0BA800;
+  color: #fff;
+  min-width: 200px;
+  min-height: 40px;
+}
+
+button.stop {
+  text-align: center;
+  border: 1px solid #dd4b39;
+  background-color: #dd4b39;
+  color: #fff;
+  min-width: 200px;
+  min-height: 40px;
+}
+
+
+#back-import-export-buttons-container {
+  height: 10%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  /* align-items: stretch;
+  justify-content: center; */
+  flex-direction: row;
+  padding: 1%;
+}
+
+#go-back-to-home-button-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 6%;
+}
+
+#button-export {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+button.go-back-to-home {
+  text-align: center;
+  border: 1px solid #6C757D;
+  background-color: #6C757D;
+  color: #fff;
+  min-width: 200px;
+  min-height: 40px;
+}
+
+button.export {
+  text-align: center;
+  border: 1px solid #0BA800;
+  background-color: #0BA800;
+  color: #fff;
+  min-width: 200px;
+  min-height: 40px;
+}

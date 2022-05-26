@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Control page</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="{{ url_for('static',filename='js/api.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/control-page-js/control-page.js')}}"></script>
+
+  <style>
+    @import url("{{ url_for('static',filename='css/panel-page-css/panel-page-header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/control-page-body.css')}}");
+    @import url("{{ url_for('static',filename='css/footer-style.css')}}");
+    @import url("{{ url_for('static',filename='css/common.css')}}");
+    @import url("{{ url_for('static',filename='css/modals.css')}}");
+  </style>
+</head>
+
+<body>
+  <header id="header" class="header">
+    <div class="header-wrap">
+      <div id="header-logo" class="header-logo">
+        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
+        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
+      </div>
+    </div>
+  </header>
+
+  <div id="main-container">
+    <div id="go-back-to-home-button-container">
+      <div id="go-back-to-home-button-wrap">
+        <button onclick="createNewProject()" type="button" class="go-back-to-home">
+          <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
+            Επιστροφή στην αρχική σελίδα
+          </a>
+        </button>
+      </div>
+    </div>
+
+    <div id="panel-title-container">
+      <div id="panel-title-wrap">Χειροκίνητη χρήση του ρομπότ</div>
+    </div>
+
+    <div id="blocks-container">
+
+      <!-- <div id="blocks-title-wrap">
+        <div id="blocks-title">
+          <strong>        </strong>
+            
+        </div>
+      </div> -->
+
+      <div id="blocks-wrap">
+        <div id="id-robot-block-container" class="block-container">
+          <div id="controls-container">
+              <button onclick="send_command_for_manual_control('up')" class="up">Μπροστά</button><br><br>
+              <button onclick="send_command_for_manual_control('left')" class="left">Αριστερά</button>
+              <button onclick="send_command_for_manual_control('right')" class="right">Δεξιά</button><br><br>
+              <button onclick="send_command_for_manual_control('down')" class="down" class="back">Πίσω</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="stop-Blockly-Button-container">
+      <div id="stop-Blockly-Button-wrap" >
+        <button onclick="stop_script()" type="button" class="stop-Blockly">
+        'Αμεση διακοπή</button>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="hua-ellak">
+      <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

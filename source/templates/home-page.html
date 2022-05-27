@@ -5,11 +5,13 @@
   <meta charset="utf-8">
   <title>Home Page</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
+  
+  <script src="{{ url_for('static',filename='modules/jquery.slim.min.js')}}"></script>
+  <script src="{{ url_for('static',filename='modules/popper.min.js')}}"></script>
+  <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
+
+  <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   
   <script src="{{ url_for('static',filename='js/api.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page-js/home-page.js')}}"></script>

@@ -15,11 +15,11 @@ sys.path.insert(0, parentdir)
 from robot_lib import control
 
 
-ENV_CENTER_FLOOR_SENOR_CAL = 50
-ENV_RIGHT_FLOOR_SENOR_CAL = 100
-ENV_LEFT_FLOOR_SENOR_CAL = 50
-ENV_LIGHT_CAL = 50
-ENV_ULTRASONIC_OBSTACLE_CAL= 50
+# ENV_CENTER_FLOOR_SENOR_CAL = 50
+# ENV_RIGHT_FLOOR_SENOR_CAL = 100
+# ENV_LEFT_FLOOR_SENOR_CAL = 50
+# ENV_LIGHT_CAL = 50
+# ENV_ULTRASONIC_OBSTACLE_CAL= 50
 
 
 
@@ -30,17 +30,17 @@ def load_parameters():
 
 parameters = load_parameters()
 
-MOTOR_STEP_LEFT =  parameters['motor_left'][1]['value']
-DISTANCE_SENSOR = parameters['sensor_distance'][1]['value']
+#MOTOR_STEP_LEFT =  parameters['motor_left'][1]['value']
+#DISTANCE_SENSOR = parameters['sensor_distance'][1]['value']
 DEFAULT_STEP = 15
-DEFAULT_SPEED_LEFT = 22
-DEFAULT_SPEED_RIGHT = 23
-DEFAULT_ULTRASONIC_OBSTACLE_DIST= 15
-DEFAULT_LIGHT_CAL = 700
-DEFAULT_FLOOR_LEFT = 50
-DEFAULT_FLOOR_CENTER = 50
-DEFAULT_FLOOR_RIGHT = 50
-DEFAULT_ROTATE90_STEPS = 12
+DEFAULT_SPEED_LEFT = parameters['motor_left'][1]['value']
+DEFAULT_SPEED_RIGHT = parameters['motor_right'][1]['value']
+DEFAULT_ULTRASONIC_OBSTACLE_DIST= parameters['sensor_distance'][1]['value']
+DEFAULT_LIGHT_CAL = parameters['light_sensor'][1]['value']
+DEFAULT_FLOOR_LEFT = parameters['line_sensor_left'][1]['value']
+DEFAULT_FLOOR_CENTER = parameters['line_sensor_center'][1]['value']
+DEFAULT_FLOOR_RIGHT = parameters['line_sensor_right'][1]['value']
+DEFAULT_ROTATE90_STEPS = parameters['rotate_90'][1]['value']
 LEFT_OFFSET  = 2
 
 class Fossbot():

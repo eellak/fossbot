@@ -61,8 +61,44 @@
       </div>
     </div>
 
-    <div id="blocks-wrap">
-      <form action="/save_parameters" method="post" id="blocks-wrap">
+    <div class="d-flex justify-content-center"> 
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          
+          <table class="table table-responsive">
+            <thead>
+              <tr>                
+                <th scope="col">Όνομα παραμέτρου</th>
+                <th scope="col">Πορεπιλεγμένη τιμή</th>
+                <th scope="col">Τιμή</th>
+              </tr>
+            </thead>
+            <tbody>  
+              <form action="/save_parameters" method="post" id="blocks-wrap">
+              {% for parameter in parameters %}
+              <tr>                
+                <td>{{ parameters[parameter][0]['name'] }} </td>
+                <td>{{ parameters[parameter][2]['default'] }}</td>
+                <td><input type="number" name="{{parameter}}" value="{{ parameters[parameter][1]['value'] }}"></td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td> <button name="submit" type="submit" class="save-panel-changes">Αποθήκευση αλλαγών</button></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        </div>
+
+      </div>
+      <!-- <div id="save-panel-changes-container">
+        <div id="save-panel-changes-wrap">
+         
+        </div>
+      </div> -->
+      <!-- <form action="/save_parameters" method="post" id="blocks-wrap">
           {% for parameter in parameters %}
       
           <div id="id-robot-block-container">
@@ -86,9 +122,9 @@
           </div>
         </div>
 
-      </form>
+      </form> -->
     </div>
-
+  </div>
   <footer>
     <div class="hua-ellak">
       <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>

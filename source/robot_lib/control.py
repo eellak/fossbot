@@ -26,7 +26,7 @@ class analogue_readings():
 
 
 class Led_RGB():
-	def __init__(self,pin_r=16,pin_b=13,pin_g=12):
+	def __init__(self,pin_r=16,pin_b=19,pin_g=12):
 		
 		self.r = gen_output(pin_r)
 		self.b = gen_output(pin_b)

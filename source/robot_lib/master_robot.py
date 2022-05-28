@@ -127,7 +127,7 @@ class Fossbot():
     def get_noise_detection(self):
         state = self.noise.get_state()
         print(state)
-        return not bool(state)
+        return bool(state) #not bool(state)
 
 
     #moving reverse

@@ -51,7 +51,7 @@ class Fossbot():
         self.ultrasonic = control.ultrasonic_sensor(echo_pin=5,trig_pin=6)
         self.odometer_right = control.odometer(21,sensor_disc = 20,offset=0)
         self.odometer_left = control.odometer(20,sensor_disc = 20,offset=0)
-        self.buzzer = control.buzzer(19,freq=1500,dc=80)
+        #self.buzzer = control.buzzer(19,freq=1500,dc=80)
         self.rgb_led = control.Led_RGB()
         self.analogue_reader = control.analogue_readings()
         self.accelerometer = control.accelerometer()    

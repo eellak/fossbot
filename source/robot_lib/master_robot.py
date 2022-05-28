@@ -47,10 +47,10 @@ class Fossbot():
     def __init__(self):
         control.start_lib()
         self.motor_right = control.motor(speed_pin=23,terma_pin=27,termb_pin=22,freq=20,dc=DEFAULT_SPEED_RIGHT)
-        self.motor_left = control.motor(speed_pin=25,terma_pin=17,termb_pin=18,freq=20,dc=DEFAULT_SPEED_LEFT)
+        self.motor_left = control.motor(speed_pin=25,terma_pin=17,termb_pin=24,freq=20,dc=DEFAULT_SPEED_LEFT)
         self.ultrasonic = control.ultrasonic_sensor(echo_pin=5,trig_pin=6)
         self.odometer_right = control.odometer(21,sensor_disc = 20,offset=0)
-        self.odometer_left = None
+        self.odometer_left = control.odometer(20,sensor_disc = 20,offset=0)
         self.buzzer = control.buzzer(19,freq=1500,dc=80)
         self.rgb_led = control.Led_RGB()
         self.analogue_reader = control.analogue_readings()

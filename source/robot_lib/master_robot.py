@@ -32,7 +32,7 @@ parameters = load_parameters()
 
 #MOTOR_STEP_LEFT =  parameters['motor_left'][1]['value']
 #DISTANCE_SENSOR = parameters['sensor_distance'][1]['value']
-DEFAULT_STEP = 15
+DEFAULT_STEP = parameters['step'][1]['value']
 DEFAULT_SPEED_LEFT = parameters['motor_left'][1]['value']
 DEFAULT_SPEED_RIGHT = parameters['motor_right'][1]['value']
 DEFAULT_ULTRASONIC_OBSTACLE_DIST= parameters['sensor_distance'][1]['value']

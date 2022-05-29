@@ -23,7 +23,8 @@ app = Flask(__name__)
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
 CORS(app)
 
-r = redis.Redis()
+r = redis.Redis(host='redis_server')
+r.expire('command', 5)
 
 db = SQLAlchemy(app)
 
@@ -142,7 +143,7 @@ def stop_script():
 def manual_control_command():
     command = request.args.get('command')
     print(command)
-    #r.set('command',bytes(command, "utf8"))
+    r.set('command',bytes(command, "utf8"))
     return jsonify({'status': 'ok'})
 
 @app.route('/manual_control')
@@ -199,15 +200,23 @@ def generate_py(code,id):
     with open(f'data/projects/{id}/{id}.py', "w") as fh:
         fh.write(output)
 
-def execute_code(id):
+def execute_code(id,manual_control=False):
     global SCRIPT_PROCCESS
-    if not os.path.exists(f'data/projects/{id}/{id}.py'):
-        return {'status': 'file not found'}    
-    if SCRIPT_PROCCESS is None or SCRIPT_PROCCESS.poll() is not None:        
-        SCRIPT_PROCCESS = subprocess.Popen(['python3', f'data/projects/{id}/{id}.py'])
-        return {'status': 'started'}
+    if not manual_control:
+        if not os.path.exists(f'data/projects/{id}/{id}.py'):
+            return {'status': 'file not found'}    
+        if SCRIPT_PROCCESS is None or SCRIPT_PROCCESS.poll() is not None:        
+            SCRIPT_PROCCESS = subprocess.Popen(['python3', f'data/projects/{id}/{id}.py'])
+            return {'status': 'started'}
+        else:
+            return {'status': 'still running'}
     else:
-        return {'status': 'still running'}
+        stop_now()
+        SCRIPT_PROCCESS = subprocess.Popen(['python3', f'robot_lib/manual_control.py'])
+        return {'status': 'started'}
+        
+          
+       
 
 def stop_now():
     global SCRIPT_PROCCESS

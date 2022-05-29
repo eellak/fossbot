@@ -1,0 +1,18 @@
+services:
+  redis_server:
+    image: arm32v7/redis
+    container_name: redis_server
+    hostname: redis_server
+    ports:
+      - 6379:6379
+    restart: always
+  blockly_server:
+    privileged: true
+    image: chronis10/fossbot_blockly:latest
+    container_name: blockly_server
+    hostname: blockly_server
+    ports:
+      - 5000:5000
+    restart: always
+    volumes:
+      - /home/pi/data:/app/data

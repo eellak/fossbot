@@ -11,7 +11,7 @@ from master_robot import Fossbot
 import redis
 import time
 
-r = redis.Redis() #host='redis_server')
+r = redis.Redis(host='redis_server')
 
 def custom():
   while True:

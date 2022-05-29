@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
 CORS(app)
 
-r = redis.Redis() #host='redis_server')
+r = redis.Redis(host='redis_server')
 
 db = SQLAlchemy(app)
 

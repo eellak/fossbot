@@ -41,7 +41,7 @@ DEFAULT_FLOOR_LEFT = parameters['line_sensor_left'][1]['value']
 DEFAULT_FLOOR_CENTER = parameters['line_sensor_center'][1]['value']
 DEFAULT_FLOOR_RIGHT = parameters['line_sensor_right'][1]['value']
 DEFAULT_ROTATE90_STEPS = parameters['rotate_90'][1]['value']
-LEFT_OFFSET  = 2
+LEFT_OFFSET  = 0
 
 class Fossbot():
     def __init__(self):

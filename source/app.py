@@ -23,8 +23,7 @@ app = Flask(__name__)
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
 CORS(app)
 
-r = redis.Redis(host='redis_server')
-r.expire('command', 5)
+r = redis.Redis() #host='redis_server')
 
 db = SQLAlchemy(app)
 
@@ -49,16 +48,19 @@ def before_first_request():
 
 @app.route('/')
 def index():
+    stop_now()
     projects_list = get_all_projects()
     return render_template('home-page.html',projects=projects_list)
 
 @app.route('/blockly')
 def blockly():
+    stop_now()
     id = request.args.get('id') 
     return render_template('blockly.html',project_id=id)
 
 @app.route('/admin_panel')
 def admin_panel():
+    stop_now()
     parameters =load_parameters()
     return render_template('panel-page.html',parameters = parameters)
 
@@ -76,11 +78,13 @@ def save_parameters():
 
 @app.route('/projects')
 def all_projects():
+    stop_now()
     projects_list = get_all_projects()
     return jsonify(projects_list)
 
 @app.route('/new_project')
 def add_project():
+    stop_now()
     title = request.args.get('title')    
     info = request.args.get('info')
     project = Projects(title,info)
@@ -93,6 +97,7 @@ def add_project():
 
 @app.route('/delete_project')
 def delete_project():
+    stop_now()
     try:
         project_id = request.args.get('id')
         project = Projects.query.get(project_id)
@@ -142,12 +147,16 @@ def stop_script():
 @app.route('/manual_control_command')
 def manual_control_command():
     command = request.args.get('command')
-    print(command)
+    print(f'flask {command}')
     r.set('command',bytes(command, "utf8"))
+    r.expire('command', 2)
+
     return jsonify({'status': 'ok'})
 
 @app.route('/manual_control')
 def manual_control():
+    stop_script()
+    execute_code(None,manual_control=True)
     return render_template('control.html')
 
 @app.route('/execute_blockly',methods = ['POST'])

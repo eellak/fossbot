@@ -11,7 +11,7 @@
 
 ![](images/front_pen.png)
 
-## Specs 
+## Εξοπλισμός 
 #### Sensors:
 * Ultrasonic distance sensor
 * Battery Sensor

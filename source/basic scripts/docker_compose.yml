@@ -1,6 +1,6 @@
 services:
   redis_server:
-    image: arm32v7/redis
+    image: redis
     container_name: redis_server
     hostname: redis_server
     ports:

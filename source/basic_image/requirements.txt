@@ -4,3 +4,4 @@ rpi.gpio
 PyYAML
 redis
 Adafruit-GPIO
+Adafruit-MCP3008

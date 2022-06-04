@@ -1,12 +1,8 @@
 import os
 import sys
 import inspect
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0, parentdir)
 
-from robot_lib.master_robot import Fossbot
-
+sys.path.append('/robot_lib')
 from master_robot import Fossbot
 import redis
 import time

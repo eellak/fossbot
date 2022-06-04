@@ -37,12 +37,17 @@ class Projects(db.Model, SerializerMixin):
         
 @app.before_first_request
 def before_first_request():
+    if not os.path.exists('data'):
+        os.mkdir('data')
+        os.mkdir('data/projects')
+    elif not os.path.exists('data/projects'):
+        os.mkdir('data/projects')    
     try:
         db.session.query(Projects).one()
     except:
         db.create_all()
-    if not os.path.exists(f'data/admin_parameters.yaml'):
-        shutil.copy('robot_lib/templates/admin_parameters.yaml',f'data/admin_parameters.yaml')
+    if not os.path.exists('data/admin_parameters.yaml'):
+        shutil.copy('../robot_lib/code_templates/admin_parameters.yaml',f'data/admin_parameters.yaml')
 
 
 
@@ -92,7 +97,7 @@ def add_project():
     db.session.commit()
     db.session.refresh(project)
     os.mkdir(f'data/projects/{project.project_id}')
-    shutil.copy('robot_lib/templates/template.xml',f'data/projects/{project.project_id}/{project.project_id}.xml')
+    shutil.copy('../robot_lib/code_templates/template.xml',f'data/projects/{project.project_id}/{project.project_id}.xml')
     return jsonify(project.to_dict())
 
 @app.route('/delete_project')
@@ -202,7 +207,7 @@ def get_all_projects():
 
 
 def generate_py(code,id):
-    env = Environment(loader=FileSystemLoader('robot_lib/templates'))
+    env = Environment(loader=FileSystemLoader('../robot_lib/code_templates'))
     template = env.get_template('template_code.py')
     code = textwrap.indent(text=code, prefix='  ', predicate=lambda line: True)
     output = template.render(code = code)
@@ -221,7 +226,7 @@ def execute_code(id,manual_control=False):
             return {'status': 'still running'}
     else:
         stop_now()
-        SCRIPT_PROCCESS = subprocess.Popen(['python3', f'robot_lib/manual_control.py'])
+        SCRIPT_PROCCESS = subprocess.Popen(['python3', f'../robot_lib/manual_control.py'])
         return {'status': 'started'}
         
           

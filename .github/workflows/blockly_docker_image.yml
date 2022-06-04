@@ -1,4 +1,4 @@
-name: Build Blockly images
+name: Build Blockly image
 
 on: [workflow_dispatch]
 
@@ -23,12 +23,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       -
-        name: Build and push Blockly ARM image
+        name: Build and push ARM image
         uses: docker/build-push-action@v2
         
         with:       
           context: source
-          file: source/Dockerfile
+          file: source/blockly_server/Dockerfile
           platforms: linux/arm64,linux/arm/v7,linux/arm/v6
           push: true
           tags: |

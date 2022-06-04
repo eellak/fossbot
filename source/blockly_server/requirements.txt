@@ -1,0 +1,7 @@
+Jinja2
+flask
+SQLAlchemy
+Flask-SQLAlchemy
+SQLAlchemy-serializer
+Flask-Cors
+psutil

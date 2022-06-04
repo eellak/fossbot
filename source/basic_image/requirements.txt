@@ -1,0 +1,7 @@
+mpu6050-raspberrypi
+smbus
+rpi.gpio
+PyYAML
+redis
+Adafruit-GPIO
+Adafruit-MCP3008

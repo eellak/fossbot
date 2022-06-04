@@ -6,21 +6,8 @@ import yaml
 import time
 import subprocess
 
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-parentdir = os.path.dirname(parentdir)
-parentdir = os.path.dirname(parentdir)
-sys.path.insert(0, parentdir) 
-
-from robot_lib import control
-
-
-# ENV_CENTER_FLOOR_SENOR_CAL = 50
-# ENV_RIGHT_FLOOR_SENOR_CAL = 100
-# ENV_LEFT_FLOOR_SENOR_CAL = 50
-# ENV_LIGHT_CAL = 50
-# ENV_ULTRASONIC_OBSTACLE_CAL= 50
-
+sys.path.append('/robot_lib')
+import control
 
 
 def load_parameters():
@@ -30,8 +17,6 @@ def load_parameters():
 
 parameters = load_parameters()
 
-#MOTOR_STEP_LEFT =  parameters['motor_left'][1]['value']
-#DISTANCE_SENSOR = parameters['sensor_distance'][1]['value']
 DEFAULT_STEP = parameters['step'][1]['value']
 DEFAULT_SPEED_LEFT = parameters['motor_left'][1]['value']
 DEFAULT_SPEED_RIGHT = parameters['motor_right'][1]['value']
@@ -149,19 +134,19 @@ class Fossbot():
     def play_sound(self,audio_id):
         audio_id = int(audio_id)
         if audio_id == 1:
-            subprocess.run(["mpg123", "robot_lib/soundfx/geia.mp3"])
+            subprocess.run(["mpg123", "soundfx/geia.mp3"])
         elif audio_id == 2:
-            subprocess.run(["mpg123", "robot_lib/soundfx/mpravo.mp3"])
+            subprocess.run(["mpg123", "soundfx/mpravo.mp3"])
         elif audio_id == 3:
-            subprocess.run(["mpg123", "robot_lib/soundfx/empodio.mp3"])
+            subprocess.run(["mpg123", "soundfx/empodio.mp3"])
         elif audio_id == 4:
-            subprocess.run(["mpg123", "robot_lib/soundfx/kalhmera.mp3"])
+            subprocess.run(["mpg123", "soundfx/kalhmera.mp3"])
         elif audio_id == 5:
-            subprocess.run(["mpg123", "robot_lib/soundfx/euxaristw.mp3"])
+            subprocess.run(["mpg123", "soundfx/euxaristw.mp3"])
         elif audio_id == 6:
-            subprocess.run(["mpg123", "robot_lib/soundfx/r2d2.mp3"])
+            subprocess.run(["mpg123", "soundfx/r2d2.mp3"])
         elif audio_id == 7:
-            subprocess.run(["mpg123", "robot_lib/soundfx/machine_gun.mp3"])
+            subprocess.run(["mpg123", "soundfx/machine_gun.mp3"])
 
             
     def beep(self):

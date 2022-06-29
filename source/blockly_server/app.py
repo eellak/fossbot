@@ -200,6 +200,13 @@ def save_xml():
         return jsonify({'status': 'wrong method'})
 
 
+@app.route('/print_realtime_python_outputs')
+def print_realtime_python_outputs():
+    project_id = request.args.get('id')
+    with open(f'data/projects/{project_id}/{project_id}.py', "r") as file:
+        script_data = file.read()
+        return jsonify({'script': script_data})
+        
 def get_all_projects():
     projects = Projects.query.all()
     projects_list = [pr.to_dict() for pr in projects]

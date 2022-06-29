@@ -27,6 +27,13 @@ function runCode(id) {
       }
     })
 
+    printRealtimePythonSCripts(id)
+    .then(response => { 
+      if( response.status == 200 ) {
+        console.log("Ας εμφανισουμε το python script");
+        console.log(response.script)
+      }
+    })
 }
 
 //stop the code that was being exeuted in the robot 

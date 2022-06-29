@@ -32,11 +32,14 @@ function runCode(id) {
               console.log(response.script)
             }
           })
+          .catch(err => {
+            console.log('Error when getting the python script\n', err);
+          })
       }
     }) 
     .catch(err => {
       console.log('Error when saving project\n', err);
-  });
+    })
 }
 
 //stop the code that was being exeuted in the robot 

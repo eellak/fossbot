@@ -56,6 +56,6 @@ function sendManualControlCommand(command) {
   return axiosClient().get('/manual_control_command?command='+command);
 }
 
-function printRealtimePythonSCripts(id) {
+function printRealtimePythonScripts(id) {
   return axiosClient().post('/print_realtime_python_outputs?id='+id);
 }

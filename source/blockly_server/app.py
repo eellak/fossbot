@@ -1,3 +1,4 @@
+
 from crypt import methods
 from flask import Flask,jsonify,request,Response, render_template,redirect, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +13,7 @@ import psutil
 import textwrap
 import shutil
 import yaml
-
+import runpy
 
 DEBUG = os.getenv('DEBUG')
 if DEBUG is None:
@@ -203,9 +204,29 @@ def save_xml():
 @app.route('/print_realtime_python_outputs')
 def print_realtime_python_outputs():
     project_id = request.args.get('id')
+    
+    # Save a reference to the original standard output
+    original = sys.stdout 
+
     with open(f'data/projects/{project_id}/{project_id}.py', "r") as file:
-        script_data = file.read()
-        return jsonify({'script': script_data})
+        
+        #open file and deelete its content 
+        output_file = open(f'data/projects/{project_id}/{project_id}.txt', 'w')
+        output_file.truncate() 
+
+        #change standard output 
+        sys.stdout = output_file 
+
+        #execute code, so that the prints output go into the file we 
+        runpy.run_path('data/projects/{project_id}/{project_id}.py', run_name='__main__')
+
+        #back to original output
+        sys.stdout = original
+
+        #read and return the output of the file 
+        with open(f'data/projects/{project_id}/{project_id}.txt', "r") as file:
+            output_data = file.read()
+            return jsonify({'script': output_data}) 
         
 def get_all_projects():
     projects = Projects.query.all()

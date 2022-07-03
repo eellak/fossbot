@@ -14,6 +14,7 @@ import textwrap
 import shutil
 import yaml
 import runpy
+import sys
 
 DEBUG = os.getenv('DEBUG')
 if DEBUG is None:
@@ -218,7 +219,7 @@ def print_realtime_python_outputs():
         sys.stdout = output_file 
 
         #execute code, so that the prints output go into the file we 
-        runpy.run_path('data/projects/{project_id}/{project_id}.py', run_name='__main__')
+        runpy.run_path(f'data/projects/{project_id}/{project_id}.py', run_name='__main__')
 
         #back to original output
         sys.stdout = original

@@ -207,11 +207,9 @@ def print_realtime_python_outputs():
     project_id = request.args.get('id')
     
     # Save a reference to the original standard output
-    original = sys.stdout 
-
-    #with open(f'data/projects/{project_id}/{project_id}.py', "r") as file:
+    original = sys.stdout
         
-    #open file and deelete its content 
+    #open file and delete its content 
     output_file = open(f'data/projects/{project_id}/{project_id}.txt', 'w')
     output_file.truncate() 
 
@@ -227,6 +225,7 @@ def print_realtime_python_outputs():
     #read and return the output of the file 
     with open(f'data/projects/{project_id}/{project_id}.txt', "r") as filee:
         output_data = filee.read()
+	print("output data file:", output_data)
         return jsonify({'script': output_data}) 
         
 def get_all_projects():

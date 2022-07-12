@@ -27,12 +27,10 @@ services:
     restart: unless-stopped
     depends_on: 
       - ubuntuServer
-      - blockly_server
   ubuntuServer:
-    build: 
-      context: .
-      dockerfile:  ../blockly_server/Dockerfile
-    image: myubuntu
+    container_name: ubuntu_server
+    hostname: ubuntu_server
+    image: ubuntu:20.04
     ports:
       - 22:22 
     command: ["sleep", "infinity"]

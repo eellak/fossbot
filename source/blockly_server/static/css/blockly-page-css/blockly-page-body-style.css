@@ -121,3 +121,8 @@ button.export {
   min-width: 200px;
   min-height: 40px;
 }
+
+#iframe {
+  padding-left: 0.7%;
+  padding-right: 0.7%;
+}

@@ -50,32 +50,36 @@
   </header>
 
   <div id="main-container">
-  <div id="back-import-export-buttons-container">
-    <div id="go-back-to-home-button-wrap">
-      <button onclick="createNewProject()" type="button" class="go-back-to-home">
-        <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
-          Επιστροφή στην αρχική σελίδα
-        </a>
-      </button>
+    <div id="back-import-export-buttons-container">
+      <div id="go-back-to-home-button-wrap">
+        <button onclick="createNewProject()" type="button" class="go-back-to-home">
+          <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
+            Επιστροφή στην αρχική σελίδα
+          </a>
+        </button>
+      </div>
+
+      <div id="button-export">
+        <button onclick="save_xml('{{ project_id }}')" type="button" class="export">Αποθήκευση</button>
+      </div>
     </div>
 
-    <div id="button-export">
-      <button onclick="save_xml('{{ project_id }}')" type="button" class="export">Αποθήκευση</button>
-    </div>
-  </div>
-
-  <div id="blocklyDiv"></div>
+    <div id="blocklyDiv"></div>
   
-  <div id="buttons-container">
-    <div id="runButton-wrap">
-      <button onclick="runCode('{{ project_id }}')" type="button" class="run">Τρέξε το πρόγραμμα!</button>
+    <div id="buttons-container">
+      <div id="runButton-wrap">
+        <button onclick="runCode('{{ project_id }}')" type="button" class="run">Τρέξε το πρόγραμμα!</button>
+      </div>
+
+      <div id="stopButton-wrap">
+        <button onclick="stop_script()" type="button" class="stop">Σταμάτα την εκτέλεση!</button>
+      </div>
     </div>
 
-    <div id="stopButton-wrap">
-      <button onclick="stop_script()" type="button" class="stop">Σταμάτα την εκτέλεση!</button>
+    <div id="iframeDiv">
+      <iframe src="https://localhost:3000/wetty" style="border:none;" id="iframe" width="100%" height="40%"></iframe>
     </div>
   </div>
-</div>
   <footer>
     <div class="hua-ellak">
       <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>

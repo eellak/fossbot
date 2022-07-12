@@ -31,7 +31,7 @@ services:
   ubuntuServer:
     build: 
       context: .
-      dockerfile:  /home/pi/fossbot/source/blockly_server/Dockerfile
+      dockerfile:  ../blockly_server/Dockerfile
     image: myubuntu
     ports:
       - 22:22 

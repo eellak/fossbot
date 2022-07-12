@@ -21,7 +21,7 @@ services:
     environment:
       - REMOTE_SSH_USER=pi
       - REMOTE_SSH_PASSWORD=raspberry
-    command: "wetty --ssh-user=${REMOTE_SSH_USER} --ssh-pass=${REMOTE_SSH_PASSWORD} --allow-iframe --ssh-host=fossbot-003.local"
+    command: "wetty --ssh-user=REMOTE_SSH_USER --ssh-pass=REMOTE_SSH_PASSWORD --allow-iframe --ssh-host=fossbot-003.local"
     ports:
       - 3000:3000
     restart: unless-stopped

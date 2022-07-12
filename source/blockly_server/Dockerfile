@@ -1,8 +1,12 @@
 FROM chronis10/fossbot_basic:latest
 WORKDIR /app
+# Adding requirements file to current directory, just this file first to cache the pip install step when code changes
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN rm -rf requirements.txt
+
+# copy code itself from context to image
 COPY . .
-RUN pip install --no-cache-dir -r ./requirements.txt
-RUN rm -rf ./requirements.txt
 RUN rm -rf Dockerfile
 CMD [ "python", "./app.py" ]
 

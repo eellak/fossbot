@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     depends_on: 
       - ubuntuServer
-
+      - blockly_server
   ubuntuServer:
     build: 
       context: .

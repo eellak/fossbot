@@ -29,7 +29,9 @@ services:
       - ubuntuServer
 
   ubuntuServer:
-    build: .
+    build: 
+      context: .
+      dockerfile:  /home/pi/fossbot/source/blokcly_server/Dockerfile
     image: myubuntu
     ports:
       - 22:22 

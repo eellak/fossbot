@@ -32,16 +32,16 @@ async function runCode(id) {
         console.log('Error when saving the xml\n', err);
     }
 
-    printRealtimePythonScripts(id)
-        .then(response => {
-            if (response.status == 200) {
-                console.log("Ας εμφανισουμε το python script");
-                console.log(response.data.script)
-            }
-        })
-        .catch(err => {
-            console.log('Error when getting the python script\n', err);
-        })
+    // printRealtimePythonScripts(id)
+    //     .then(response => {
+    //         if (response.status == 200) {
+    //             console.log("Ας εμφανισουμε το python script");
+    //             console.log(response.data.script)
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.log('Error when getting the python script\n', err);
+    //     })
 }
 
 //stop the code that was being exeuted in the robot 

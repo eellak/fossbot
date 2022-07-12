@@ -16,3 +16,21 @@ services:
     restart: always
     volumes:
       - /home/pi/data:/app/data
+  wetty:
+    image: wettyoss/wetty
+    environment:
+      REMOTE_SSH_USER: pi
+      REMOTE_SSH_PASSWORD: raspberry
+    command: "wetty --ssh-user=${REMOTE_SSH_USER} --ssh-pass=${REMOTE_SSH_PASSWORD} --allow-iframe --ssh-host=fossbot-003.local"
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    depends_on: 
+      - ubuntuServer
+
+  ubuntuServer:
+    build: .
+    image: myubuntu
+    ports:
+      - 22:22 
+    command: ["sleep", "infinity"]

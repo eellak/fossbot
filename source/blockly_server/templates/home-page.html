@@ -17,6 +17,8 @@
   <script src="{{ url_for('static',filename='js/home-page-js/home-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page-js/home-page-modals.js')}}"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
   <style>
     @import url("{{ url_for('static',filename='css/home-page-css/home-page-header-style.css')}}");
     @import url("{{ url_for('static',filename='css/home-page-css/home-page-body-style.css')}}");
@@ -26,7 +28,27 @@
   </style>
 </head>
 
-<body>
+<script type="text/javascript" charset="utf-8">
+   function connect_on_socket(){ 
+    var socket = io("http://fossbot-003.local:5000");
+    socket.on("connect", function() {
+      socket.emit('connection event', {data: 'I\'m connected!'});
+      console.log("Socket connected!");
+      console.log("Client-socket connected:", socket.connected); // true, if connected
+    });
+    
+    socket.on('disconnect', () => {
+      console.log("Socket disconnected");
+    });
+    
+    socket.on("get-all-projects", (data) => {
+      console.log("get-all-projects data:", data);
+    });
+
+   }
+</script>
+
+<body onload="connect_on_socket()">
   <header id="header" class="header">
     <div class="header-wrap">
       <div id="header-logo" class="header-logo">

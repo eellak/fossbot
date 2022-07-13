@@ -17,7 +17,8 @@ services:
     volumes:
       - /home/pi/data:/app/data
   wetty:
-    image: wettyoss/wetty
+    container_name: wetty
+    image: jpspringall/wetty
     environment:
       - REMOTE_SSH_USER=pi
       - REMOTE_SSH_PASSWORD=raspberry
@@ -25,6 +26,8 @@ services:
     ports:
       - 3000:3000
     restart: unless-stopped
+    entrypoint: yarn docker-compose-entrypoint
+    tty: true
     depends_on: 
       - ubuntuServer
   ubuntuServer:

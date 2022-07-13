@@ -5,5 +5,5 @@ Flask-SQLAlchemy
 SQLAlchemy-serializer
 Flask-Cors
 psutil
-socketio
+python-socketio
 eventlet

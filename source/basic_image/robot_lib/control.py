@@ -286,6 +286,9 @@ class motor():
 		self.dc = dc
 		self.dir_control("forward")
 		self.mot.start(0)
+
+	def get_speed(self):
+		return self.dc
 	def control_speed(self,speed):
 		if speed < 0 or speed > 100:
 			print("The motor speed is a percentage of total motor power. Accepted values 0-100.")

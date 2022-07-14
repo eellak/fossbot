@@ -29,8 +29,8 @@
 </head>
 
 <script type="text/javascript" charset="utf-8">
-   function connect_on_socket(){ 
-    var socket = io("http://fossbot-003.local:5000");
+   $(document).ready( function(){
+    var socket = io('http://' + document.domain + ':' + location.port + '/robot');
     socket.on("connect", function() {
       socket.emit('connection event', {data: 'I\'m connected!'});
       console.log("Socket connected!");
@@ -45,10 +45,10 @@
       console.log("get-all-projects data:", data);
     });
 
-   }
+  }) 
 </script>
 
-<body onload="connect_on_socket()">
+<body>
   <header id="header" class="header">
     <div class="header-wrap">
       <div id="header-logo" class="header-logo">

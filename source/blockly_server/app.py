@@ -54,9 +54,14 @@ def before_first_request():
     if not os.path.exists('data/admin_parameters.yaml'):
         shutil.copy('../robot_lib/code_templates/admin_parameters.yaml',f'data/admin_parameters.yaml')
 
-@socketio.on('connect')
+@socketio.on('connect', namespace='/robot')
 def on_connect():
     print("Socket connected")
+
+
+@socketio.on('disconnect', namespace='/robot')
+def on_connect():
+    print("Socket disconnected")
 
 @app.route('/')
 def index():
@@ -64,7 +69,7 @@ def index():
     projects_list = get_all_projects()
     return render_template('home-page.html', projects_list)
 
-@socketio.on('get-all-projects')
+@socketio.on('get-all-projects', namespace='/robot')
 def handle_get_all_projects():
     projects_list = get_all_projects()
     emit('all-projects', { 'status': 'ok ', 'data': projects_list })
@@ -81,7 +86,7 @@ def admin_panel():
     parameters =load_parameters()
     return render_template('panel-page.html',parameters = parameters)
 
-@socketio.on('get_admin_panel_parameters')
+@socketio.on('get_admin_panel_parameters', namespace='/robot')
 def handle_get_admin_panel_parameters():
     parameters =load_parameters()
     emit('parameters', { 'status': 'ok ', 'data': parameters})

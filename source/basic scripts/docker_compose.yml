@@ -18,7 +18,7 @@ services:
       - /home/pi/data:/app/data
   wetty:
     container_name: wetty
-    image: jpspringall/wetty
+    image: antsle/wetty-aarch64:1.0
     environment:
       - REMOTE_SSH_USER=pi
       - REMOTE_SSH_PASSWORD=raspberry

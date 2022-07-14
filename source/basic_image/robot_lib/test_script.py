@@ -1,5 +1,5 @@
 from master_robot import Fossbot
-from simple_pid import PID
+from simple_pid import PID #TODO: add to requirements.txt
 import time
 
 """
@@ -19,5 +19,7 @@ while (time.time() - start_time <= test_time):
     correction = pid(axis)
     print("axis: " + str(axis) + " correction: " + str(correction))
     
-    
+    #Fossbot.motor_right.set_speed(Fossbot.motor_right.get_speed()+correction)
+    #Fossbot.motor_left.set_speed(Fossbot.motor_left.get_speed()-correction)
 
+Fossbot.stop()

@@ -215,8 +215,22 @@ class accelerometer():
 	get_acceleration(dimension = "all") with "parameter return dictionary with x,y,z acceleration for a specific dimension give as parameter "x","y","z" return value
 	get_gyro(dimension = "all") with "parameter return dictionary with x,y,z acceleration for a specific dimension give as parameter "x","y","z" return value
 	'''
+	def calc_gyro_error(self, num_samples=1000):
+		x_error, y_error, z_error = 0, 0, 0
+		for i in range(num_samples):
+			measurement = self.get_gyroscope('all')
+			x_error += measurement['x']/num_samples
+			y_error += measurement['y']/num_samples
+			z_error += measurement['z']/num_samples
+		return {"x": x_error, "y": y_error, "z" : z_error}
+
 	def __init__(self,address=0x68):
 		self.sensor = mpu6050(address)
+		print("Please keep robot stable - Gyro Calibration in progress")
+		self.gyro_error = self.calc_gyro_error()
+		print("Gyro Calibration done")
+
+
 	def get_acceleration(self,dimension = "all" ):
 		accel = self.sensor.get_accel_data()
 		if dimension == "all":
@@ -229,9 +243,11 @@ class accelerometer():
 	def get_gyro(self,dimension = "all" ):
 		gyro = self.sensor.get_gyro_data()
 		if dimension == "all":
-			return gyro
+			return {"x" : gyro['x'] - self.gyro_error['x'], \
+					"y" : gyro['y'] - self.gyro_error['y'], \
+					"z" : gyro['z'] - self.gyro_error['z']} 
 		elif dimension == "x" or dimension == "y" or dimension == "z":
-			return gyro[dimension]
+			return gyro[dimension] - self.gyro_error[dimension]
 		else:
 			print("Dimension not recognized!!")
 			return 0

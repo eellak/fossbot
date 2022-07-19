@@ -5,22 +5,6 @@ import control
 
 #Sample script for testing gyro pid follow straight for 5 seconds.
 
-def get_gyroscope(accelerometer, axis):     
-    value = accelerometer.get_gyro(dimension = axis )   
-    #print(value)
-    return  value
-
-
-def calc_gyro_error(accelerometer, num_samples=1000):
-    x_error, y_error, z_error = 0, 0, 0
-    for i in range(num_samples):
-        measurement = get_gyroscope(accelerometer,'all')
-        x_error += measurement['x']/num_samples
-        y_error += measurement['y']/num_samples
-        z_error += measurement['z']/num_samples
-    return {"x": x_error, "y": y_error, "z" : z_error}
-
-
 
 try:
     control.start_lib()
@@ -39,27 +23,44 @@ except Exception as e:
 
 
 try:
-    gyro_error = calc_gyro_error(accelerometer)
-    pid = PID(20, 0.1, 0, setpoint=0)
-    pid.output_limits = (-100, 100)
-
     start_time = time.time()
     test_time = 5
-    motor_right.set_speed(10)
+    
+    target_speed = 50
+    sum_z = 0
+
+
+    # kp=0.005 gia speed= 20 
+    pid = PID(0.005, 0, 0, setpoint=0)
+    #na tsekarw gia alles taxythtes ti kp thelei
+    
+    pid.output_limits = (-50, 50)
+    # tolerance = 20
+    # low_lim = max(-motor_right.get_speed()-tolerance, -100)
+    # up_lim = min( motor_right.get_speed()+tolerance, 100)
+    # pid.output_limits = (low_lim, up_lim)
+
+    motor_right.set_speed(target_speed)
     motor_right.move()
-    motor_left.set_speed(10)
+    motor_left.set_speed(target_speed)
     motor_left.move()
 
     while (time.time() - start_time <= test_time):
-        z_angleps = get_gyroscope(accelerometer, "z") - gyro_error['z']
-        correction = pid(z_angleps)
+        z_angleps = accelerometer.get_gyro(dimension = "z")
+        sum_z += z_angleps
+        correction = pid(sum_z)
         print(f"axis: {z_angleps},  correction: {correction}")
-        print(f"right_motor: {min(max( motor_right.get_speed()+correction, 0), 100)}, left_motor: {min(max( motor_right.get_speed()-correction, 0), 100)}")
-        motor_left.set_speed(min(max( motor_right.get_speed()+correction/100*motor_right.get_speed(), 0), 100))
+        
+        s_left = min(max( target_speed +correction, 0), 100)
+        s_right = min(max( target_speed -correction, 0), 100)
+        
+        motor_left.set_speed(s_left)
         motor_left.move()
-        motor_right.set_speed(min(max( motor_right.get_speed()-correction/100*motor_right.get_speed(), 0), 100))
+        motor_right.set_speed(s_right)
         motor_right.move()
-
+        
+        print(f"right_motor: {s_right}, left_motor: {s_left}")
+        
 except Exception as e:
     print(e)
 

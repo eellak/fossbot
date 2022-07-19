@@ -15,14 +15,13 @@ import Adafruit_MCP3008
 
 
 class analogue_readings():
-	def __init__(self,CLK  = 11,MISO = 9 , MOSI = 10, CS   = 8):
+	def __init__(self, CLK  = 11, MISO = 9, MOSI = 10, CS = 8):
 		self.mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 	def get_reading(self,pin):
 		value = self.mcp.read_adc(pin)
 		print(f'ADC {pin}: {value}')
 		return value
-
 
 
 class Led_RGB():
@@ -98,6 +97,7 @@ class gen_input():
 	def get_state(self):
 		return GPIO.input(self.pin)
 
+
 class button():
 	'''
 	Class button(pin)
@@ -106,9 +106,9 @@ class button():
 	Functions:
 	get_state() return True/False
 	'''
-	def __init__(self,pin=18):
+	def __init__(self, pin = 18):
 		self.pin = pin
-		GPIO.setup(self.pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+		GPIO.setup(self.pin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 	def get_state(self):
 		return GPIO.input(self.pin)
 
@@ -120,14 +120,14 @@ class ultrasonic_sensor():
 	Functions:
 	get_distance() return distance on cm
 	'''
-	def __init__(self,echo_pin=14,trig_pin=15):
+	def __init__(self, echo_pin = 14, trig_pin = 15):
 		self.echo_pin = echo_pin
 		self.trig_pin = trig_pin
-		GPIO.setup(self.echo_pin,GPIO.IN)
-		GPIO.setup(self.trig_pin,GPIO.OUT)
+		GPIO.setup(self.echo_pin, GPIO.IN)
+		GPIO.setup(self.trig_pin, GPIO.OUT)
 		GPIO.output(self.trig_pin, False)
-	def get_distance(self):
 
+	def get_distance(self):
 		GPIO.output(self.trig_pin, True)
 		time.sleep(0.00001)
 		GPIO.output(self.trig_pin, False)
@@ -152,14 +152,14 @@ class screen():
 	print_text(text_list) Get a list input of 5 item and print every item in a line
 	show_image(path) Draw a graph in png from the images/ path
 	'''
-	def __init__(self,SCLK = 21,DIN = 20,DC = 16,RST =7,CS = 12):
+	def __init__(self, SCLK = 21, DIN = 20, DC = 16, RST =7, CS = 12):
 		self.SCLK = SCLK
 		self.DIN = DIN
 		self.DC = DC
 		self.RST = RST
 		self.CS = CS
 		self.disp = LCD.PCD8544(DC, RST, SCLK, DIN, CS)
-		self.disp.begin(contrast=60)
+		self.disp.begin(contrast = 60)
 		self.font = ImageFont.load_default() #ImageFont.truetype('Minecraftia.ttf', 8)
 		self.clear_scrn()
 		self.empty_canvas()
@@ -167,44 +167,51 @@ class screen():
 	def clear_scrn(self):
 		self.disp.clear()
 		self.disp.display()
+
 	def empty_canvas(self):
 		self.canvas= Image.new('1', (LCD.LCDWIDTH, LCD.LCDHEIGHT))
 		self.draw = ImageDraw.Draw(self.canvas)
-		self.draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=255, fill=255)
+		self.draw.rectangle(
+			(0, 0, LCD.LCDWIDTH, LCD.LCDHEIGHT), outline = 255, fill = 255
+		)
 
-	def show_text(self,text,x=0,y=0):
-		self.draw.text((x,y),text, font=self.font)
+	def show_text(self, text, x = 0, y = 0):
+		self.draw.text((x, y), text, font = self.font)
 
 	def show_canvas(self):
 		self.disp.image(self.canvas)
 		self.disp.display()
+
 	def ip_screen(self):
 		self.clear_scrn()
 		self.empty_canvas()
 		self.show_text("Proteas Robot")
 		ipl = get_ip()
-		self.show_text("Connect to:",0,9)
-		self.show_text("http://",0,19)
-		self.show_text(ipl[-1],0,29)
-		self.show_text(":8080",0,39)
+		self.show_text("Connect to:", 0, 9)
+		self.show_text("http://", 0, 19)
+		self.show_text(ipl[-1], 0, 29)
+		self.show_text(":8080", 0, 39)
 		self.show_canvas()
 
-	def print_text(self,text_list):
+	def print_text(self, text_list):
 		self.clear_scrn()
 		self.empty_canvas()
 		posy = 0
-		for i in range(0,5):
+		for i in range(0, 5):
 			temp  = text_list[i]
-			if isinstance(temp,int) or isinstance(temp,float):
+			if isinstance(temp, int) or isinstance(temp, float):
 				temp = str(temp)
-			self.show_text(temp,0,posy)
+			self.show_text(temp, 0, posy)
 			posy += 9
 		self.show_canvas()
-	def show_image(self,path):
+
+	def show_image(self, path):
 		path = "images/" +path
 		self.clear_scrn()
 		im = Image.open(path)
-		self.canvas = im.resize((LCD.LCDWIDTH, LCD.LCDHEIGHT), Image.ANTIALIAS).convert('1')
+		self.canvas = im.resize(
+			(LCD.LCDWIDTH, LCD.LCDHEIGHT), Image.ANTIALIAS
+		).convert('1')
 		self.show_canvas()
 
 
@@ -215,23 +222,23 @@ class accelerometer():
 	get_acceleration(dimension = "all") with "parameter return dictionary with x,y,z acceleration for a specific dimension give as parameter "x","y","z" return value
 	get_gyro(dimension = "all") with "parameter return dictionary with x,y,z acceleration for a specific dimension give as parameter "x","y","z" return value
 	'''
-	def calc_gyro_error(self, num_samples=1000):
+
+	def __init__(self, address = 0x68):
+		self.sensor = mpu6050(address)
+		print("Please keep fossbot stable - Gyro Calibration in progress")
+		self.gyro_error = self.calc_gyro_error()
+		print("Gyro Calibration done")
+
+	def calc_gyro_error(self, num_samples = 1000):
 		x_error, y_error, z_error = 0, 0, 0
 		for i in range(num_samples):
-			measurement = self.get_gyroscope('all')
+			measurement = self.get_gyro(raw=True)
 			x_error += measurement['x']/num_samples
 			y_error += measurement['y']/num_samples
 			z_error += measurement['z']/num_samples
 		return {"x": x_error, "y": y_error, "z" : z_error}
 
-	def __init__(self,address=0x68):
-		self.sensor = mpu6050(address)
-		print("Please keep robot stable - Gyro Calibration in progress")
-		self.gyro_error = self.calc_gyro_error()
-		print("Gyro Calibration done")
-
-
-	def get_acceleration(self,dimension = "all" ):
+	def get_acceleration(self, dimension = "all" ):
 		accel = self.sensor.get_accel_data()
 		if dimension == "all":
 			return accel
@@ -240,19 +247,25 @@ class accelerometer():
 		else:
 			print("Dimension not recognized!!")
 			return 0
-	def get_gyro(self,dimension = "all" ):
+
+	def get_gyro(self, dimension = "all", raw = False):
 		gyro = self.sensor.get_gyro_data()
-		if dimension == "all":
-			return {"x" : gyro['x'] - self.gyro_error['x'], \
-					"y" : gyro['y'] - self.gyro_error['y'], \
-					"z" : gyro['z'] - self.gyro_error['z']} 
-		elif dimension == "x" or dimension == "y" or dimension == "z":
-			return gyro[dimension] - self.gyro_error[dimension]
-		else:
-			print("Dimension not recognized!!")
-			return 0
-
-
+		if raw:
+			if dimension == "all":
+				return gyro
+			elif dimension == "x" or dimension == "y" or dimension == "z":
+				return gyro[dimension]
+		else: 
+			#deducts the gyro erorr
+			if dimension == "all":
+				return {"x" : gyro['x'] - self.gyro_error['x'], \
+						"y" : gyro['y'] - self.gyro_error['y'], \
+						"z" : gyro['z'] - self.gyro_error['z']} 
+			elif dimension == "x" or dimension == "y" or dimension == "z":
+				return gyro[dimension] - self.gyro_error[dimension]
+		
+		print("Dimension not recognized!!")
+		#if it reaches here, no return was called, so wrong dimensions!
 
 
 class buzzer():
@@ -262,25 +275,28 @@ class buzzer():
 	beep() Short tone
 	timer(count) Timer function with wait and for every 1 sec makes a tone
 	'''
-	def __init__(self,pin,freq=1500,dc=50):
+	def __init__(self, pin, freq = 1500, dc = 50):
 		GPIO.setup(pin,GPIO.OUT)
-		self.buz = GPIO.PWM(pin,freq)
+		self.buz = GPIO.PWM(pin, freq)
 		self.freq = freq
 		self.dc = dc
 		self.buz.start(0)
+
 	def beep(self):
 		self.buz.ChangeDutyCycle(self.dc)
 		time.sleep(0.1)
 		self.buz.ChangeDutyCycle(0)
-	def timer(self,count):
+
+	def timer(self, count):
 		print("Timer start for {}".format(count))
-		for i in range(1,count+1):
+		for i in range(1, count+1):
 			self.buz.ChangeDutyCycle(self.dc)
 			time.sleep(0.5)
 			self.buz.ChangeDutyCycle(0)
 			time.sleep(0.5)
 			print("{} sec".format(i))
 		print("Timer finished")
+
 
 class motor():
 	'''
@@ -291,13 +307,13 @@ class motor():
 	move(direction ="forward") Set the motor for forwrd movement also the parameter "reverse" change the wheel direction
 	stop() Stops the motor
 	'''
-	def __init__(self,speed_pin,terma_pin,termb_pin,freq=17,dc=70):
-		GPIO.setup(speed_pin,GPIO.OUT)
-		GPIO.setup(terma_pin,GPIO.OUT)
-		GPIO.setup(termb_pin,GPIO.OUT)
+	def __init__(self, speed_pin, terma_pin, termb_pin, freq = 17, dc = 70):
+		GPIO.setup(speed_pin, GPIO.OUT)
+		GPIO.setup(terma_pin, GPIO.OUT)
+		GPIO.setup(termb_pin, GPIO.OUT)
 		self.terma_pin = terma_pin
 		self.termb_pin = termb_pin
-		self.mot = GPIO.PWM(speed_pin,freq)
+		self.mot = GPIO.PWM(speed_pin, freq)
 		self.freq = freq
 		self.dc = dc
 		self.dir_control("forward")
@@ -305,35 +321,36 @@ class motor():
 
 	def get_speed(self):
 		return self.dc
-	def control_speed(self,speed):
+
+	def control_speed(self, speed):
 		if speed < 0 or speed > 100:
 			print("The motor speed is a percentage of total motor power. Accepted values 0-100.")
 		else:
 			self.dc = speed
 			self.mot.ChangeDutyCycle(speed)
-	def set_speed(self,speed):
+
+	def set_speed(self, speed):
 		if speed < 0 or speed > 100:
 			print("The motor speed is a percentage of total motor power. Accepted values 0-100.")
 		else:
 			self.dc = speed
-	def dir_control(self,direction):
+
+	def dir_control(self, direction):
 		if direction == "forward":
-			GPIO.output(self.terma_pin,GPIO.HIGH)
-			GPIO.output(self.termb_pin,GPIO.LOW)
+			GPIO.output(self.terma_pin, GPIO.HIGH)
+			GPIO.output(self.termb_pin, GPIO.LOW)
 		elif direction == "reverse":
-			GPIO.output(self.terma_pin,GPIO.LOW)
-			GPIO.output(self.termb_pin,GPIO.HIGH)
+			GPIO.output(self.terma_pin, GPIO.LOW)
+			GPIO.output(self.termb_pin, GPIO.HIGH)
 		else:
 			print("Motor accepts only forward and reverse values")
 
-	def move(self,direction ="forward"):
+	def move(self, direction = "forward"):
 		self.dir_control(direction)
 		self.mot.ChangeDutyCycle(self.dc)
 
 	def stop(self):
 		self.mot.ChangeDutyCycle(0)
-
-
 
 
 class odometer():
@@ -343,36 +360,40 @@ class odometer():
 	get_state() Returns the sensor state True/False
 	count_revolutions() Increases the counter of revolutions
 	get_revolutions() Returns the number of revolutions
-	get_distance(wheel_diameter=6.6,precision = 2) Returns the traveled distance in cm, by default the wheel diameter is 6.6 and the distance rounded in 2 digits
+	get_distance(wheel_diameter=6.6,precision = 2) Returns the traveled distance
+	in cm, by default the wheel diameter is 6.6 and the distance rounded in 2
+	digits
 	reset() Resets the steps counter
 	'''
-	def __init__(self,pin,sensor_disc = 20,offset=0):
-	
+	def __init__(self, pin, sensor_disc = 20, offset = 0):
 		self.pin = pin
 		GPIO.setup(pin, GPIO.IN)
 		self.prev_pos = self.get_state()
 		self.sensor_disc = sensor_disc
 		self.steps = 0	
-		self.offset  = offset			
-		GPIO.add_event_detect(self.pin, GPIO.RISING,callback=self.count_revolutions,bouncetime=1 )
+		self.offset = offset			
+		GPIO.add_event_detect(
+			self.pin, GPIO.RISING, callback = self.count_revolutions,
+			bouncetime = 1
+		)
 
 	def get_state(self):
 		return GPIO.input(self.pin)
 
-	def count_revolutions(self,channel):
-		self.steps +=1
+	def count_revolutions(self, channel):
+		self.steps += 1
 
 	def get_steps(self):
 		return self.steps
 
 	def get_revolutions(self):
-		return self.steps/self.sensor_disc
+		return self.steps / self.sensor_disc
 		
-	def get_distance(self,wheel_diameter=6.65,precision = 2):
+	def get_distance(self, wheel_diameter = 6.65, precision = 2):
 		circumference = wheel_diameter * math.pi
-		revolutions = self.steps/self.sensor_disc
+		revolutions = self.steps / self.sensor_disc
 		distance = revolutions * circumference
-		final  = round(distance,precision)
+		final  = round(distance, precision)
 		return final + self.offset
 		
 	def reset(self):
@@ -384,18 +405,19 @@ class servo ():
 	Functions:
 	set_angle(angle) Changes the servo angle, angles between 0-180
 	'''
-	def __init__(self,pin):
-
+	def __init__(self, pin):
 		self.pin = pin
 		GPIO.setup(pin,GPIO.OUT)
 		self.sr_mot = GPIO.PWM(pin,50)
 		self.sr_mot.start(self.claculate_pwm(90))
-	def set_angle(self,angle):
+
+	def set_angle(self, angle):
 		if angle < 0 or angle > 180 :
 			print("The servo motor angle limits is between 0-180!")
 		else:
 			self.sr_mot.ChangeDutyCycle(self.claculate_pwm(angle))
-	def claculate_pwm(self,angle):
+
+	def claculate_pwm(self, angle):
 		return (angle/18.0) + 2.5
 
 
@@ -409,103 +431,90 @@ class arm_2dof():
 	and return the angles in degrees
 	for the servo motors in degrees.
 	'''
-	def __init__(self,a1=100,a2=100):
+	def __init__(self, a1 = 100, a2 = 100):
 		self.a1 = a1
 		self.a2 = a2
-	def calculate_angle(self,x,y):
-		q2 = -math.acos((x**2 + y**2 - self.a1**2 -self.a2**2)/(2*self.a1*self.a2))
-		q1 = math.atan(y/x)+math.atan((self.a2*math.sin(q2))/(self.a1+(self.a2*math.cos(q2))))
+
+	def calculate_angle(self, x, y):
+		q2 = -math.acos(
+			(x**2 + y**2 - self.a1**2 -self.a2**2)/(2*self.a1*self.a2)
+		)
+		q1 = math.atan(y/x) + math.atan(
+			(self.a2*math.sin(q2))/(self.a1+(self.a2*math.cos(q2)))
+		)
 		print("Join 1 angle {} degrees".format(math.degrees(q1)))
 		print("Join 2 angle {} degrees".format(math.degrees(q2)))
-		return q1,q2
+		return q1, q2
 
-class PID():
-	'''
-	PID controller Class for precise movement
-	e.x. mot_pid = PID(P parameter,I parameter,K parameter)
-	'''
-	def __init__(self,KP=0,KI=0,KD=0):
-		self.error_prior = 0
-		self.integral = 0
-		self.KP = KP
-		self.KI = KI
-		self.KD = KD
-
-	def pid_calc(self,desired_value,actual_value,start_time,end_time):
-		error = desired_value - actual_value
-		iteration_time = end_time - start_time
-		self.integral = self.integral + (error*iteration_time)
-		derivative = (error - self.error_prior)/iteration_time
-		output = self.KP*error + self.KI*self.integral + self.KD*derivative
-		self.error_prior = error
-		return output
-	def reset_pid(self):
-		self.error_prior = 0
-		self.integral = 0
-	def update_pid(self,KP,KI,KD):
-		self.KP = KP
-		self.KI = KI
-		self.KD = KD
-		self.error_prior = 0
-		self.integral = 0
 
 class data_logger():
-	def __init__(self,title = "New Graph",plot_number = 0):
+	def __init__(self, title = "New Graph", plot_number = 0):
 		self.data = []
 		self.title = title
 		self.plt_number = plot_number
-	def store_value(self,y,x):
-		self.data.append([y,x])
+
+	def store_value(self, y, x):
+		self.data.append([y, x])
+
 	def clean_data(self):
 		self.data = []
+
 	def get_data(self):
 		return self.data
+
 	def get_size(self):
 		print("The size of data table is {}".format(len(self.data)))
 		return len(self.data)
-	def draw_graph(self,type = "line"):
 
+	def draw_graph(self, type = "line"):
 		if type == "line" or type == "points":
 			plt.figure(self.plt_number)
 			x, y = zip(*self.data)
 			if type == "line":
-				plt.plot(x,y,linewidth=4,label=self.title)
+				plt.plot(x, y, linewidth=4, label=self.title)
 			elif type == "points":
 				plt.plot(x, y, 'ro')
 			plt.show()
 		else:
 			print("Unkhown graph type")
-	def save_image(self,output="figure.png"):
+
+	def save_image(self, output = "figure.png"):
 		x, y = zip(*self.data)
 		plt.figure(self.plt_number)
-		plt.plot(x,y,linewidth=4,label=self.title)
+		plt.plot(x, y, linewidth=4, label=self.title)
 		print("The graph saves as {}".format(output))
 		plt.savefig(output)
-	def save_pdf(self,output="figure.pdf"):
+
+	def save_pdf(self, output = "figure.pdf"):
 		x, y = zip(*self.data)
 		plt.figure(self.plt_number)
-		plt.plot(x,y,linewidth=4,label=self.title)
+		plt.plot(x, y, linewidth=4, label=self.title)
 		print("The graph saves as {}".format(output))
 		plt.savefig(output)
+
 
 class timer():
 	'''
 	Class timer()
 	Functions:
 	start_timer() Start a timer
-	get_elapsed() Returns the elapsed time between start time and that momment in sec
+	get_elapsed() Returns the elapsed time between start time and that momment
+	in sec
 	'''
 
 	def __init__(self):
 		self.start = 0
+
 	def start_timer(self):
 		self.start = time.time()
+
 	def elapsed(self):
 		if self.start == 0:
 			print("Timer not started")
 		else:
 			dif = time.time() - self.start
 			print("The elapsed time in sec is {}".format(dif))
+
 	def get_elapsed(self):
 		if self.start == 0:
 			return 0
@@ -516,7 +525,8 @@ class timer():
 #General functions
 def start_lib():
 	'''
-	This function sets the GPIO pins to input output mode with GPIO number syntax.
+	This function sets the GPIO pins to input output mode with GPIO number
+	syntax.
 	'''
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setwarnings(False)
@@ -533,18 +543,22 @@ def get_ip():
 	'''
 	ip_list = []
 	for ifaceName in interfaces():
-		addresses = [i['addr'] for i in ifaddresses(ifaceName).setdefault(AF_INET, [{'addr':'No IP addr'}] )]
+		addresses = [
+			i['addr'] for i in ifaddresses(ifaceName).setdefault(
+				AF_INET, [{'addr':'No IP addr'}]
+			)
+		]
 		print(addresses[0])
 		ip_list.append(addresses[0])
 	return ip_list
 
-def make_csv(data_list,filename="data.csv"):
+def make_csv(data_list, filename = "data.csv"):
 	'''
 	This function cretes csv file with logs from experiments.
 	'''
 	with open(filename, "w",newline='') as file:
-		csv.register_dialect('myDialect',delimiter = ',')
-		writer = csv.writer(file,dialect='myDialect')
+		csv.register_dialect('myDialect', delimiter = ',')
+		writer = csv.writer(file, dialect='myDialect')
 		for item in data_list:
 			writer.writerow(item)
 	print("Csv with name {} created.".format(filename))

@@ -52,6 +52,6 @@ function saveXml(id, code) {
   return axiosClient().post('/save_xml?id='+id, data);
 }
 
-function sendManualControlCommand(command) {
-  return axiosClient().get('/manual_control_command?command='+command);
-}
+// function sendManualControlCommand(command) {
+//   return axiosClient().get('/manual_control_command?command='+command);
+// }

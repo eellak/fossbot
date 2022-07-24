@@ -181,10 +181,10 @@ def handle_delete_project(project_id):
         db.session.delete(project)
         db.session.commit()       
         shutil.rmtree(f'data/projects/{project.project_id}')
-        emit('delete_project', jsonify({'status':'deleted'}))
+        emit('delete_project', {'status':'deleted'})
     except Exception as e:
         print(e)
-        emit('delete_project', jsonify({'status':'error'}))
+        emit('delete_project', {'status':'error'})
 
 @app.route('/edit_project')
 def edit_project():
@@ -206,10 +206,10 @@ def handle_edit_project(project_id):
         project.title = request.args.get('title')    
         project.info = request.args.get('info')
         db.session.commit()       
-        emit('edit_project', jsonify({'status':'updated'})) 
+        emit('edit_project', {'status':'updated'})
     except Exception as e:
         print(e)
-        emit('edit_project', jsonify({'status':'error'}))
+        emit('edit_project', {'status':'error'})
 
 @app.route('/execute_script')
 def execute_script():    
@@ -220,7 +220,7 @@ def execute_script():
 @socketio.on('execute_script')
 def handle_execute_script(id):
     result = execute_code(id) 
-    emit('edit_project',  jsonify(result))  
+    emit('edit_project',  result)
     
 @app.route('/script_status')
 def script_status():
@@ -234,9 +234,9 @@ def script_status():
 def handle_script_status():
     global SCRIPT_PROCCESS
     if SCRIPT_PROCCESS is None or SCRIPT_PROCCESS.poll() is not None:       
-        emit('script_status',  jsonify({'status': 'completed'}) )
+        emit('script_status',  {'status': 'completed'}) 
     else:
-        emit('script_status',  jsonify({'status': 'still running'}) )
+        emit('script_status',  {'status': 'still running'}) 
 
 @app.route('/stop_script')
 def stop_script():
@@ -246,7 +246,7 @@ def stop_script():
 @socketio.on('stop_script')
 def handle_stop_script():
     result = stop_now()
-    emit('stop_script', jsonify(result))
+    emit('stop_script', result)
 
 @app.route('/manual_control_command')
 def manual_control_command():
@@ -274,7 +274,7 @@ def manual_control():
 def handle_manual_control():
    stop_script()
    execute_code(None,manual_control=True)
-   emit('manual_control',  jsonify({'status': 'ok'}))
+   emit('manual_control',  {'status': 'ok'})
 
 @app.route('/execute_blockly',methods = ['POST'])
 def execute_blockly():
@@ -296,7 +296,7 @@ def handle_execute_blockly(data):
     generate_py(code,id)
     stop_script()
     result = execute_code(id)  
-    emit('execute_blockly', jsonify(result))
+    emit('execute_blockly', result)
 
 @app.route('/send_xml')
 def send_xml():    
@@ -313,9 +313,9 @@ def handle_send_xml(id):
     try:
         with open (f'data/projects/{id}/{id}.xml', "r") as myfile:
             data=myfile.readlines()
-        emit('send_xml', jsonify({'data': data}) )       
+        emit('send_xml', {'data': data})     
     except Exception as e:
-        emit('send_xml',  jsonify({'status': 'file not found'}))
+        emit('send_xml',  {'status': 'file not found'})
 
 @app.route('/save_xml',methods = ['POST'])
 def save_xml():    
@@ -334,7 +334,7 @@ def handle_save_xml(id, data_json):
     code = data_json['code']
     with open(f'data/projects/{id}/{id}.xml', "w") as fh:
         fh.write(code)
-    emit('save_xml', jsonify({'status': 'ok'}))
+    emit('save_xml', {'status': 'ok'})
 
 def get_all_projects():
     projects = Projects.query.all()

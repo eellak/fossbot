@@ -21,7 +21,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 
   <style>
-    @import url("{{ url_for('static',filename='css/home-page-css/home-page-header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/home-page-css/home-page-body-style.css')}}");
     @import url("{{ url_for('static',filename='css/footer-style.css')}}");
     @import url("{{ url_for('static',filename='css/common.css')}}");
@@ -50,14 +50,7 @@
 </script>
 
 <body>
-  <header id="header" class="header">
-    <div class="header-wrap">
-      <div id="header-logo" class="header-logo">
-        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
-        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
-      </div>
-    </div>
-  </header>
+  {% include 'header.html' %}
 <div id="main-container">
   <div id="home-page-title-wrap">
     <div id="home-page-title">

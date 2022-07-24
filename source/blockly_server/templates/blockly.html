@@ -31,7 +31,7 @@
   <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
 
   <style>
-    @import url("{{ url_for('static',filename='css/blockly-page-css/blockly-page-header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/blockly-page-css/blockly-page-body-style.css')}}");
     @import url("{{ url_for('static',filename='css/common.css')}}");
     @import url("{{ url_for('static',filename='css/modals.css')}}");
@@ -40,14 +40,7 @@
 </head>
 
 <body onload="loadProject();">
-  <header id="header" class="header">
-    <div class="header-wrap">
-      <div id="header-logo" class="header-logo">
-        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
-        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
-      </div>
-    </div>
-  </header>
+  {% include 'header.html' %}
 
   <div id="main-container">
   <div id="back-import-export-buttons-container">

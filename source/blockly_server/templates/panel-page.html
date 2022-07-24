@@ -19,7 +19,7 @@
   <script src="{{ url_for('static',filename='js/panel-page-js/panel-page-modals.js')}}"></script>
 
   <style>
-    @import url("{{ url_for('static',filename='css/panel-page-css/panel-page-header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/panel-page-css/panel-page-body-style.css')}}");
     @import url("{{ url_for('static',filename='css/footer-style.css')}}");
     @import url("{{ url_for('static',filename='css/common.css')}}");
@@ -28,14 +28,7 @@
 </head>
 
 <body>
-  <header id="header" class="header">
-    <div class="header-wrap">
-      <div id="header-logo" class="header-logo">
-        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
-        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
-      </div>
-    </div>
-  </header>
+  {% include 'header.html' %}
   <div id="main-container">
   <div id="go-back-to-home-button-container">
     <div id="go-back-to-home-button-wrap">

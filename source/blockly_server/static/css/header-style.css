@@ -21,7 +21,7 @@ header {
   display: flex;
   align-items: center;
   padding: 20px;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 .hua-logo {

@@ -26,7 +26,7 @@ app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
 CORS(app)
 
 # integrates Flask-SocketIO with the Flask application
-socketio = SocketIO(app)
+socketio = SocketIO(app, logger=True, engineio_logger=True)
 
 r = redis.Redis(host='redis_server')
 
@@ -61,6 +61,10 @@ def on_connect(data):
 @socketio.on('disconnection')
 def on_disconnect(data):
     print("Socket disconnected!!, data received:", data)
+
+@socketio.on_error()        # Handles the default namespace
+def error_handler(e):
+    print('Error - socket IO : ', e)
 
 @app.route('/')
 def index():
@@ -250,16 +254,15 @@ def manual_control_command():
     print(f'flask {command}')
     r.set('command',bytes(command, "utf8"))
     r.expire('command', 2)
-
     return jsonify({'status': 'ok'})
 
 @socketio.on('manual_control_command')
-def handle_manual_control_command():
-   command = request.args.get('command')
+def handle_manual_control_command(data):
+   command = str(data)
    print(f'flask {command}')
    r.set('command',bytes(command, "utf8"))
    r.expire('command', 2)
-   emit('manual_control_command',  jsonify({'status': 'ok'}))
+   emit('manual_control_command_result',  {'status': '200'})
 
 @app.route('/manual_control')
 def manual_control():

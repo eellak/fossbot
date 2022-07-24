@@ -51,106 +51,104 @@
 
 <body>
   {% include 'header.html' %}
-<div id="main-container">
-  <div id="home-page-title-wrap">
-    <div id="home-page-title">
-      <strong>Μέσα απο την σελίδα αυτή, μπορείς να δεις όλα τα προτζεκτ που έχουν δημιουργηθεί και αποθηκευτεί πάνω στο συνδεδεμμένο ρομπότ καθώς και τους φακέλους στους οποίους ανήκουν. Μπορείς να δημιουργήσεις καινούριο φάκελο ή προτζεκτ. 
-        Υπάρχει ακόμα η δυνατότητα να μεταβείς στην σελίδα του διαχειριστικού για την παραμετροποίηση τιμών που αφορούν το ρομπότ αλλά και στην σελίδα του εικονικού προγραμματισμού. </strong>
-    </div>
-  </div>
-
-  
-
-  <div id="buttons-container">
-
-    <div id="manual-control-wrap">
-      <button type="button" class="manual-control">
-        <a href='/manual_control' style="color: white; text-decoration: none;">Χειροκίνητη λειτουργία</a></button>
+  <div id="main-container">
+    <div id="home-page-title-wrap">
+      <div id="home-page-title">
+        <strong>Μέσα απο την σελίδα αυτή, μπορείς να δεις όλα τα προτζεκτ που έχουν δημιουργηθεί και αποθηκευτεί πάνω στο συνδεδεμμένο ρομπότ καθώς και τους φακέλους στους οποίους ανήκουν. Μπορείς να δημιουργήσεις καινούριο φάκελο ή προτζεκτ. 
+          Υπάρχει ακόμα η δυνατότητα να μεταβείς στην σελίδα του διαχειριστικού για την παραμετροποίηση τιμών που αφορούν το ρομπότ αλλά και στην σελίδα του εικονικού προγραμματισμού. </strong>
+      </div>
     </div>
 
+    
 
-    <div id="open-panel-wrap">
-      <button type="button" class="open-panel">
-        <a href='/admin_panel' style="color: white; text-decoration: none;">Άνοιξε το διαχειριστικό περιβάλλον</a></button>
+    <div id="buttons-container">
+
+      <div id="manual-control-wrap">
+        <button type="button" class="manual-control">
+          <a href='/manual_control' style="color: white; text-decoration: none;">Χειροκίνητη λειτουργία</a></button>
+      </div>
+
+
+      <div id="open-panel-wrap">
+        <button type="button" class="open-panel">
+          <a href='/admin_panel' style="color: white; text-decoration: none;">Άνοιξε το διαχειριστικό περιβάλλον</a></button>
+      </div>
+
+      <div id="create-new-project-Button-wrap">
+        <button onclick="createNewProject()" type="button" class="create-new-project" id="create-new-project">Πρόσθεσε ένα
+          νέο πρότζεκτ</button>
+      </div>
     </div>
 
-    <div id="create-new-project-Button-wrap">
-      <button onclick="createNewProject()" type="button" class="create-new-project" id="create-new-project">Πρόσθεσε ένα
-        νέο πρότζεκτ</button>
-    </div>
-  </div>
+    <div id="project-lists-container">
+      <div id="project-lists-table">
+        <table id="table-projects" role="grid">
+          <thead id="head-table-projects" role="grid">
+            <tr role="row">
+              <th class="head-title" tabindex="0" rowspan="1" colspan="1">Τίτλος</th>
+              <th class="head-title" tabindex="0" rowspan="1" colspan="1">Περιγραφή</th>
+              <!-- <th class="head-title" tabindex="0" rowspan="1" colspan="1">ID</th> -->
+              <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
+              <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
+              <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody id="body-table-projects" role="grid">
 
-  <div id="project-lists-container">
-    <div id="project-lists-table">
-      <table id="table-projects" role="grid">
-        <thead id="head-table-projects" role="grid">
-          <tr role="row">
-            <th class="head-title" tabindex="0" rowspan="1" colspan="1">Τίτλος</th>
-            <th class="head-title" tabindex="0" rowspan="1" colspan="1">Περιγραφή</th>
-            <!-- <th class="head-title" tabindex="0" rowspan="1" colspan="1">ID</th> -->
-            <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
-            <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
-            <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
-          </tr>
-        </thead>
-        <tbody id="body-table-projects" role="grid">
-
-          {% for project in projects %}
-          {% set projectid = project['project_id'] %}
-          <tr>
-            <td> {{ project['title'] }}</td>
-            <td>{{project['info'] }}</td>
-            <!-- <td>{{project['project_id'] }}</td> -->
-            <td> <div id="run-Blockly-Button-container" class="run-Blockly-Button-container">
-                    <div id="run-Blockly-Button-wrap" class="run-Blockly-Button-wrap">
-                      <button onclick="execute_script('{{ projectid }}')" type="button" class="run-Blockly" id="open-Blockly">
-                          Εκτέλεση
-                      </button>
+            {% for project in projects %}
+            {% set projectid = project['project_id'] %}
+            <tr>
+              <td> {{ project['title'] }}</td>
+              <td>{{project['info'] }}</td>
+              <!-- <td>{{project['project_id'] }}</td> -->
+              <td> <div id="run-Blockly-Button-container" class="run-Blockly-Button-container">
+                      <div id="run-Blockly-Button-wrap" class="run-Blockly-Button-wrap">
+                        <button onclick="execute_script('{{ projectid }}')" type="button" class="run-Blockly" id="open-Blockly">
+                            Εκτέλεση
+                        </button>
+                      </div>
                     </div>
-                  </div>
-          </td>
-          <td> <div id="open-Blockly-Button-container" class="open-Blockly-Button-container">
-            <div id="open-Blockly-Button-wrap" class="open-Blockly-Button-wrap">
-              <button type="button" class="open-Blockly" id="open-Blockly">
-                <a href='/blockly?id={{ project["project_id"] }}' id="open-Blockly-href" style="color: white; text-decoration: none;">Επεξεργασία</a></button>
+            </td>
+            <td> <div id="open-Blockly-Button-container" class="open-Blockly-Button-container">
+              <div id="open-Blockly-Button-wrap" class="open-Blockly-Button-wrap">
+                <button type="button" class="open-Blockly" id="open-Blockly">
+                  <a href='/blockly?id={{ project["project_id"] }}' id="open-Blockly-href" style="color: white; text-decoration: none;">Επεξεργασία</a></button>
+              </div>
             </div>
-          </div>
-          </td>
-          <td> <div id="delete-Blockly-Button-container" class="delete-Blockly-Button-container">
-            <div id="delete-Blockly-Button-wrap" class="delete-Blockly-Button-wrap">
-              <button onclick="deleteElement(this,'{{ projectid }}')" type="button" class="delete-Blockly" id="open-Blockly">
-                <a href='' id="open-Blockly-href" style="color: white; text-decoration: none;">
-                  Διαγραφή
-                </a>
-              </button>
+            </td>
+            <td> <div id="delete-Blockly-Button-container" class="delete-Blockly-Button-container">
+              <div id="delete-Blockly-Button-wrap" class="delete-Blockly-Button-wrap">
+                <button onclick="deleteElement(this,'{{ projectid }}')" type="button" class="delete-Blockly" id="open-Blockly">
+                  <a href='' id="open-Blockly-href" style="color: white; text-decoration: none;">
+                    Διαγραφή
+                  </a>
+                </button>
+              </div>
             </div>
-          </div>
-        </td>
+          </td>
 
-          </tr>
-          {% endfor %}
+            </tr>
+            {% endfor %}
 
-        </tbody>
+          </tbody>
 
-       
+        
 
-      </table>
+        </table>
+      </div>
     </div>
+
+    <div id="stop-Blockly-Button-container">
+      <div id="stop-Blockly-Button-wrap" >
+        <button onclick="stop_script()" type="button" class="stop-Blockly">
+        'Αμεση διακοπή</button>
+      </div>
+    </div>
+
   </div>
 
-  <div id="stop-Blockly-Button-container">
-    <div id="stop-Blockly-Button-wrap" >
-      <button onclick="stop_script()" type="button" class="stop-Blockly">
-      'Αμεση διακοπή</button>
-    </div>
-  </div>
-
-</div>
-  <footer>
-    <div class="hua-ellak">
-      <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>
-    </div>
-  </footer>
+  {% include 'footer.html' %}
+  
 </body>
 
 

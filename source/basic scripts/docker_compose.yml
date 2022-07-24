@@ -16,3 +16,4 @@ services:
     restart: always
     volumes:
       - /home/pi/data:/app/data
+      - /home/pi/fossbot/source/blockly_server:/app

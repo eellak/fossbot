@@ -54,24 +54,28 @@ def before_first_request():
     if not os.path.exists('data/admin_parameters.yaml'):
         shutil.copy('../robot_lib/code_templates/admin_parameters.yaml',f'data/admin_parameters.yaml')
 
-@socketio.on('connect', namespace='/robot')
-def on_connect():
-    print("Socket connected")
+@socketio.on('connection')
+def on_connect(data):
+    print("Socket connected, data received:", data)
 
-
-@socketio.on('disconnect', namespace='/robot')
-def on_connect():
-    print("Socket disconnected")
+@socketio.on('disconnection')
+def on_disconnect(data):
+    print("Socket disconnected!!, data received:", data)
 
 @app.route('/')
 def index():
     stop_now()
     projects_list = get_all_projects()
-    return render_template('home-page.html', projects_list)
+    print('projects_list:')
+    print(projects_list)
+    # handle_get_all_projects()
+    return render_template('home-page.html', projects_list=projects_list)
 
-@socketio.on('get-all-projects', namespace='/robot')
-def handle_get_all_projects():
+@socketio.on('get-all-projects')
+def handle_get_all_projects(data):
     projects_list = get_all_projects()
+    print('getting all projects')
+    print(projects_list)
     emit('all-projects', { 'status': 'ok ', 'data': projects_list })
 
 @app.route('/blockly')

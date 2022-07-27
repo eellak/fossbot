@@ -143,14 +143,16 @@ def add_project():
     emit('new_project added', jsonify(project.to_dict()))
 
 @socketio.on('new_project')
-def handle_new_project(title, info):
+def handle_new_project(data):
+    title = data['title']
+    info = data['info']
     project = Projects(title,info)
     db.session.add(project)
     db.session.commit()
     db.session.refresh(project)
     os.mkdir(f'data/projects/{project.project_id}')
     shutil.copy('../robot_lib/code_templates/template.xml',f'data/projects/{project.project_id}/{project.project_id}.xml')
-    emit('new_project', { 'status': 'ok ', 'data': jsonify(project.to_dict()) }) 
+    emit('new_project_result', { 'status': 'ok ', 'project_id': project.project_id }) 
 
 @app.route('/delete_project')
 def delete_project():

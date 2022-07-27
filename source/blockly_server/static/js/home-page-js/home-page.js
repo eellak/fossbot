@@ -70,8 +70,7 @@ function createNewProject() {
 
 }
 
-
-function getDescription() {
+async function getDescription() {
     //get the input value 
     new_project_description = document.getElementById("project-description-text").value
 
@@ -82,15 +81,11 @@ function getDescription() {
         //empty the input value 
         document.getElementById("project-description-text").value = " ";
 
-        newProject(new_project_title,new_project_description)
-        .then(response => { 
-             window.location.replace('/blockly?id='+response.data.project_id)
-        })
-    
+        const result = await newProject(new_project_title,new_project_description)
+        console.log('result is ', result)
+        window.location.replace('/blockly?id='+ result.project_id)
     }
 }
-
-
 
 function deleteElement(el,id) {
     var tbl = el.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;    
@@ -100,17 +95,6 @@ function deleteElement(el,id) {
     	tbl.deleteRow(row);
     	location.reload();
     });
-}
-
-
-function saveProjectsAndFolders(array) {
-    console.log("projects & folders");
-    console.log(array);
-    for (let i = 0; i < length; i++) {
-        array_folders.push(array[i].folder);
-        array_projects.push(array[i].title);
-        array_ids.push(arrayarray[i].id);
-    }
 }
 
 function showFoldersAndProjects(data_array) {

@@ -69,11 +69,7 @@ def error_handler(e):
 @app.route('/')
 def index():
     stop_now()
-    projects_list = get_all_projects()
-    print('projects_list:')
-    print(projects_list)
-    # handle_get_all_projects()
-    return render_template('home-page.html', projects_list=projects_list)
+    return render_template('home-page.html')
 
 @socketio.on('get-all-projects')
 def handle_get_all_projects(data):
@@ -94,10 +90,10 @@ def admin_panel():
     parameters =load_parameters()
     return render_template('panel-page.html',parameters = parameters)
 
-@socketio.on('get_admin_panel_parameters', namespace='/robot')
+@socketio.on('get_admin_panel_parameters')
 def handle_get_admin_panel_parameters():
     parameters =load_parameters()
-    emit('parameters', { 'status': 'ok ', 'data': parameters})
+    emit('parameters', { 'status': '200', 'data': parameters})
 
 @app.route('/save_parameters' , methods = ['POST'])
 def save_parameters():
@@ -258,11 +254,15 @@ def manual_control_command():
 
 @socketio.on('manual_control_command')
 def handle_manual_control_command(data):
-   command = str(data)
-   print(f'flask {command}')
-   r.set('command',bytes(command, "utf8"))
-   r.expire('command', 2)
-   emit('manual_control_command_result',  {'status': '200'})
+   try:
+     command = data['command']
+     print(f'flask {command}')
+     r.set('command',bytes(command, "utf8"))
+     r.expire('command', 2)
+     emit('manual_control_command_result',  {'status': '200', 'command received and executed': command})
+   except Exception as e:
+     print(e)
+     emit('manual_control_command_result',  {'status': 'error', 'e': e})
 
 @app.route('/manual_control')
 def manual_control():

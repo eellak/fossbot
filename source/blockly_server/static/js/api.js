@@ -20,17 +20,17 @@ function axiosClient() {
   }
 }
 
-function deleteProject(id) {
-  return axiosClient().get('/delete_project?id='+id);
-}
+//function deleteProject(id) {
+  //return axiosClient().get('/delete_project?id='+id);
+//}
 
 //function newProject(title,info) {
 //  return axiosClient().get('/new_project?title='+title+'&info='+info);
 //}
 
-function executeScript(id) {
-  return axiosClient().get('/execute_script?id='+id);
-}
+//function executeScript(id) {
+//  return axiosClient().get('/execute_script?id='+id);
+//}
 
 function stopScript() {
   return axiosClient().get('/stop_script');

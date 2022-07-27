@@ -162,7 +162,7 @@ def delete_project():
         project = Projects.query.get(project_id)
         print(type(project))
         db.session.delete(project)
-        db.session.commit()       
+        db.session.commit()
         shutil.rmtree(f'data/projects/{project.project_id}')
         return redirect('/')
         #return jsonify({'status':'deleted'})
@@ -172,26 +172,27 @@ def delete_project():
         #return jsonify({'status':'error'})
 
 @socketio.on('delete_project')
-def handle_delete_project(project_id):
+def handle_delete_project(data):
     try:
+        project_id = data['project_id']
         project = Projects.query.get(project_id)
         print(type(project))
         db.session.delete(project)
-        db.session.commit()       
+        db.session.commit()
         shutil.rmtree(f'data/projects/{project.project_id}')
-        emit('delete_project', {'status':'deleted'})
+        emit('delete_project_result', {'status':'200', 'project_deleted': 'true' })
     except Exception as e:
         print(e)
-        emit('delete_project', {'status':'error'})
+        emit('delete_project_result', {'status':'error', 'project_deleted': 'false'})
 
 @app.route('/edit_project')
 def edit_project():
     try:
         project_id = request.args.get('id')
         project = Projects.query.get(project_id)
-        project.title = request.args.get('title')    
+        project.title = request.args.get('title')
         project.info = request.args.get('info')
-        db.session.commit()        
+        db.session.commit()
         return jsonify({'status':'updated'})
     except Exception as e:
         print(e)
@@ -216,10 +217,11 @@ def execute_script():
     return jsonify(result)
 
 @socketio.on('execute_script')
-def handle_execute_script(id):
-    result = execute_code(id) 
-    emit('edit_project',  result)
-    
+def handle_execute_script(data):
+    id = data['project_id']
+    result = execute_code(id)
+    emit('execute_script_result', result)
+
 @app.route('/script_status')
 def script_status():
     global SCRIPT_PROCCESS
@@ -293,7 +295,7 @@ def execute_blockly():
 
 @socketio.on('execute_blockly')
 def handle_execute_blockly(data):
-    id = data["id"]
+    id = data['id']
     code = data['code']
     generate_py(code,id)
     stop_script()

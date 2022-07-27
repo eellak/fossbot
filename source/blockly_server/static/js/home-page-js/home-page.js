@@ -87,14 +87,16 @@ async function getDescription() {
     }
 }
 
-function deleteElement(el,id) {
+async function deleteElement(el,id) {
     var tbl = el.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;    
     var row = el.parentNode.parentNode.parentNode.parentNode.rowIndex;    
 
-    deleteProject(id).then(response => { 
-    	tbl.deleteRow(row);
-    	location.reload();
-    });
+    const result = await deleteProject(id)
+    console.log('result is ', result)
+    if(result.status == '200') {
+        tbl.deleteRow(row);
+        location.reload();
+    }
 }
 
 function showFoldersAndProjects(data_array) {
@@ -117,19 +119,17 @@ function showFoldersAndProjects(data_array) {
 }
 
 
-function execute_script(project_id) {
-    executeScript(project_id)
-        .then( response => {
-            let status = response.data.status 
-            
-            if ( status == "file not found") {
-                showModalErrorInHome("Δεν βρέθηκε εκτελέσιμος κώδικας!")
-            } else if ( status == "started") { 
-                showModalsSuccessInHome("Η εκτέλεση έχει ξεκινήσει!") 
-            } else {
-                showModalsSuccessInHome("Το πρόγραμμα εκτελείται ήδη!") 
-            }
-        })
+async function execute_script(project_id) {
+    const result = await executeScript(project_id)
+    console.log('execute script result is ', result)
+    if (result == "file not found") {
+        showModalErrorInHome("Δεν βρέθηκε εκτελέσιμος κώδικας!")
+    } else if (status == "started") {
+        showModalsSuccessInHome("Η εκτέλεση έχει ξεκινήσει!")
+    } else {
+        showModalsSuccessInHome("Το πρόγραμμα εκτελείται ήδη!")
+    }
+
 }
 
 function stop_script() {

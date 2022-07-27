@@ -3,12 +3,50 @@ let new_project_title;
 let new_project_description;
 let new_project_folder;
 
-//the arrays contain the values getting from BE 
-let array_folders = [];
-let array_projects = [];
-let array_ids = [];
+function loadProjects(data) {
+    console.log('load projects');
 
-let scripts = [];
+    //get the array with the projects
+    const projects_array = data.data;
+    console.log('projects:', projects_array);
+
+    for (var i = 0; i < projects_array.length; i++) {
+        const project = projects_array[i];
+
+        //add every time the folder and the project name as the last row
+        document.getElementById("body-table-projects").insertRow(-1).innerHTML =
+            '<tr>' +
+            '<td>' + project['title'] +'</td>'+
+            '<td>' + project['info'] +'</td>'+
+            '<td>' + project['project_id'] + '</td>' +
+            '<td> <div id="run-Blockly-Button-container" class="run-Blockly-Button-container">' +
+                        '<div id="run-Blockly-Button-wrap" class="run-Blockly-Button-wrap">' +
+                            '<button onclick="execute_script('+ project['project_id'] +')" type="button" class="run-Blockly" id="open-Blockly">' +
+                                'Εκτέλεση' +
+                            '</button>' +
+                        '</div>' +
+                    '</div>' +
+            '</td>' +
+            '<td> <div id="open-Blockly-Button-container" class="open-Blockly-Button-container">' +
+                '<div id="open-Blockly-Button-wrap" class="open-Blockly-Button-wrap">' +
+                    '<button type="button" class="open-Blockly" id="open-Blockly">' +
+                        '<a href="/blockly?id='+ project['project_id'] +'" id="open-Blockly-href" style="color: white; text-decoration: none;">Επεξεργασία</a>' +
+                    '</button>' +
+                '</div>' +
+            '</div>' +
+            '</td>' +
+            '<td>   <div id="delete-Blockly-Button-container" class="delete-Blockly-Button-container">' +
+                        '<div id="delete-Blockly-Button-wrap" class="delete-Blockly-Button-wrap">' +
+                            '<button onclick="deleteElement(this,'+ project['project_id'] +')" type="button" class="delete-Blockly" id="open-Blockly">' +
+                                '<a id="open-Blockly-href" style="color: white; text-decoration: none;">Διαγραφή</a>' +
+                            '</button>' +
+                        '</div>' +
+                    '</div>' +
+            '</td>' +
+            '</tr>';
+    }
+
+}
 
 function createNewProject() {
     //title 
@@ -52,47 +90,17 @@ function getDescription() {
     }
 }
 
-function showNewProject() {
-    console.log("scripts");
-    console.log(scripts);
-    const proj_obj = new Object();
-    proj_obj.id = scripts.length;
-    proj_obj.folder = new_project_folder;
-    proj_obj.title = new_project_title;
-
-    //convert object to json string
-    var proj_string = JSON.stringify(proj_obj);
-    console.log(proj_string);
-
-    scripts.push(proj_obj);
-    console.log(scripts);
-
-    // delete the old rows and show the table again with the new data added 
-    var table = document.getElementById("body-table-projects");
-    var rowCount = table.rows.length;
-    for (var i = rowCount - 1; i >= 0; i--) {
-        table.deleteRow(i);
-    }
-
-    showFoldersAndProjects(scripts);
-}
 
 
 function deleteElement(el,id) {
     var tbl = el.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;    
     var row = el.parentNode.parentNode.parentNode.parentNode.rowIndex;    
-    //alert('Το πρότζεκτ θα διαγραφεί!')
+
     deleteProject(id).then(response => { 
-        tbl.deleteRow(row);
-        location.reload();
-   })
-    
-    // let text = "Είστε σίγουρος;\nEither OK or Cancel.";
-    // if (confirm(text) == true) {
-    //     deleteProject(id);
-    //     tbl.deleteRow(row);
-    // } 
-  }
+    	tbl.deleteRow(row);
+    	location.reload();
+    });
+}
 
 
 function saveProjectsAndFolders(array) {

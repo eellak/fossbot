@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
   
   <!-- <script src="{{ url_for('static',filename='modules/jquery.slim.min.js')}}"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="{{ url_for('static',filename='modules/popper.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
@@ -17,8 +19,6 @@
   <script src="{{ url_for('static',filename='js/api.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page-js/home-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page-js/home-page-modals.js')}}"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
@@ -31,22 +31,25 @@
 
 <script type="text/javascript" charset="utf-8">
    $(document).ready( function(){
-    var socket = io('http://' + document.domain + ':' + location.port );
-    socket.on("connect", function() {
-      console.log("Socket connected!");
-      socket.emit('connection', {'data': 'I\'m connected!'});
-      socket.emit('get-all-projects', {'data': 'Send all projects!'});
-    });
+	var socket = io('http://' + document.domain + ':' + location.port);
+
+
+	socket.on("connect", function () {
+  	    console.log("Socket connected!");
+  	    socket.emit('connection', { 'data': 'I\'m connected!' });
+       	    socket.emit('get-all-projects', {'data': 'Send all projects!'});
+        });
+        socket.on('disconnect', () => {
+            console.log("Socket disconnected");
+            socket.emit('disconnection', {'data': 'I\'m disconnected!'});
+        });
     
-    socket.on('disconnect', () => {
-      console.log("Socket disconnected");
-      socket.emit('disconnection', {'data': 'I\'m disconnected!'});
-    });
-    
-    socket.on("all-projects", (data) => {
-      console.log("all-projects data:", data);
-    });
-  }) 
+        socket.on("all-projects", (data) => {
+            console.log("all-projects data:", data);
+            loadProjects(data);
+        });
+
+   }) 
 </script>
 
 <body>
@@ -87,7 +90,7 @@
             <tr role="row">
               <th class="head-title" tabindex="0" rowspan="1" colspan="1">Τίτλος</th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1">Περιγραφή</th>
-              <!-- <th class="head-title" tabindex="0" rowspan="1" colspan="1">ID</th> -->
+              <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
@@ -95,45 +98,8 @@
           </thead>
           <tbody id="body-table-projects" role="grid">
 
-            {% for project in projects %}
-            {% set projectid = project['project_id'] %}
-            <tr>
-              <td> {{ project['title'] }}</td>
-              <td>{{project['info'] }}</td>
-              <!-- <td>{{project['project_id'] }}</td> -->
-              <td> <div id="run-Blockly-Button-container" class="run-Blockly-Button-container">
-                      <div id="run-Blockly-Button-wrap" class="run-Blockly-Button-wrap">
-                        <button onclick="execute_script('{{ projectid }}')" type="button" class="run-Blockly" id="open-Blockly">
-                            Εκτέλεση
-                        </button>
-                      </div>
-                    </div>
-            </td>
-            <td> <div id="open-Blockly-Button-container" class="open-Blockly-Button-container">
-              <div id="open-Blockly-Button-wrap" class="open-Blockly-Button-wrap">
-                <button type="button" class="open-Blockly" id="open-Blockly">
-                  <a href='/blockly?id={{ project["project_id"] }}' id="open-Blockly-href" style="color: white; text-decoration: none;">Επεξεργασία</a></button>
-              </div>
-            </div>
-            </td>
-            <td> <div id="delete-Blockly-Button-container" class="delete-Blockly-Button-container">
-              <div id="delete-Blockly-Button-wrap" class="delete-Blockly-Button-wrap">
-                <button onclick="deleteElement(this,'{{ projectid }}')" type="button" class="delete-Blockly" id="open-Blockly">
-                  <a href='' id="open-Blockly-href" style="color: white; text-decoration: none;">
-                    Διαγραφή
-                  </a>
-                </button>
-              </div>
-            </div>
-          </td>
-
-            </tr>
-            {% endfor %}
-
-          </tbody>
-
-        
-
+          </tbody>       
+          
         </table>
       </div>
     </div>

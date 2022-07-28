@@ -300,7 +300,7 @@ def handle_execute_blockly(data):
     generate_py(code,id)
     stop_script()
     result = execute_code(id)  
-    emit('execute_blockly', result)
+    emit('execute_blockly_result', result)
 
 @app.route('/send_xml')
 def send_xml():    
@@ -313,13 +313,14 @@ def send_xml():
         return jsonify({'status': 'file not found'})
 
 @socketio.on('send_xml')
-def handle_send_xml(id):
+def handle_send_xml(data):
     try:
+        id = data['id']
         with open (f'data/projects/{id}/{id}.xml', "r") as myfile:
             data=myfile.readlines()
-        emit('send_xml', {'data': data})     
+        emit('send_xml_result', {'status': '200', 'data': data})     
     except Exception as e:
-        emit('send_xml',  {'status': 'file not found'})
+        emit('send_xml_result',  {'status': 'file not found'})
 
 @app.route('/save_xml',methods = ['POST'])
 def save_xml():    
@@ -334,11 +335,15 @@ def save_xml():
         return jsonify({'status': 'wrong method'})
 
 @socketio.on('save_xml')
-def handle_save_xml(id, data_json):
-    code = data_json['code']
-    with open(f'data/projects/{id}/{id}.xml', "w") as fh:
-        fh.write(code)
-    emit('save_xml', {'status': 'ok'})
+def handle_save_xml(data):
+    try: 
+        id = data['id']
+        code = data['code']
+        with open(f'data/projects/{id}/{id}.xml', "w") as fh:
+            fh.write(code)
+        emit('save_xml_result', {'status': '200', 'result': 'Code saved with success'})
+    except Exception as e:
+        emit('save_xml_result',  {'status': 'error occured', 'result': 'Code was not saved'})
 
 def get_all_projects():
     projects = Projects.query.all()

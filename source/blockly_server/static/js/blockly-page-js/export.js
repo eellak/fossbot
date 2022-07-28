@@ -43,8 +43,15 @@ EasyJ.Xml.download = function (text, filename) {
 };
 
 //save xml to db
-function save_xml(id) {
+async function save_xml(id) {
     let xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     let xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-    saveXml(id, xmlText)
+
+    const result = await saveXml(id, xmlText)
+    const status = result.status
+    if (status == '200'){
+        showModalsSuccessInBlocklyPage("Ο κώδικας αποθηκεύτηκε με επιτυχία!");
+    } else {
+        showModalErrorInBlocklyPage("Υπήρξε σφάλμα κατά την αποθήκευση του κώδικα! Ξαναπροσπάθησε!")
+    }
 }

@@ -55,3 +55,40 @@ function sendManualControlCommand(command_name) {
 function stopScript() {
   socket.emit('stop_script');
 }
+
+const sendXml = function (id) {
+  return new Promise(function(resolve, reject) {
+    socket.emit('send_xml', { 'id': id });
+
+    socket.on('send_xml_result', (data) => {
+      console.log("send_xml_result", data);
+      resolve(data);
+    });
+  });
+}
+
+const saveXml = function(id, code) {
+  return new Promise(function (resolve, reject) {
+    let obj = { 'id': id, 'code': code };
+    //let data = JSON.stringify(obj);
+    socket.emit('save_xml', obj);
+
+    socket.on('save_xml_result', (data) => {
+      console.log("save_xml_result", data);
+      resolve(data);
+    });
+  });
+}
+
+const sendCode = function(id,code) {
+  return new Promise(function (resolve, reject) {
+  let obj = {id: id, code: code};
+  let data = JSON.stringify(obj);
+  socket.emit('execute_blockly', data);
+
+    socket.on('execute_blockly_result', (data) => {
+      console.log("execute_blockly_result", data);
+      resolve(data);
+    });
+  });
+}

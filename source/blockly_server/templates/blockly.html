@@ -15,12 +15,12 @@
 
   <script src="{{ url_for('static',filename='modules/buffer@6.0.3')}}"></script>
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 
-  <script src="{{ url_for('static',filename='js/api.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/blockly-page-js/blockly-page-modals.js')}}"></script>
   <script src="{{ url_for('static',filename='js/blockly-page-js/export.js')}}"></script>
   <script src="{{ url_for('static',filename='js/blockly-page-js/import.js')}}"></script>
-  <!-- <script onload="loadProject()" src="{{ url_for('static',filename='js/blockly-page-js/show-existing-project.js')}}"></script> -->
   <script defer src="{{ url_for('static',filename='js/blockly-page-js/show-existing-project.js')}}"></script>
   <script defer src="{{ url_for('static',filename='js/blockly-page-js/workspace.js')}}"></script>
   <script defer src="{{ url_for('static',filename='js/blockly-page-js/client.js')}}"></script>

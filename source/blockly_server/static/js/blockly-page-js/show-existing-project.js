@@ -1,4 +1,4 @@
-function loadProject() { 
+async function loadProject() {
   const url_str = window.location.href;
   console.log(url_str)
 
@@ -8,19 +8,14 @@ function loadProject() {
 
   if ( id ) {
     //only if the project is saved, it will have an id , so we can retrieve the xml code 
-
     //get project code from BE based on id 
-    getXmlCode(id)
-      .then( response => {
-        console.log("response ", response.data)
-        loadXml(response.data.data);
-      })
-      .catch(err => {
-          console.log('Error when getting project\n', err);
-          showModalErrorInBlocklyPage("Υπήρξε σφάλμα στην διαδικασία να φορτώσει ο κώδικας! Παρακαλώ ξαναπροσπάθησε!");
-      });
-  } 
-
+    const result = await sendXml(id);
+    console.log("result", result)
+    if(result.status == '200')
+      loadXml(result.data);
+    else{
+      console.log('Error when getting project\n', err);
+      showModalErrorInBlocklyPage("Υπήρξε σφάλμα στην διαδικασία να φορτώσει ο κώδικας! Παρακαλώ ξαναπροσπάθησε!");
+   }
+ }
 }
-
-  

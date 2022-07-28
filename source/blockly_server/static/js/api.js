@@ -20,17 +20,18 @@ function axiosClient() {
   }
 }
 
-//function deleteProject(id) {
-  //return axiosClient().get('/delete_project?id='+id);
-//}
+//all the functions have been implemented with sockets, the file can be removed
+function deleteProject(id) {
+  return axiosClient().get('/delete_project?id='+id);
+}
 
-//function newProject(title,info) {
-//  return axiosClient().get('/new_project?title='+title+'&info='+info);
-//}
+function newProject(title,info) {
+ return axiosClient().get('/new_project?title='+title+'&info='+info);
+}
 
-//function executeScript(id) {
-//  return axiosClient().get('/execute_script?id='+id);
-//}
+function executeScript(id) {
+ return axiosClient().get('/execute_script?id='+id);
+}
 
 function stopScript() {
   return axiosClient().get('/stop_script');
@@ -52,6 +53,6 @@ function saveXml(id, code) {
   return axiosClient().post('/save_xml?id='+id, data);
 }
 
-// function sendManualControlCommand(command) {
-//   return axiosClient().get('/manual_control_command?command='+command);
-// }
+function sendManualControlCommand(command) {
+  return axiosClient().get('/manual_control_command?command='+command);
+}

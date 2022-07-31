@@ -21,7 +21,6 @@
 
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/blockly-page-js/blockly-page-modals.js')}}"></script>
   <script src="{{ url_for('static',filename='js/blockly-page-js/export.js')}}"></script>
   <script src="{{ url_for('static',filename='js/blockly-page-js/import.js')}}"></script>
   <script defer src="{{ url_for('static',filename='js/blockly-page-js/show-existing-project.js')}}"></script>
@@ -42,7 +41,7 @@
   </style>
 </head>
 
-<body onload="loadProject();" onclick="closeModalInBlocklyPageWhenClick()">
+<body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
 
   <div id="main-container">
@@ -413,56 +412,6 @@
       <block type="get_gyroscope"> </block>
     </category>
   </xml>
-
-  <!-- modal : show it when the Blokcly workspace is empty but the user tried to export blocks -->
-  <div class="modal show" id="modal-empty-space" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-empty-space-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-empty-space-text">Ο χώρος εργασίας στο Blockly είναι άδειος. Προσθέστε κάποια
-            εντολή!</strong>
-          <button type="button" class="close" id="modal-empty-space-close-button" data-dismiss="modal"
-            onclick="closeModalEmptyWorkspace()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- modal : ask for filename when user tries to export blocks -->
-  <div class="modal show" id="modal-filename-space" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-filename-space-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0">
-          <button type="button" class="close" id="modal-filename-space-close-button" data-dismiss="modal"
-            onclick="closeModalFilename()">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-filename-space-text">Παρακαλώ γράψε το όνομα του αρχείου:</strong>
-          <div class="form-group" id="form-filename">
-            <input type="text" id="filename-text">
-          </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-primary" id="button-file-name" data-dismiss="modal"
-            onclick="hideModalWelcome()">Εντάξει</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- modal : error -->
   {% include 'modal-error.html' %}

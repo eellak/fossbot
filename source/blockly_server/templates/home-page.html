@@ -17,7 +17,6 @@
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page.js')}}"></script>
-
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/home-page-body-style.css')}}");
@@ -50,7 +49,7 @@
   }) 
 </script>
 
-<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+<body onclick="closeModalsInHomeWhenClickAnywhere()">
   {% include 'header.html' %}
   <div id="main-container">
     <div id="home-page-title-wrap">

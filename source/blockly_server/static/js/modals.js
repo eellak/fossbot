@@ -40,4 +40,10 @@ function closeModalNewProjectName() {
 function closeModalNewProjectDescription() {
     document.getElementById("modal-project-description-space").style.display = 'none';
 }
+
+function closeModalsInHomeWhenClickAnywhere() {
+    closeModalNewProjectName() 
+    closeModalNewProjectDescription()
+    closeModalSuccessOrErrorwhenClickAnywhere()
+}
 //END-AREA: MODALS FOR HOME-PAGE.HTML

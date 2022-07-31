@@ -72,11 +72,11 @@ def index():
     return render_template('home-page.html')
 
 @socketio.on('get-all-projects')
-def handle_get_all_projects(data):
+def handle_get_all_projects():
     projects_list = get_all_projects()
     print('getting all projects')
     print(projects_list)
-    emit('all-projects', { 'status': 'ok ', 'data': projects_list })
+    emit('all-projects', { 'status': '200', 'data': projects_list })
 
 @app.route('/blockly')
 def blockly():

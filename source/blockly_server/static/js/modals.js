@@ -41,12 +41,9 @@ function closeModalNewProjectDescription() {
     document.getElementById("modal-project-description-space").style.display = 'none';
 }
 
-
-function showModalNewProjectFolder() {
-    document.getElementById("modal-project-folder-space").style.display = 'block';
-}
-
-function closeModalNewProjectFolder() {
-    document.getElementById("modal-project-folder-space").style.display = 'none';
+function closeModalsInHomeWhenClickAnywhere() {
+    closeModalNewProjectName() 
+    closeModalNewProjectDescription()
+    closeModalSuccessOrErrorwhenClickAnywhere()
 }
 //END-AREA: MODALS FOR HOME-PAGE.HTML

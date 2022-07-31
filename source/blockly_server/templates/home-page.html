@@ -15,8 +15,8 @@
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
 
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/home-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/home-page.js')}}"></script>
  
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
@@ -50,7 +50,7 @@
   }) 
 </script>
 
-<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+<body onclick="closeModalsInHomeWhenClickAnywhere()">
   {% include 'header.html' %}
   <div id="main-container">
     <div id="home-page-title-wrap">
@@ -169,36 +169,6 @@
         <!-- Modal footer -->
         <div class="modal-footer border-0">
           <button onclick="getDescription()" type="button" class="btn btn-primary" id="button-project-description"
-            data-dismiss="modal">Εντάξει</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- modal : ask for new project description -->
-  <div class="modal show" id="modal-project-folder-space" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-project-folder-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0">
-          <button type="button" class="close" id="modal-project-folder-close-button" data-dismiss="modal"
-            onclick="closeModalNewProjectFolder()">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-project-folder-space-text">Παρακαλώ γράψε το όνομα του φακέλου για το καινούριο
-            πρότζεκτ:</strong>
-          <div class="form-group" id="form-project-folder">
-            <input type="text" id="project-folder-text">
-          </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0">
-          <button onclick="getFolder()" type="button" class="btn btn-primary" id="button-project-description"
             data-dismiss="modal">Εντάξει</button>
         </div>
       </div>

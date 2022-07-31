@@ -46,4 +46,10 @@ function closeModalsInHomeWhenClickAnywhere() {
     closeModalNewProjectDescription()
     closeModalSuccessOrErrorwhenClickAnywhere()
 }
+
+function closeModalInHome() {
+    closeModalNewProjectName()
+    closeModalNewProjectDescription()
+    closeModalSuccessOrErrorwhenClickAnywhere()
+}
 //END-AREA: MODALS FOR HOME-PAGE.HTML

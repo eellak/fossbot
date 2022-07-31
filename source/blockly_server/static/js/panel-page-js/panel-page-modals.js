@@ -17,3 +17,8 @@ function showModalsSuccessSettings(text) {
 function hideModalSuccessSettings() {
     document.getElementById("modal-success-settings").style.display = 'none';
 }
+
+function closeModalWhenClickAnywhere(){
+    hideModalSuccessSettings()
+    hideModalErrorInSettings()
+}

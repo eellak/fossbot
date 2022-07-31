@@ -44,3 +44,9 @@ function showModalsSuccessInBlocklyPage(text) {
 function hideModalSuccessInBlocklyPage() {
     document.getElementById("modal-success-blockly").style.display = 'none';
 }
+
+function closeModalwhenClickAnywhere() {
+    closeModalEmptyWorkspace()
+    hideModalSuccessInBlocklyPage()
+    hideModalErrorInBlocklyPage() 
+}

@@ -53,7 +53,7 @@
   }) 
 </script>
 
-<body>
+<body onclick="closeModalWhenClickAnywhere()">
   {% include 'header.html' %}
   <div id="main-container">
     <div id="go-back-to-home-button-container">
@@ -94,14 +94,15 @@
               <tbody id="body-table-parameters">
               </tbody>
             </table>
-         </div>
+          </div>
         </div>
-      </div>       
-      
+      </div>
+
       <div id="Blockly-Button-container">
-          <div id="Blockly-Button-wrap" >
-              <button onclick="saveSettings()" name="submit" type="submit" class="save-panel-changes">Αποθήκευση αλλαγών</button>
-          </div> 
+        <div id="Blockly-Button-wrap">
+          <button onclick="saveSettings()" name="submit" type="submit" class="save-panel-changes">Αποθήκευση
+            αλλαγών</button>
+        </div>
       </div>
 
     </div>
@@ -149,7 +150,6 @@
         </div>
       </div>
     </div>
-
 
 </body>
 

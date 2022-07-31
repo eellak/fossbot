@@ -44,3 +44,7 @@ function hideModalSuccessInHome() {
 }
 
 
+function closeModalwhenClickAnywhere() {
+    hideModalSuccessInHome()
+    hideModalErrorInHome()
+}

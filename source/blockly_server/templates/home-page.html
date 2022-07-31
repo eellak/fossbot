@@ -21,7 +21,8 @@
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page-js/home-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page-js/home-page-modals.js')}}"></script>
-
+  <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
+ 
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/home-page-body-style.css')}}");
@@ -54,7 +55,7 @@
   }) 
 </script>
 
-<body onclick="closeModalwhenClickAnywhere()">
+<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
   <div id="main-container">
     <div id="home-page-title-wrap">
@@ -209,48 +210,12 @@
     </div>
   </div>
 
-
   <!-- modal : error -->
-  <div class="modal show" id="modal-error-home" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-error-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-error-text">Υπήρξε πρόβλημα!</strong>
-          <button type="button" class="close" id="modal-error-close-button" data-dismiss="modal"
-            onclick="hideModalErrorInHome()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
-      </div>
-    </div>
-  </div>
+  {% include 'modal-error.html' %}
 
   <!-- modal : success while loading/ saving settings -->
-  <div class="modal show" id="modal-success-home" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-success-content">
+  {% include 'modal-success.html' %}
 
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-success-text">Eπιτυχία!</strong>
-          <button type="button" class="close" id="modal-success-close-button" data-dismiss="modal"
-            onclick="hideModalSuccessInHome()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>

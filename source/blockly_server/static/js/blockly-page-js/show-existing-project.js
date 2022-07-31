@@ -15,7 +15,7 @@ async function loadProject() {
       loadXml(result.data);
     else{
       console.log('Error when getting project\n', err);
-      showModalErrorInBlocklyPage("Υπήρξε σφάλμα στην διαδικασία να φορτώσει ο κώδικας! Παρακαλώ ξαναπροσπάθησε!");
+      showModalError("Υπήρξε σφάλμα στην διαδικασία να φορτώσει ο κώδικας! Παρακαλώ ξαναπροσπάθησε!");
    }
  }
 }

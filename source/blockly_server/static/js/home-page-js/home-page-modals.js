@@ -22,29 +22,3 @@ function showModalNewProjectFolder() {
 function closeModalNewProjectFolder() {
     document.getElementById("modal-project-folder-space").style.display = 'none';
 }
-
-//ERROR 
-function showModalErrorInHome(error_text) {
-    document.getElementById("modal-error-home").style.display = 'block';
-    document.getElementById("modal-error-text").innerHTML = error_text;
-}
-
-function hideModalErrorInHome() {
-    document.getElementById("modal-error-home").style.display = 'none';
-}
-
-//SUCCESS 
-function showModalsSuccessInHome(text) {
-    document.getElementById("modal-success-home").style.display = 'block';
-    document.getElementById("modal-success-text").innerHTML = text;
-}
-
-function hideModalSuccessInHome() {
-    document.getElementById("modal-success-home").style.display = 'none';
-}
-
-
-function closeModalwhenClickAnywhere() {
-    hideModalSuccessInHome()
-    hideModalErrorInHome()
-}

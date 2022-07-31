@@ -54,9 +54,9 @@ async function saveSettings() {
 
     if (result.status == 200) {
        const text = "Η αποθήκευση των ρυμθίσεων ολοκληρώθηκε με επιτυχία!";
-       showModalsSuccessSettings(text);
+       showModalSuccess(text);
     } else {
-        const error_text = "Υπήρξε πρόβλημα κατά την αποθήκευση των ρυθμίσεων του ρομπότ. Οι ρυμθίσεις δεν αποθηκεύτηκαν!";
-        showModalErrorInSettings(error_text);
+       const error_text = "Υπήρξε πρόβλημα κατά την αποθήκευση των ρυθμίσεων του ρομπότ. Οι ρυμθίσεις δεν αποθηκεύτηκαν!";
+       showModalError(error_text);
     }
 }

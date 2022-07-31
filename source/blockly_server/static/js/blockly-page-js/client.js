@@ -5,15 +5,15 @@ async function runCode(id) {
   if (blockly_code == "") {
     console.log("no code to run");
 
-    //show modal 
-    showModalErrorInBlocklyPage("Δεν υπάρχουν μπλοκς στον χώρο εργασίας για να μπορέσει να τρέξει το ρομπότ!")
+    //show modal
+    showModalError("Δεν υπάρχουν μπλοκς στον χώρο εργασίας για να μπορέσει να τρέξει το ρομπότ!")
     return;
   }
 
   const result = await sendCode(id, blockly_code)
   const status = result.status
   if (status == 'started'){
-    showModalsSuccessInBlocklyPage("Ο κώδικας τρέχει με επιτυχία!");
+    showModalSuccess("Ο κώδικας τρέχει με επιτυχία!");
   }
   let xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   let xmlText = Blockly.Xml.domToPrettyText(xmlDom);

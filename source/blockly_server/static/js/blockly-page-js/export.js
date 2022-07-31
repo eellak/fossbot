@@ -50,8 +50,8 @@ async function save_xml(id) {
     const result = await saveXml(id, xmlText)
     const status = result.status
     if (status == '200'){
-        showModalsSuccessInBlocklyPage("Ο κώδικας αποθηκεύτηκε με επιτυχία!");
+        showModalSuccess("Ο κώδικας αποθηκεύτηκε με επιτυχία!");
     } else {
-        showModalErrorInBlocklyPage("Υπήρξε σφάλμα κατά την αποθήκευση του κώδικα! Ξαναπροσπάθησε!")
+        showModalError("Υπήρξε σφάλμα κατά την αποθήκευση του κώδικα! Ξαναπροσπάθησε!")
     }
 }

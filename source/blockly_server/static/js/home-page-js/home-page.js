@@ -125,9 +125,9 @@ async function execute_script(project_id) {
     if (result == "file not found") {
         showModalErrorInHome("Δεν βρέθηκε εκτελέσιμος κώδικας!")
     } else if (status == "started") {
-        showModalsSuccessInHome("Η εκτέλεση έχει ξεκινήσει!")
+        showModalSuccess("Η εκτέλεση έχει ξεκινήσει!")
     } else {
-        showModalsSuccessInHome("Το πρόγραμμα εκτελείται ήδη!")
+        showModalSucces("Το πρόγραμμα εκτελείται ήδη!")
     }
 
 }

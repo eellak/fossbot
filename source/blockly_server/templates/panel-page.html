@@ -19,7 +19,7 @@
 
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/panel-page-js/panel-page.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/panel-page-js/panel-page-modals.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
 
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
@@ -53,7 +53,7 @@
   }) 
 </script>
 
-<body onclick="closeModalWhenClickAnywhere()">
+<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
   <div id="main-container">
     <div id="go-back-to-home-button-container">
@@ -110,46 +110,10 @@
     {% include 'footer.html' %}
 
     <!-- modal : error while loading/ saving settings -->
-    <div class="modal show" id="modal-error-settings" style="top: 5em;">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="modal-error-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header border-0"></div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-            <strong id="modal-error-text">Υπήρξε πρόβλημα!</strong>
-            <button type="button" class="close" id="modal-error-close-button" data-dismiss="modal"
-              onclick="hideModalErrorInSettings()">&times;</button>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer border-0"> </div>
-        </div>
-      </div>
-    </div>
+    {% include 'modal-error.html' %}
 
     <!-- modal : success while loading/ saving settings -->
-    <div class="modal show" id="modal-success-settings" style="top: 5em;">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="modal-success-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header border-0"></div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-            <strong id="modal-success-text">Η αποθήκευση των ρυμθίσεων ολοκληρώθηκε με επιτυχία!</strong>
-            <button type="button" class="close" id="modal-success-close-button" data-dismiss="modal"
-              onclick="hideModalSuccessSettings()">&times;</button>
-          </div>
-
-          <!-- Modal footer -->
-          <div class="modal-footer border-0"> </div>
-        </div>
-      </div>
-    </div>
+    {% include 'modal-success.html' %}
 
 </body>
 

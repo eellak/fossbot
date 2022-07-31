@@ -11,7 +11,6 @@ function loadProjects(data) {
     console.log('projects:', projects_array);
 
     const rows = document.getElementById("body-table-projects").rows.length;
-    console.log('rows:', rows);
     if(rows >0){
         for(var i=1; i<=rows; i++) {
             document.getElementById("body-table-projects").deleteRow(i);

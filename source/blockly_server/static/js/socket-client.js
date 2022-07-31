@@ -92,3 +92,14 @@ const sendCode = function(id,code) {
     });
   });
 }
+
+const sendParameters = function(data) {
+  return new Promise(function (resolve, reject) {
+    socket.emit('save_parameters', {'parameters': data});
+
+    socket.on('save_parameters_result', (data) => {
+      console.log("save_parameters_result", data);
+      resolve(data);
+    });
+  });
+}

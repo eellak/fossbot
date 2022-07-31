@@ -26,7 +26,7 @@ app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
 CORS(app)
 
 # integrates Flask-SocketIO with the Flask application
-socketio = SocketIO(app, logger=True, engineio_logger=True)
+socketio = SocketIO(app)
 
 r = redis.Redis(host='redis_server')
 
@@ -87,13 +87,13 @@ def blockly():
 @app.route('/admin_panel')
 def admin_panel():
     stop_now()
-    parameters =load_parameters()
-    return render_template('panel-page.html',parameters = parameters)
+    parameters = load_parameters()
+    return render_template('panel-page.html', parameters=parameters)
 
 @socketio.on('get_admin_panel_parameters')
 def handle_get_admin_panel_parameters():
-    parameters =load_parameters()
-    emit('parameters', { 'status': '200', 'data': parameters})
+    parameters = load_parameters()
+    emit('parameters', { 'status': '200', 'parameters': parameters})
 
 @app.route('/save_parameters' , methods = ['POST'])
 def save_parameters():
@@ -103,19 +103,25 @@ def save_parameters():
         key_list = parameters.keys()
         for dkey in key_list:
             parameters[dkey][1]['value'] = int(data.get(dkey) )
+        print("parameters to save:", parameters)
         save_parameters(parameters)
-        
+       
         return redirect('/')
 
 @socketio.on('save_parameters')
 def handle_save_parameters(form_data):
-    data = form_data
-    parameters = load_parameters()
-    key_list = parameters.keys()
-    for dkey in key_list:
-        parameters[dkey][1]['value'] = int(data.get(dkey) )
-        save_parameters(parameters)
-    emit('saved parameters', { 'status': 'ok ', 'data': parameters})
+    try:
+       data = form_data.parameters
+       console.log('param received: ', data )
+       parameters = load_parameters()
+       key_list = parameters.keys()
+       for dkey in key_list:
+          parameters[dkey][1]['value'] = int(data.get(dkey) )
+       save_parameters(parameters)
+       emit('save_parameters_result', { 'status': '200', 'data': parameters})
+    except Exception as e:
+       print(e)
+       emit('save_parameters_result', { 'status': 'error', 'data': 'parameters not saved'})
 
 @app.route('/projects')
 def all_projects():

@@ -114,3 +114,15 @@ button.save-panel-changes {
   margin: 5%;
 }
 
+#Blockly-Button-container{
+  height: 10%; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Blockly-Button-wrap {
+  margin: 5%;
+  padding: 2%;
+}

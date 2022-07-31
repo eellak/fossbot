@@ -12,7 +12,13 @@ function loadProjects(data) {
 
     const rows = document.getElementById("body-table-projects").rows.length;
     console.log('rows:', rows);
-  
+    if(rows >0){
+        for(var i=1; i<=rows; i++) {
+            document.getElementById("body-table-projects").deleteRow(i);
+        }
+        location.reload();
+    }
+    
     for (var i = 0; i < projects_array.length; i++) {
         const project = projects_array[i];
 
@@ -127,7 +133,7 @@ async function execute_script(project_id) {
     console.log('execute script result is ', result)
     if (result == "file not found") {
         showModalErrorInHome("Δεν βρέθηκε εκτελέσιμος κώδικας!")
-    } else if (status == "started") {
+    } else if (result == "started") {
         showModalSuccess("Η εκτέλεση έχει ξεκινήσει!")
     } else {
         showModalSucces("Το πρόγραμμα εκτελείται ήδη!")

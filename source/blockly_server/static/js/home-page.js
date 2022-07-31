@@ -10,6 +10,9 @@ function loadProjects(data) {
     const projects_array = data.data;
     console.log('projects:', projects_array);
 
+    const rows = document.getElementById("body-table-projects").rows.length;
+    console.log('rows:', rows);
+  
     for (var i = 0; i < projects_array.length; i++) {
         const project = projects_array[i];
 

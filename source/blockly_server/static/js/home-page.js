@@ -1,7 +1,6 @@
 //attributes for adding a new project 
 let new_project_title;
 let new_project_description;
-let new_project_folder;
 
 function loadProjects(data) {
     console.log('load projects');
@@ -58,7 +57,8 @@ function loadProjects(data) {
 
 function createNewProject() {
     //title 
-    showModalNewProjectName();
+    //showModalNewProjectName();
+    document.getElementById("modal-projectname-space").style.display = 'block';
 
     document.getElementById("button-project-name").onclick = function () {
         //get the input value 
@@ -106,26 +106,6 @@ async function deleteElement(el,id) {
         location.reload();
     }
 }
-
-function showFoldersAndProjects(data_array) {
-    const open_blockly_text = "Άνοιξε το πρότζεκτ στο Blockly";
-    for (var i = 0; i < data_array.length; i++) {
-        const folder_project = data_array[i];
-
-        //add every time the folder and the project name as the last row
-        document.getElementById("body-table-projects").insertRow(-1).innerHTML =
-            '<tr role=\"row\">' +
-            '<th class=\"project-folder\">' + folder_project.folder + '</th>' +
-            '<th class=\"project-title\">' + folder_project.title + '</th>' +
-            '<th class=\"project-button\">' +
-            '<button type=\"button\" class=\"open-Blockly project\" id=\"open-Blockly-button\">' +
-            open_blockly_text +
-            '</button>' +
-            '</th>'
-            + '</tr>';
-    }
-}
-
 
 async function execute_script(project_id) {
     const result = await executeScript(project_id)

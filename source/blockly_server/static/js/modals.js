@@ -49,4 +49,10 @@ function showModalNewProjectFolder() {
 function closeModalNewProjectFolder() {
     document.getElementById("modal-project-folder-space").style.display = 'none';
 }
+
+function closeModalInHome() {
+    closeModalNewProjectName()
+    closeModalNewProjectDescription()
+    closeModalSuccessOrErrorwhenClickAnywhere()
+}
 //END-AREA: MODALS FOR HOME-PAGE.HTML

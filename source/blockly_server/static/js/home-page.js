@@ -9,13 +9,13 @@ function loadProjects(data) {
     const projects_array = data.data;
     console.log('projects:', projects_array);
 
-    const rows = document.getElementById("body-table-projects").rows.length;
-    if(rows >0){
-        for(var i=1; i<=rows; i++) {
-            document.getElementById("body-table-projects").deleteRow(i);
-        }
-        location.reload();
-    }
+    // const rows = document.getElementById("body-table-projects").rows.length;
+    // if(rows >0){
+    //     for(var i=1; i<=rows; i++) {
+    //         document.getElementById("body-table-projects").deleteRow(i);
+    //     }
+    //     location.reload();
+    // }
     
     for (var i = 0; i < projects_array.length; i++) {
         const project = projects_array[i];

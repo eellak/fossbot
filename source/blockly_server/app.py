@@ -109,18 +109,20 @@ def save_parameters():
         return redirect('/')
 
 @socketio.on('save_parameters')
-def handle_save_parameters(form_data):
+def handle_save_parameters(data):
     try:
-       data = form_data.parameters
-    #    parameters = load_parameters()
-    #    key_list = parameters.keys()
-    #    for dkey in key_list:
-    #       parameters[dkey][1]['value'] = int(data.get(dkey) )
-       save_parameters(data)
-       emit('save_parameters_result', { 'status': '200', 'data': data})
+        params_values = data.parameters
+        parameters = load_parameters()
+        key_list = parameters.keys()
+        i = 0
+        for dkey in key_list:
+           parameters[dkey][1]['value'] = int(params_values[i])
+           i = i + 1
+        save_parameters(parameters)
+        emit('save_parameters_result', { 'status': '200', 'data': parameters})
     except Exception as e:
-       print(e)
-       emit('save_parameters_result', { 'status': 'error', 'data': 'parameters not saved'})
+        print(e)
+        emit('save_parameters_result', { 'status': 'error', 'data': 'parameters not saved'})
 
 @app.route('/projects')
 def all_projects():

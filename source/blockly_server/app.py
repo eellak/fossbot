@@ -133,7 +133,7 @@ def all_projects():
 def handle_projects():
     projects_list = get_all_projects()
     data = jsonify(projects_list)
-    emit('projects', { 'status': 'ok ', 'data': data })
+    emit('projects', { 'status': '200', 'data': data })
 
 @app.route('/new_project')
 def add_project():
@@ -158,7 +158,7 @@ def handle_new_project(data):
     db.session.refresh(project)
     os.mkdir(f'data/projects/{project.project_id}')
     shutil.copy('../robot_lib/code_templates/template.xml',f'data/projects/{project.project_id}/{project.project_id}.xml')
-    emit('new_project_result', { 'status': 'ok ', 'project_id': project.project_id }) 
+    emit('new_project_result', { 'status': '200', 'project_id': project.project_id }) 
 
 @app.route('/delete_project')
 def delete_project():

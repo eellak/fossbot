@@ -1,5 +1,5 @@
 import time
-import RPi.GPIO as GPIO
+
 import math
 #import csv
 #import Adafruit_Nokia_LCD as LCD
@@ -7,8 +7,10 @@ import math
 #from PIL import ImageFont,ImageDraw,Image
 #from netifaces import interfaces, ifaddresses, AF_INET
 #import matplotlib.pyplot as plt
-from mpu6050 import mpu6050
 from random import randrange
+
+import RPi.GPIO as GPIO
+from mpu6050 import mpu6050
 import smbus	
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008

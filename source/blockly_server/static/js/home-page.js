@@ -57,8 +57,7 @@ function loadProjects(data) {
 
 function createNewProject() {
     //title 
-    //showModalNewProjectName();
-    document.getElementById("modal-projectname-space").style.display = 'block';
+    showModalNewProjectName();
 
     document.getElementById("button-project-name").onclick = function () {
         //get the input value 

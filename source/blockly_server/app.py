@@ -112,13 +112,12 @@ def save_parameters():
 def handle_save_parameters(form_data):
     try:
        data = form_data.parameters
-       console.log('param received: ', data )
-       parameters = load_parameters()
-       key_list = parameters.keys()
-       for dkey in key_list:
-          parameters[dkey][1]['value'] = int(data.get(dkey) )
-       save_parameters(parameters)
-       emit('save_parameters_result', { 'status': '200', 'data': parameters})
+    #    parameters = load_parameters()
+    #    key_list = parameters.keys()
+    #    for dkey in key_list:
+    #       parameters[dkey][1]['value'] = int(data.get(dkey) )
+       save_parameters(data)
+       emit('save_parameters_result', { 'status': '200', 'data': data})
     except Exception as e:
        print(e)
        emit('save_parameters_result', { 'status': 'error', 'data': 'parameters not saved'})

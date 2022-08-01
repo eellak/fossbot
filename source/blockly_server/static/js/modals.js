@@ -41,12 +41,6 @@ function closeModalNewProjectDescription() {
     document.getElementById("modal-project-description-space").style.display = 'none';
 }
 
-function closeModalsInHomeWhenClickAnywhere() {
-    closeModalNewProjectName() 
-    closeModalNewProjectDescription()
-    closeModalSuccessOrErrorwhenClickAnywhere()
-}
-
 function closeModalInHome() {
     closeModalNewProjectName()
     closeModalNewProjectDescription()

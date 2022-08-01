@@ -20,7 +20,7 @@ function loadProjects(data) {
     for (var i = 0; i < projects_array.length; i++) {
         const project = projects_array[i];
 
-        //add every time the folder and the project name as the last row
+        //add every time the the project name as the last row
         document.getElementById("body-table-projects").insertRow(-1).innerHTML =
             '<tr>' +
             '<td>' + project['title'] +'</td>'+
@@ -122,3 +122,4 @@ async function execute_script(project_id) {
 function stop_script() {
     stopScript();
 }
+

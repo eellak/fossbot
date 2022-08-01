@@ -17,7 +17,7 @@
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page.js')}}"></script>
-
+ 
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/home-page-body-style.css')}}");
@@ -50,7 +50,11 @@
   }) 
 </script>
 
-<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+<<<<<<< HEAD
+<body onclick="closeModalsInHomeWhenClickAnywhere()">
+=======
+<body onclick="closeModalInHome()">
+>>>>>>> 0c00c944548b2d030270bed0772960d9eff14008
   {% include 'header.html' %}
   <div id="main-container">
     <div id="home-page-title-wrap">
@@ -118,6 +122,63 @@
 
   {% include 'footer.html' %}
 
+
+  <!-- modal : ask for new project name  -->
+  <div class="modal show" id="modal-projectname-space" style="top: 5em;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="modal-projectname-space-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header border-0">
+          <button type="button" class="close" id="modal-projectname-space-close-button" data-dismiss="modal"
+            onclick="closeModalNewProjectName()">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <strong id="modal-projectname-space-text">Παρακαλώ γράψε το όνομα του καινούριου πρότζεκτ:</strong>
+          <div class="form-group" id="form-project-name">
+            <input type="text" id="project-name-text">
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" id="button-project-name" data-dismiss="modal">Εντάξει</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal : ask for new project description -->
+  <div class="modal show" id="modal-project-description-space" style="top: 5em;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="modal-project-description-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header border-0">
+          <button type="button" class="close" id="modal-project-description-close-button" data-dismiss="modal"
+            onclick="closeModalNewProjectDescription()">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <strong id="modal-project-description-space-text">Παρακαλώ γράψε μια σύντομη περιγραφή για το καινούριο
+            πρότζεκτ:</strong>
+          <div class="form-group" id="form-project-description">
+            <input type="text" id="project-description-text">
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer border-0">
+          <button onclick="getDescription()" type="button" class="btn btn-primary" id="button-project-description"
+            data-dismiss="modal">Εντάξει</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- modal : error -->
   {% include 'modal-error.html' %}
 
@@ -125,63 +186,5 @@
   {% include 'modal-success.html' %}
 
 </body>
-
-
-<!-- modal : ask for new project name  -->
-<div class="modal show" id="modal-projectname-space" style="top: 5em;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" id="modal-projectname-space-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header border-0">
-        <button type="button" class="close" id="modal-projectname-space-close-button" data-dismiss="modal"
-          onclick="closeModalNewProjectName()">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <strong id="modal-projectname-space-text">Παρακαλώ γράψε το όνομα του καινούριου πρότζεκτ:</strong>
-        <div class="form-group" id="form-project-name">
-          <input type="text" id="project-name-text">
-        </div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-primary" id="button-project-name" data-dismiss="modal">Εντάξει</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- modal : ask for new project description -->
-<div class="modal show" id="modal-project-description-space" style="top: 5em;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" id="modal-project-description-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header border-0">
-        <button type="button" class="close" id="modal-project-description-close-button" data-dismiss="modal"
-          onclick="closeModalNewProjectDescription()">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <strong id="modal-project-description-space-text">Παρακαλώ γράψε μια σύντομη περιγραφή για το καινούριο
-          πρότζεκτ:</strong>
-        <div class="form-group" id="form-project-description">
-          <input type="text" id="project-description-text">
-        </div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer border-0">
-        <button onclick="getDescription()" type="button" class="btn btn-primary" id="button-project-description"
-          data-dismiss="modal">Εντάξει</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </html>

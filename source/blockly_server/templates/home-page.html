@@ -17,7 +17,7 @@
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
   <script src="{{ url_for('static',filename='js/home-page.js')}}"></script>
- 
+
   <style>
     @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/home-page-body-style.css')}}");
@@ -124,7 +124,8 @@
   <!-- modal : success while loading/ saving settings -->
   {% include 'modal-success.html' %}
 
-  
+</body>
+
 <!-- modal : ask for new project name  -->
 <div class="modal show" id="modal-projectname-space" style="top: 5em;">
   <div class="modal-dialog modal-lg">
@@ -151,7 +152,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- modal : ask for new project description -->
 <div class="modal show" id="modal-project-description-space" style="top: 5em;">
@@ -181,6 +181,5 @@
     </div>
   </div>
 </div>
-</body>
 
 </html>

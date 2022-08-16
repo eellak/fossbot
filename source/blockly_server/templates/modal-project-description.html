@@ -1,0 +1,27 @@
+<div class="modal show" id="modal-project-description-space" style="top: 5em;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="modal-project-description-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header border-0">
+        <button type="button" class="close" id="modal-project-description-close-button" data-dismiss="modal"
+          onclick="closeModalNewProjectDescription()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <strong id="modal-project-description-space-text">Παρακαλώ γράψε μια σύντομη περιγραφή για το καινούριο
+          πρότζεκτ:</strong>
+        <div class="form-group" id="form-project-description">
+          <input type="text" id="project-description-text">
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer border-0">
+        <button onclick="getDescription()" type="button" class="btn btn-primary" id="button-project-description"
+          data-dismiss="modal">Εντάξει</button>
+      </div>
+    </div>
+  </div>
+</div>

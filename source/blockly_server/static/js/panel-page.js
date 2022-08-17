@@ -15,18 +15,18 @@ function loadSettings(data) {
         console.log('parameter:', parameter);
 
         document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
-        '<tr>' +
-        '<td>' + parameter[0]['name'] + '</td>' +
-        '<td>' + parameter[2]['default'] + '</td>' +
-        '<td>' + '<input type="number" id="'+ i +'" value="' + parameter[1]['value'] + '">' + '</td>' +
-        '</tr>';
+            '<tr>' +
+            '<td>' + parameter[0]['name'] + '</td>' +
+            '<td>' + parameter[2]['default'] + '</td>' +
+            '<td>' + '<input type="number" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
+            '</tr>';
     }
 }
 
 async function saveSettings() {
     let parameters_to_send = [];
 
-    for (var i = 0; i < parameters_array.length; i++) {  
+    for (var i = 0; i < parameters_array.length; i++) {
         var value = document.getElementById(i).value;
         console.log("value is ", value);
         parameters_to_send.push(value);
@@ -36,10 +36,9 @@ async function saveSettings() {
     const result = await sendParameters(parameters_to_send);
 
     if (result.status == 200) {
-       const text = "Η αποθήκευση των ρυμθίσεων ολοκληρώθηκε με επιτυχία!";
-       showModalSuccess(text);
+        window.location.replace('/');
     } else {
-       const error_text = "Υπήρξε πρόβλημα κατά την αποθήκευση των ρυθμίσεων του ρομπότ. Οι ρυμθίσεις δεν αποθηκεύτηκαν!";
-       showModalError(error_text);
+        const error_text = "Υπήρξε πρόβλημα κατά την αποθήκευση των ρυθμίσεων του ρομπότ. Οι ρυμθίσεις δεν αποθηκεύτηκαν!";
+        showModalError(error_text);
     }
 }

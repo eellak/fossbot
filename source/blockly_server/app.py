@@ -97,16 +97,14 @@ def handle_get_admin_panel_parameters():
 @socketio.on('save_parameters')
 def handle_save_parameters(data):
     try:
-        params_values = data.parameters
+        params_values = data['parameters']
         parameters = load_parameters()
-        key_list = parameters.keys()
         i = 0
-        for dkey in key_list:
-           parameters[dkey][1]['value'] = int(params_values[i])
-           i = i + 1
+        for key, value in parameters.items():
+            value[1]['value'] = int(params_values[i])
+            i = i + 1
         save_parameters(parameters)
         emit('save_parameters_result', { 'status': '200', 'data': parameters})
-        #return redirect('/')
     except Exception as e:
         print(e)
         emit('save_parameters_result', { 'status': 'error', 'data': 'parameters not saved'})

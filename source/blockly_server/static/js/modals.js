@@ -42,8 +42,12 @@ function closeModalNewProjectDescription() {
 }
 
 function closeModalsInHomeWhenClickAnywhere() {
-    closeModalNewProjectName() 
-    closeModalNewProjectDescription()
+    if(document.getElementById("modal-projectname-space").style.display == 'block') {
+        closeModalNewProjectName() 
+    }
+    if(document.getElementById("modal-project-description-space").style.display == 'block') {
+        closeModalNewProjectDescription()
+    }
     closeModalSuccessOrErrorwhenClickAnywhere()
 }
 //END-AREA: MODALS FOR HOME-PAGE.HTML

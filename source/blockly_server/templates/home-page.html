@@ -48,9 +48,12 @@
     });
 
   });
+  document.addEventListener('click', (e) => {
+    closeModalSuccessOrErrorwhenClickAnywhere();
+  })
 </script>
 
-<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+<body>
   {% include 'header.html' %}
   <div id="main-container">
     <div id="home-page-title-wrap">

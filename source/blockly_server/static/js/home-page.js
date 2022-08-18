@@ -110,7 +110,7 @@ async function execute_script(project_id) {
     const result = await executeScript(project_id)
     console.log('execute script result is ', result)
     if (result == "file not found") {
-        showModalErrorInHome("Δεν βρέθηκε εκτελέσιμος κώδικας!")
+        showModalError("Δεν βρέθηκε εκτελέσιμος κώδικας!")
     } else if (result == "started") {
         showModalSuccess("Η εκτέλεση έχει ξεκινήσει!")
     } else {

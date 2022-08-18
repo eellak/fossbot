@@ -203,12 +203,15 @@ def handle_manual_control():
 
 @socketio.on('execute_blockly')
 def handle_execute_blockly(data):
-    id = data['id']
-    code = data['code']
-    generate_py(code,id)
-    stop_script()
-    result = execute_code(id)  
-    emit('execute_blockly_result', result)
+    try:
+        id = data['id']
+        code = data['code']
+        generate_py(code,id)
+        stop_script()
+        result = execute_code(id)  
+        emit('execute_blockly_result', result)
+    except Exception as e:
+        emit('execute_blockly_result',  {'status': 'error when creating .py file or when running the .py file'})
 
 @socketio.on('send_xml')
 def handle_send_xml(data):

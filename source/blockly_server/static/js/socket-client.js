@@ -1,6 +1,5 @@
 var socket = io('http://' + document.domain + ':' + location.port);
 
-
 socket.on("connect", function () {
   console.log("Socket connected!");
   socket.emit('connection', { 'data': 'I\'m connected!' });
@@ -82,9 +81,8 @@ const saveXml = function(id, code) {
 
 const sendCode = function(id,code) {
   return new Promise(function (resolve, reject) {
-  let obj = {id: id, code: code};
-  let data = JSON.stringify(obj);
-  socket.emit('execute_blockly', data);
+    let obj = {'id': id, 'code': code};
+    socket.emit('execute_blockly', obj);
 
     socket.on('execute_blockly_result', (data) => {
       console.log("execute_blockly_result", data);

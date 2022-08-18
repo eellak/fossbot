@@ -6,6 +6,7 @@ services:
     ports:
       - 6379:6379
     restart: always
+    
   blockly_server:
     privileged: true
     image: chronis10/fossbot_blockly:latest
@@ -16,4 +17,10 @@ services:
     restart: always
     volumes:
       - /home/pi/data:/app/data
-      - /home/pi/fossbot/source/blockly_server:/app
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: blockly_server
+   

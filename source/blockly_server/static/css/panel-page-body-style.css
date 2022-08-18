@@ -10,11 +10,13 @@ body {
 }
 
 #go-back-to-home-button-container { 
-  height: 10%;
+  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: left;
+  flex-direction: row;
+  padding: 1%;
 }
 
 #go-back-to-home-button-wrap { 

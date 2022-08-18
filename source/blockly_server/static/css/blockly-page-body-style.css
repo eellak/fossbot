@@ -75,7 +75,6 @@ button.stop {
 
 
 #back-import-export-buttons-container {
-  height: 10%;
   width: 100%;
   position: relative;
   display: flex;
@@ -91,7 +90,8 @@ button.stop {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-right: 6%;
+  margin-right: 5%;
+  padding: 2%;
 }
 
 #button-export {

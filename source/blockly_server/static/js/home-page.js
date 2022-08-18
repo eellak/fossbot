@@ -123,3 +123,7 @@ function stop_script() {
     stopScript();
 }
 
+function showRobotName(){
+   console.log(" hostname - robot name : " + window.location.hostname )
+   document.getElementById("robot-name").innerHTML = window.location.hostname 
+}

@@ -12,6 +12,12 @@ async function save_xml(id) {
   }
 }
 
+function loadXml(xml) {
+  const dom = Blockly.Xml.textToDom(xml);
+  Blockly.mainWorkspace.clear();
+  Blockly.Xml.domToWorkspace(dom, Blockly.mainWorkspace);
+}
+
 //get all projects from db  
 async function loadProject() {
   const url_str = window.location.href;

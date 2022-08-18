@@ -62,7 +62,7 @@ async function runCode(id) {
   let xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   let xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 
-  const result_save = await saveXml(id, code)
+  const result_save = await saveXml(id, xmlText);
 
   if (result_save.status == 200) {
     console.log("Ο κώδικας αποθήκευτηκε με επιτυχία!");

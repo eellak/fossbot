@@ -5,3 +5,6 @@ Flask-SQLAlchemy
 SQLAlchemy-serializer
 Flask-Cors
 psutil
+eventlet
+Flask_SocketIO
+celery

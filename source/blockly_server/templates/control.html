@@ -10,11 +10,14 @@
   <script src="{{ url_for('static',filename='modules/jquery.slim.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/popper.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/api.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/control-page-js/control-page.js')}}"></script>
+  <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
+
+  <!-- <script src="{{ url_for('static',filename='js/api.js')}}"></script> -->
+  <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/control-page.js')}}"></script>
 
   <style>
-    @import url("{{ url_for('static',filename='css/panel-page-css/panel-page-header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/header-style.css')}}");
     @import url("{{ url_for('static',filename='css/control-page-body.css')}}");
     @import url("{{ url_for('static',filename='css/footer-style.css')}}");
     @import url("{{ url_for('static',filename='css/common.css')}}");
@@ -23,19 +26,12 @@
 </head>
 
 <body>
-  <header id="header" class="header">
-    <div class="header-wrap">
-      <div id="header-logo" class="header-logo">
-        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
-        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
-      </div>
-    </div>
-  </header>
+  {% include 'header.html' %}
 
   <div id="main-container">
     <div id="go-back-to-home-button-container">
       <div id="go-back-to-home-button-wrap">
-        <button onclick="createNewProject()" type="button" class="go-back-to-home">
+        <button type="button" class="go-back-to-home">
           <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
             Επιστροφή στην αρχική σελίδα
           </a>
@@ -48,26 +44,18 @@
     </div>
 
     <div id="blocks-container">
-
-      <!-- <div id="blocks-title-wrap">
-        <div id="blocks-title">
-          <strong>        </strong>
-            
-        </div>
-      </div> -->
-
       <div id="blocks-wrap">
         <div id="id-robot-block-container" class="block-container">
           <div id="controls-container">
-              <button onclick="send_command_for_manual_control('up')" class="up">Μπροστά</button><br><br>
-              <button onclick="send_command_for_manual_control('left')" class="left">Αριστερά</button>
-              <button onclick="send_command_for_manual_control('right')" class="right">Δεξιά</button><br><br>
-              <button onclick="send_command_for_manual_control('down')" class="down" class="back">Πίσω</button>
-            </div>
+            <button onclick="send_command_for_manual_control('up')" class="up">Μπροστά</button><br><br>
+            <button onclick="send_command_for_manual_control('left')" class="left">Αριστερά</button>
+            <button onclick="send_command_for_manual_control('right')" class="right">Δεξιά</button><br><br>
+            <button onclick="send_command_for_manual_control('down')" class="down" class="back">Πίσω</button>
+          </div>
         </div>
       </div>
     </div>
-    
+
     <!-- <div id="stop-Blockly-Button-container">
       <div id="stop-Blockly-Button-wrap" >
         <button onclick="stop_script()" type="button" class="stop-Blockly">
@@ -75,12 +63,8 @@
       </div>
     </div> -->
   </div>
-  
-  <footer>
-    <div class="hua-ellak">
-      <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>
-    </div>
-  </footer>
+
+  {% include 'footer.html' %}
 
 </body>
 

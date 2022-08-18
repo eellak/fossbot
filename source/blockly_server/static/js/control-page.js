@@ -3,5 +3,5 @@ function stop_script() {
 }
 
 function send_command_for_manual_control(command) {
-    sendManualControlCommand(command);
+  sendManualControlCommand(command)
 }

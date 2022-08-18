@@ -12,7 +12,8 @@ import psutil
 import textwrap
 import shutil
 import yaml
-
+from flask_socketio import SocketIO, emit
+from celery import Celery
 
 DEBUG = os.getenv('DEBUG')
 if DEBUG is None:
@@ -21,7 +22,11 @@ if DEBUG is None:
 SCRIPT_PROCCESS = None
 app = Flask(__name__)
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
+
 CORS(app)
+
+# integrates Flask-SocketIO with the Flask application
+socketio = SocketIO(app)
 
 r = redis.Redis(host='redis_server')
 
@@ -49,13 +54,29 @@ def before_first_request():
     if not os.path.exists('data/admin_parameters.yaml'):
         shutil.copy('../robot_lib/code_templates/admin_parameters.yaml',f'data/admin_parameters.yaml')
 
+@socketio.on('connection')
+def on_connect(data):
+    print("Socket connected, data received:", data)
 
+@socketio.on('disconnection')
+def on_disconnect(data):
+    print("Socket disconnected!!, data received:", data)
+
+@socketio.on_error()        # Handles the default namespace
+def error_handler(e):
+    print('Error - socket IO : ', e)
 
 @app.route('/')
 def index():
     stop_now()
+    return render_template('home-page.html')
+
+@socketio.on('get-all-projects')
+def handle_get_all_projects():
     projects_list = get_all_projects()
-    return render_template('home-page.html',projects=projects_list)
+    print('getting all projects')
+    print(projects_list)
+    emit('all-projects', { 'status': '200', 'data': projects_list })
 
 @app.route('/blockly')
 def blockly():
@@ -66,97 +87,107 @@ def blockly():
 @app.route('/admin_panel')
 def admin_panel():
     stop_now()
-    parameters =load_parameters()
-    return render_template('panel-page.html',parameters = parameters)
+    return render_template('panel-page.html')
 
-@app.route('/save_parameters' , methods = ['POST'])
-def save_parameters():
-    if request.method == 'POST':
-        data = request.form
-        parameters =load_parameters()
-        key_list = parameters.keys()
-        for dkey in key_list:
-            parameters[dkey][1]['value'] = int(data.get(dkey) )
+@socketio.on('get_admin_panel_parameters')
+def handle_get_admin_panel_parameters():
+    parameters = load_parameters()
+    emit('parameters', { 'status': '200', 'parameters': parameters})
+
+@socketio.on('save_parameters')
+def handle_save_parameters(data):
+    try:
+        params_values = data['parameters']
+        parameters = load_parameters()
+        i = 0
+        for key, value in parameters.items():
+            value[1]['value'] = int(params_values[i])
+            i = i + 1
         save_parameters(parameters)
-        
-        return redirect('/')
+        emit('save_parameters_result', { 'status': '200', 'data': parameters})
+    except Exception as e:
+        print(e)
+        emit('save_parameters_result', { 'status': 'error', 'data': 'parameters not saved'})
 
-@app.route('/projects')
-def all_projects():
-    stop_now()
+@socketio.on('projects')
+def handle_projects():
     projects_list = get_all_projects()
-    return jsonify(projects_list)
+    data = jsonify(projects_list)
+    emit('projects', { 'status': '200', 'data': data })
 
-@app.route('/new_project')
-def add_project():
-    stop_now()
-    title = request.args.get('title')    
-    info = request.args.get('info')
+@socketio.on('new_project')
+def handle_new_project(data):
+    title = data['title']
+    info = data['info']
     project = Projects(title,info)
     db.session.add(project)
     db.session.commit()
     db.session.refresh(project)
     os.mkdir(f'data/projects/{project.project_id}')
     shutil.copy('../robot_lib/code_templates/template.xml',f'data/projects/{project.project_id}/{project.project_id}.xml')
-    return jsonify(project.to_dict())
+    emit('new_project_result', { 'status': '200', 'project_id': project.project_id }) 
 
-@app.route('/delete_project')
-def delete_project():
-    stop_now()
+@socketio.on('delete_project')
+def handle_delete_project(data):
     try:
-        project_id = request.args.get('id')
+        project_id = data['project_id']
         project = Projects.query.get(project_id)
         print(type(project))
         db.session.delete(project)
-        db.session.commit()       
+        db.session.commit()
         shutil.rmtree(f'data/projects/{project.project_id}')
-        return redirect('/')
-        #return jsonify({'status':'deleted'})
+        emit('delete_project_result', {'status':'200', 'project_deleted': 'true' })
     except Exception as e:
         print(e)
-        return redirect('/')
-        #return jsonify({'status':'error'})
+        emit('delete_project_result', {'status':'error', 'project_deleted': 'false'})
 
-@app.route('/edit_project')
-def edit_project():
+@socketio.on('edit_project')
+def handle_edit_project(project_id):
     try:
-        project_id = request.args.get('id')
         project = Projects.query.get(project_id)
         project.title = request.args.get('title')    
         project.info = request.args.get('info')
-        db.session.commit()        
-        return jsonify({'status':'updated'})
+        db.session.commit()       
+        emit('edit_project', {'status':'updated'})
     except Exception as e:
         print(e)
-        return jsonify({'status':'error'})
-    
-@app.route('/execute_script')
-def execute_script():    
-    id = request.args.get('id')  
-    result = execute_code(id)  
-    return jsonify(result)
+        emit('edit_project', {'status':'error'})
 
-@app.route('/script_status')
-def script_status():
+@socketio.on('execute_script')
+def handle_execute_script(data):
+    id = data['project_id']
+    result = execute_code(id)
+    emit('execute_script_result', result)
+
+@socketio.on('script_status')
+def handle_script_status():
     global SCRIPT_PROCCESS
     if SCRIPT_PROCCESS is None or SCRIPT_PROCCESS.poll() is not None:       
-        return jsonify({'status': 'completed'})
+        emit('script_status',  {'status': 'completed'}) 
     else:
-        return jsonify({'status': 'still running'})
+        emit('script_status',  {'status': 'still running'}) 
 
 @app.route('/stop_script')
 def stop_script():
     result = stop_now()
     return jsonify(result)
-    
-@app.route('/manual_control_command')
-def manual_control_command():
-    command = request.args.get('command')
-    print(f'flask {command}')
-    r.set('command',bytes(command, "utf8"))
-    r.expire('command', 2)
 
-    return jsonify({'status': 'ok'})
+@socketio.on('stop_script')
+def handle_stop_script():
+    result = stop_now()
+    emit('stop_script', result)
+
+@socketio.on('manual_control_command')
+def handle_manual_control_command(data):
+   try:
+     command = data['command']
+     print(f'flask {command}')
+     r.set('command',bytes(command, "utf8"))
+     r.expire('command', 2)
+     emit('manual_control_command_result',  {'status': '200', 'command received and executed': command})
+   except Exception as e:
+     print(e)
+     emit('manual_control_command_result',  {'status': 'error', 'e': e})
 
 @app.route('/manual_control')
 def manual_control():
@@ -164,41 +195,44 @@ def manual_control():
     execute_code(None,manual_control=True)
     return render_template('control.html')
 
-@app.route('/execute_blockly',methods = ['POST'])
-def execute_blockly():
-    if request.method == 'POST':
-        data = request.json        
-        id = data["id"]
+@socketio.on('manual_control')
+def handle_manual_control():
+   stop_script()
+   execute_code(None,manual_control=True)
+   emit('manual_control',  {'status': 'ok'})
+
+@socketio.on('execute_blockly')
+def handle_execute_blockly(data):
+    try:
+        id = data['id']
         code = data['code']
         generate_py(code,id)
         stop_script()
         result = execute_code(id)  
-        return jsonify(result)
-    else:
-        return jsonify({'status': 'wrong method'})
+        emit('execute_blockly_result', result)
+    except Exception as e:
+        emit('execute_blockly_result',  {'status': 'error when creating .py file or when running the .py file'})
 
-@app.route('/send_xml')
-def send_xml():    
-    id = request.args.get('id')
+@socketio.on('send_xml')
+def handle_send_xml(data):
     try:
+        id = data['id']
         with open (f'data/projects/{id}/{id}.xml', "r") as myfile:
             data=myfile.readlines()
-        return jsonify({'data': data})        
+        emit('send_xml_result', {'status': '200', 'data': data})     
     except Exception as e:
-        return jsonify({'status': 'file not found'})
+        emit('send_xml_result',  {'status': 'file not found'})
 
-@app.route('/save_xml',methods = ['POST'])
-def save_xml():    
-    id = request.args.get('id')
-    if request.method == 'POST':
-        data = request.json 
+@socketio.on('save_xml')
+def handle_save_xml(data):
+    try: 
+        id = data['id']
         code = data['code']
         with open(f'data/projects/{id}/{id}.xml', "w") as fh:
             fh.write(code)
-        return jsonify({'status': 'ok'})
-    else:
-        return jsonify({'status': 'wrong method'})
-
+        emit('save_xml_result', {'status': '200', 'result': 'Code saved with success'})
+    except Exception as e:
+        emit('save_xml_result',  {'status': 'error occured', 'result': 'Code was not saved'})
 
 def get_all_projects():
     projects = Projects.query.all()
@@ -228,9 +262,6 @@ def execute_code(id,manual_control=False):
         stop_now()
         SCRIPT_PROCCESS = subprocess.Popen(['python3', f'../robot_lib/manual_control.py'])
         return {'status': 'started'}
-        
-          
-       
 
 def stop_now():
     global SCRIPT_PROCCESS
@@ -245,9 +276,6 @@ def stop_now():
         print( 'nothing running')
         return{'status': 'nothing running'}
         
-        
-
-
 def load_parameters():
     with open(r'data/admin_parameters.yaml', encoding=('utf-8')) as file:
         parameters = yaml.load(file, Loader=yaml.FullLoader)
@@ -256,7 +284,6 @@ def load_parameters():
 def save_parameters(parameters):
     with open(r'data/admin_parameters.yaml', 'w', encoding=('utf-8')) as file:
         parameters = yaml.dump(parameters, file)
-  
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0',debug = DEBUG)
+    socketio.run(app, host = '0.0.0.0', debug=True) 

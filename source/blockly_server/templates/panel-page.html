@@ -6,173 +6,112 @@
   <title>Panel page</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
+  <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
   <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
-  
+
   <script src="{{ url_for('static',filename='modules/jquery.slim.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/popper.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
 
 
-  <script src="{{ url_for('static',filename='js/api.js')}}"></script>
-  <!-- <script onload="loadSettings()" src="{{ url_for('static',filename='js/panel-page-js/panel-page.js')}}"></script> -->
-  <script src="{{ url_for('static',filename='js/panel-page-js/panel-page-modals.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/panel-page.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
 
   <style>
-    @import url("{{ url_for('static',filename='css/panel-page-css/panel-page-header-style.css')}}");
-    @import url("{{ url_for('static',filename='css/panel-page-css/panel-page-body-style.css')}}");
+    @import url("{{ url_for('static',filename='css/header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/panel-page-body-style.css')}}");
     @import url("{{ url_for('static',filename='css/footer-style.css')}}");
     @import url("{{ url_for('static',filename='css/common.css')}}");
     @import url("{{ url_for('static',filename='css/modals.css')}}");
   </style>
 </head>
 
-<body>
-  <header id="header" class="header">
-    <div class="header-wrap">
-      <div id="header-logo" class="header-logo">
-        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
-        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
-      </div>
-    </div>
-  </header>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function () {
+    var socket = io('http://' + document.domain + ':' + location.port);
+
+    socket.on("connect", function () {
+      console.log("Socket connected!");
+      socket.emit('connection', { 'data': 'I\'m connected!' });
+      socket.emit('get_admin_panel_parameters');
+    });
+
+    socket.on('disconnect', () => {
+      console.log("Socket disconnected");
+      socket.emit('disconnection', { 'data': 'I\'m disconnected!' });
+    });
+
+    socket.on("parameters", (data) => {
+      console.log("parameters:", data);
+      loadSettings(data);
+    });
+  }) 
+</script>
+
+<body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+  {% include 'header.html' %}
   <div id="main-container">
-  <div id="go-back-to-home-button-container">
-    <div id="go-back-to-home-button-wrap">
-      <button onclick="createNewProject()" type="button" class="go-back-to-home">
-        <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
-          Επιστροφή στην αρχική σελίδα
-        </a>
-      </button>
-    </div>
-  </div>
-
-  <div id="panel-title-container">
-    <div id="panel-title-wrap">Διαχειριστικό περιβάλλον</div>
-  </div>
-
-  <div id="blocks-container">
-
-    <div id="blocks-title-wrap">
-      <div id="blocks-title">
-        <strong>Μέσα απο την σελίδα του διαχειριστικού υπάρχει η δυνατότητα να γίνουν αλλαγές σε τιμές που αφορούν το
-          ρομπότ όπως το όνομα του ή τιμές ορισμένων μπλοκς</strong>
-          
+    <div id="go-back-to-home-button-container">
+      <div id="go-back-to-home-button-wrap">
+        <button type="button" class="go-back-to-home">
+          <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
+            Επιστροφή στην αρχική σελίδα
+          </a>
+        </button>
       </div>
     </div>
 
-    <div class="d-flex justify-content-center"> 
-      <div class="row justify-content-center">
-        <div class="col-auto">
-          
-          <table class="table table-responsive">
-            <thead>
-              <tr>                
-                <th scope="col">Όνομα παραμέτρου</th>
-                <th scope="col">Πορεπιλεγμένη τιμή</th>
-                <th scope="col">Τιμή</th>
-              </tr>
-            </thead>
-            <tbody>  
-              <form action="/save_parameters" method="post" id="blocks-wrap">
-              {% for parameter in parameters %}
-              <tr>                
-                <td>{{ parameters[parameter][0]['name'] }} </td>
-                <td>{{ parameters[parameter][2]['default'] }}</td>
-                <td><input type="number" name="{{parameter}}" value="{{ parameters[parameter][1]['value'] }}"></td>
-              </tr>
-              {% endfor %}
-              <tr>
-                <td> <button name="submit" type="submit" class="save-panel-changes">Αποθήκευση αλλαγών</button></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-        </div>
+    <div id="panel-title-container">
+      <div id="panel-title-wrap">Διαχειριστικό περιβάλλον</div>
+    </div>
 
+    <div id="blocks-container">
+
+      <div id="blocks-title-wrap">
+        <div id="blocks-title">
+          <strong>Μέσα απο την σελίδα του διαχειριστικού υπάρχει η δυνατότητα να γίνουν αλλαγές σε τιμές που αφορούν το
+            ρομπότ όπως το όνομα του ή τιμές ορισμένων μπλοκς</strong>
+        </div>
       </div>
-      <!-- <div id="save-panel-changes-container">
-        <div id="save-panel-changes-wrap">
-         
-        </div>
-      </div> -->
-      <!-- <form action="/save_parameters" method="post" id="blocks-wrap">
-          {% for parameter in parameters %}
-      
-          <div id="id-robot-block-container">
-            <div id="id-robot-block-wrap" class="block-wrap">
-              <span id="id-robot-block">{{ parameters[parameter][0]['name'] }} ({{ parameters[parameter][2]['default'] }})</span>
-            </div>
-            <div id="id-robot-value-wrap" class="value-wrap">
-              <input type="number" name="{{parameter}}" value="{{ parameters[parameter][1]['value'] }}">
-            </div>
 
-          </div>
-          
-          {% endfor %}
-        
-        </div>
-        </div>
+      <div class="d-flex justify-content-center">
+        <div class="row justify-content-center">
+          <div class="col-auto">
 
-        <div id="save-panel-changes-container">
-          <div id="save-panel-changes-wrap">
-            <button name="submit" type="submit" class="save-panel-changes">Αποθήκευση αλλαγών</button>
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th scope="col">Όνομα παραμέτρου</th>
+                  <th scope="col">Προεπιλεγμένη τιμή</th>
+                  <th scope="col">Τιμή</th>
+                </tr>
+              </thead>
+              <tbody id="body-table-parameters">
+              </tbody>
+            </table>
           </div>
         </div>
-
-      </form> -->
-    </div>
-  </div>
-  <footer>
-    <div class="hua-ellak">
-      <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>
-    </div>
-  </footer>
-
-  <!-- modal : error while loading/ saving settings -->
-  <div class="modal show" id="modal-error-settings" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-error-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-error-text">Υπήρξε πρόβλημα!</strong>
-          <button type="button" class="close" id="modal-error-close-button" data-dismiss="modal"
-            onclick="hideModalErrorInSettings()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
       </div>
-    </div>
-  </div>
 
-  <!-- modal : success while loading/ saving settings -->
-  <div class="modal show" id="modal-success-settings" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-success-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-success-text">Η αποθήκευση των ρυμθίσεων ολοκληρώθηκε με επιτυχία!</strong>
-          <button type="button" class="close" id="modal-success-close-button" data-dismiss="modal"
-            onclick="hideModalSuccessSettings()">&times;</button>
+      <div id="Blockly-Button-container">
+        <div id="Blockly-Button-wrap">
+          <button onclick="saveSettings()" name="submit" type="submit" class="save-panel-changes">Αποθήκευση
+            αλλαγών</button>
         </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
       </div>
-    </div>
-  </div>
 
+    </div>
+
+    {% include 'footer.html' %}
+
+    <!-- modal : error while loading/ saving settings -->
+    {% include 'modal-error.html' %}
+
+    <!-- modal : success while loading/ saving settings -->
+    {% include 'modal-success.html' %}
 
 </body>
 

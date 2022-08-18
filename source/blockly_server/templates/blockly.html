@@ -15,15 +15,12 @@
 
   <script src="{{ url_for('static',filename='modules/buffer@6.0.3')}}"></script>
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
+  <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
-  <script src="{{ url_for('static',filename='js/api.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/blockly-page-js/blockly-page-modals.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/blockly-page-js/export.js')}}"></script>
-  <script src="{{ url_for('static',filename='js/blockly-page-js/import.js')}}"></script>
-  <!-- <script onload="loadProject()" src="{{ url_for('static',filename='js/blockly-page-js/show-existing-project.js')}}"></script> -->
-  <script defer src="{{ url_for('static',filename='js/blockly-page-js/show-existing-project.js')}}"></script>
-  <script defer src="{{ url_for('static',filename='js/blockly-page-js/workspace.js')}}"></script>
-  <script defer src="{{ url_for('static',filename='js/blockly-page-js/client.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
+  <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
+  <script defer src="{{ url_for('static',filename='js/blockly-page.js')}}"></script>
+  <script defer src="{{ url_for('static',filename='js/blockly/workspace.js')}}"></script>
 
   <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
   <script src="{{ url_for('static',filename='modules/jquery.slim.min.js')}}"></script>
@@ -31,57 +28,47 @@
   <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
 
   <style>
-    @import url("{{ url_for('static',filename='css/blockly-page-css/blockly-page-header-style.css')}}");
-    @import url("{{ url_for('static',filename='css/blockly-page-css/blockly-page-body-style.css')}}");
+    @import url("{{ url_for('static',filename='css/header-style.css')}}");
+    @import url("{{ url_for('static',filename='css/blockly-page-body-style.css')}}");
     @import url("{{ url_for('static',filename='css/common.css')}}");
     @import url("{{ url_for('static',filename='css/modals.css')}}");
     @import url("{{ url_for('static',filename='css/footer-style.css')}}");
   </style>
 </head>
 
-<body onload="loadProject();">
-  <header id="header" class="header">
-    <div class="header-wrap">
-      <div id="header-logo" class="header-logo">
-        <img src="{{ url_for('static',filename='photos/hua.gif')}}" class="hua-logo" alt=" ">
-        <img src="{{ url_for('static',filename='photos/ellak-logo.png')}}" class="ellak-logo" alt=" ">
-      </div>
-    </div>
-  </header>
+<body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+  {% include 'header.html' %}
 
   <div id="main-container">
-  <div id="back-import-export-buttons-container">
-    <div id="go-back-to-home-button-wrap">
-      <button onclick="createNewProject()" type="button" class="go-back-to-home">
-        <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
-          Επιστροφή στην αρχική σελίδα
-        </a>
-      </button>
+    <div id="back-import-export-buttons-container">
+      <div id="go-back-to-home-button-wrap">
+        <button type="button" class="go-back-to-home">
+          <a href='/' id="open-home-href" style="color: white; text-decoration: none;">
+            Επιστροφή στην αρχική σελίδα
+          </a>
+        </button>
+      </div>
+
+      <div id="button-export">
+        <button onclick="save_xml('{{ project_id }}')" type="button" class="export">Αποθήκευση</button>
+      </div>
     </div>
 
-    <div id="button-export">
-      <button onclick="save_xml('{{ project_id }}')" type="button" class="export">Αποθήκευση</button>
+    <div id="blocklyDiv"></div>
+
+    <div id="buttons-container">
+      <div id="runButton-wrap">
+        <button onclick="runCode('{{ project_id }}')" type="button" class="run">Τρέξε το πρόγραμμα!</button>
+      </div>
+
+      <div id="stopButton-wrap">
+        <button onclick="stop_script()" type="button" class="stop">Σταμάτα την εκτέλεση!</button>
+      </div>
     </div>
   </div>
 
-  <div id="blocklyDiv"></div>
-  
-  <div id="buttons-container">
-    <div id="runButton-wrap">
-      <button onclick="runCode('{{ project_id }}')" type="button" class="run">Τρέξε το πρόγραμμα!</button>
-    </div>
+  {% include 'footer.html' %}
 
-    <div id="stopButton-wrap">
-      <button onclick="stop_script()" type="button" class="stop">Σταμάτα την εκτέλεση!</button>
-    </div>
-  </div>
-</div>
-  <footer>
-    <div class="hua-ellak">
-      <span>Σχεδιάστηκε και υλοποιήθηκε από Χαροκόπειο σε συνεργασία με ΕΛΛΑΚ</span>
-    </div>
-  </footer>
-  
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <category name="Λογική" colour="#5B80A5">
       <block type="controls_if"></block>
@@ -393,7 +380,7 @@
     </category>
 
     <category name="Αλληλεπίδραση" colour="#995ba5">
-     <!-- <block type="beep">
+      <!-- <block type="beep">
       </block>-->
       <block type="play_sound">
       </block>
@@ -421,130 +408,11 @@
     </category>
   </xml>
 
-  <!-- modal : show it when the document loads succesfully -->
-  <div class="modal show" id="modal-welcome" style="top: 15em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0">
-          <h1></h1>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div id="body-text" class="body-text">
-            <h1>Ένωσε τα μπλοκς όπως στην φωτογραφία που ακολουθεί και φτιάξε τα δικά σου προγράμματα</h1>
-          </div>
-
-          <div id="blockly-example-img" class="blockly-example-img">
-            <img src="{{ url_for('static',filename='photos/blockly-example-for-welcome-model.JPG')}}" class="blockly-example" alt=" ">
-          </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"
-            onclick="hideModalWelcome()">Εντάξει</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- modal : show it when the Blokcly workspace is empty but the user tried to export blocks -->
-  <div class="modal show" id="modal-empty-space" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-empty-space-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-empty-space-text">Ο χώρος εργασίας στο Blockly είναι άδειος. Προσθέστε κάποια
-            εντολή!</strong>
-          <button type="button" class="close" id="modal-empty-space-close-button" data-dismiss="modal"
-            onclick="closeModalEmptyWorkspace()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- modal : ask for filename when user tries to export blocks -->
-  <div class="modal show" id="modal-filename-space" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-filename-space-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0">
-          <button type="button" class="close" id="modal-filename-space-close-button" data-dismiss="modal"
-            onclick="closeModalFilename()">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-filename-space-text">Παρακαλώ γράψε το όνομα του αρχείου:</strong>
-          <div class="form-group" id="form-filename">
-            <input type="text" id="filename-text">
-          </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-primary" id="button-file-name" data-dismiss="modal"
-            onclick="hideModalWelcome()">Εντάξει</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-   
   <!-- modal : error -->
-  <div class="modal show" id="modal-error-blockly" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-error-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-error-text">Υπήρξε πρόβλημα!</strong>
-          <button type="button" class="close" id="modal-error-close-button" data-dismiss="modal"
-            onclick="hideModalErrorInBlocklyPage()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
-      </div>
-    </div>
-  </div>
+  {% include 'modal-error.html' %}
 
   <!-- modal : success -->
-  <div class="modal show" id="modal-success-blockly" style="top: 5em;">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" id="modal-success-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header border-0"></div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <strong id="modal-success-text">Eπιτυχία!</strong>
-          <button type="button" class="close" id="modal-success-close-button" data-dismiss="modal"
-            onclick="hideModalSuccessInBlocklyPage()">&times;</button>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer border-0"> </div>
-      </div>
-    </div>
-  </div>
-
+  {% include 'modal-success.html' %}
 
 </body>
 

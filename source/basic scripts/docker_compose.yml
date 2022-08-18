@@ -17,10 +17,10 @@ services:
     restart: always
     volumes:
       - /home/pi/data:/app/data
-
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: blockly_server
+   

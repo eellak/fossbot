@@ -34,7 +34,7 @@ header {
   max-width: 200px;
 }
 
-.robot-name {
+#robot-name {
   display: flex;
   justify-content: right;
   text-align: center;

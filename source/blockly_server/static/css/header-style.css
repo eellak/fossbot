@@ -19,7 +19,6 @@ header {
 
 .header-wrap {
   height: 100%;
-  width: 50%;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -38,10 +37,9 @@ header {
 
 #header-robot-name {
   display: flex;
-  width: 50%;
   flex-direction: row;
   justify-content: right;
-  margin-left: 40%;
+  margin-left: 60%;
   margin-right: 10%;
 }
 

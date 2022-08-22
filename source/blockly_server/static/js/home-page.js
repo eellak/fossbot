@@ -123,7 +123,12 @@ function stop_script() {
     stopScript();
 }
 
-function showRobotName(){
-   console.log(" hostname - robot name : " + window.location.hostname )
-   document.getElementById("robot-name").innerHTML = window.location.hostname 
+function showRobotName() {
+    var hostname = window.location.hostname;
+    var array = hostname.split("-", ".");
+    if (array[0] && array[1]) {
+        document.getElementById("robot-name").innerHTML = array[0] + " " + array[1]
+    } else {
+        document.getElementById("robot-name").innerHTML = window.location.hostname
+    }
 }

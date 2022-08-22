@@ -41,13 +41,13 @@ header {
   justify-content: right;
   margin-left: 60%;
   margin-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 1%;
 }
 
 #robot-name {
   text-align: center;
   color: #fff;
-  padding-top: 3%;
-  padding-bottom: 1%;
 }
 
 @media only screen and (min-width: 768px) {

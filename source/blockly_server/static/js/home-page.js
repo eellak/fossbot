@@ -127,7 +127,6 @@ function showRobotName() {
     var hostname = window.location.hostname;
     let array = hostname.split("-").join(" ").split(".").join(" ");
     array =  array.split(" ", 2)
-    console.log("array : ", array )
     if (array[0] && array[1]) {
         document.getElementById("robot-name").innerHTML = array[0] + " " + array[1]
     } else {

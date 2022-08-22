@@ -34,6 +34,13 @@ header {
   max-width: 200px;
 }
 
+.robot-name {
+  display: flex;
+  justify-content: right;
+  text-align: center;
+  color: #fff;
+}
+
 @media only screen and (min-width: 768px) {
   header {
     background-color: #f58220;

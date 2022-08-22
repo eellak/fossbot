@@ -40,7 +40,6 @@ header {
   flex-direction: row;
   justify-content: right;
   margin-left: 60%;
-  margin-right: 10%;
   padding-top: 1%;
   padding-bottom: 0.5%;
 }
@@ -50,6 +49,14 @@ header {
   color: #fff;
 }
 
-@media only screen and (min-width: 768px) {
- 
+@media only screen and (max-width: 1230px) {
+  #header-robot-name {
+    margin-left: 50%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #header-robot-name {
+    margin-left: 40%;
+  }
 }

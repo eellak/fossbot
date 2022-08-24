@@ -598,3 +598,101 @@ Blockly.Python['humidity'] = function (block) {
 //   var code = 'robot.get_battery()';
 //   return [code,Blockly.Python.ORDER_NONE];
 // }
+
+//TIME BLOCKS 
+Blockly.Blocks['begin_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Έναρξη μέτρησης χρόνου");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+let timer;
+
+Blockly.Python['begin_timer'] = function (block) {
+  var now = Date.now();
+  timer = new Timer(now);
+  var code = '\n';
+  return code;
+};
+
+
+Blockly.Blocks['stop_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Σταμάτημα μέτρησης χρόνου");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['stop_timer'] = function (block) {
+  timer.stop_timer()
+  var code = '\n';
+  return code;
+};
+
+
+Blockly.Blocks['stop_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Σταμάτημα μέτρησης χρόνου");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['stop_timer'] = function (block) {
+  timer.stop_timer()
+  var code = '\n';
+  return code;
+};
+
+
+Blockly.Blocks['reset_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Επανέναρξη μέτρησης χρόνου");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['reset_timer'] = function (block) {
+  timer.reset_timer()
+  var code = '\n';
+  return code;
+};
+
+
+Blockly.Blocks['get_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Χρόνος που πέρασε");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['get_timer'] = function (block) {
+  var diff = timer.get_timer()
+  var code = diff;
+  return code;
+};

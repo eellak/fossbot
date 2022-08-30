@@ -45,7 +45,7 @@ async function loadProject() {
 //send the code from thw workspace to be run in the robot 
 async function runCode(id) {
   let blockly_code = Blockly.Python.workspaceToCode(Blockly.mainWorkspace);
-
+  console.log(blockly_code)
   if (blockly_code == "") {
     console.log("no code to run");
 

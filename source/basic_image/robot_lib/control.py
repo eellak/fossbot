@@ -481,6 +481,8 @@ class timer():
 
 	def __init__(self):
 		self.start = 0
+	def stop_timer(self):
+		self.start = 0	
 	def start_timer(self):
 		self.start = time.time()
 	def elapsed(self):

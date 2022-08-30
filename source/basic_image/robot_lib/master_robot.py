@@ -41,6 +41,8 @@ class Fossbot():
         self.analogue_reader = control.analogue_readings()
         self.accelerometer = control.accelerometer()    
         self.noise = control.gen_input(pin=4)
+        self.timer = control.timer()    
+
  
     #ultrasonic sensor
     def get_distance(self):
@@ -215,6 +217,16 @@ class Fossbot():
     def exit(self):
         control.clean()
 
+    def stop_timer(): 
+        control.stop_timer()
+
+    def start_timer():     
+        control.start_timer()
+
+    def get_elapsed(self):             
+        value = control.get_elapsed(self)
+        print(value)
+        return value
 
 if __name__ == "__main__":
     testrobot = Fossbot()

@@ -612,12 +612,9 @@ Blockly.Blocks['begin_timer'] = {
   }
 };
 
-let timer;
 
 Blockly.Python['begin_timer'] = function (block) {
-  var now = Date.now();
-  timer = new Timer(now);
-  var code = '\n';
+  var code = 'robot.start_timer()\n';
   return code;
 };
 
@@ -635,49 +632,9 @@ Blockly.Blocks['stop_timer'] = {
 };
 
 Blockly.Python['stop_timer'] = function (block) {
-  timer.stop_timer()
-  var code = '\n';
+  var code = 'robot.stop_timer()\n';
   return code;
 };
-
-
-Blockly.Blocks['stop_timer'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Σταμάτημα μέτρησης χρόνου");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(290);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Python['stop_timer'] = function (block) {
-  timer.stop_timer()
-  var code = '\n';
-  return code;
-};
-
-
-Blockly.Blocks['reset_timer'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Επανέναρξη μέτρησης χρόνου");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(290);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Python['reset_timer'] = function (block) {
-  timer.reset_timer()
-  var code = '\n';
-  return code;
-};
-
 
 Blockly.Blocks['get_timer'] = {
   init: function () {
@@ -692,7 +649,6 @@ Blockly.Blocks['get_timer'] = {
 };
 
 Blockly.Python['get_timer'] = function (block) {
-  var diff = timer.get_timer()
-  var code = diff;
+  var code = 'robot.get_elapsed()\n';
   return code;
 };

@@ -87,8 +87,8 @@ def blockly():
 @app.route('/admin_panel')
 def admin_panel():
     stop_now()
-    params = load_parameters()
-    return render_template('panel-page.html', parameters=params)
+    robot_name = get_robot_name()
+    return render_template('panel-page.html', robot_name=robot_name)
 
 @socketio.on('get_admin_panel_parameters')
 def handle_get_admin_panel_parameters():
@@ -285,6 +285,13 @@ def load_parameters():
 def save_parameters(parameters):
     with open(r'data/admin_parameters.yaml', 'w', encoding=('utf-8')) as file:
         parameters = yaml.dump(parameters, file)
+
+def get_robot_name():
+    parameters = load_parameters()
+    parameters = parameters.items()
+    robot_name_pair = list(parameters)[0] #robot name pair is always the first one 
+    robot_name_value = robot_name_pair[1]
+    return robot_name_value
 
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0', debug=True) 

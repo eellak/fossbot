@@ -288,10 +288,10 @@ def save_parameters(parameters):
 
 def get_robot_name():
     parameters = load_parameters()
-    parameters = parameters.items()
-    robot_name_pair = list(parameters)[0] #robot name pair is always the first one 
-    robot_name_value = robot_name_pair[1]
-    return robot_name_value
+    parameters = list(parameters.items())
+    for parameter in parameters:
+        print(parameter)
+    return "robot_name_value"
 
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0', debug=True) 

@@ -9,7 +9,7 @@ function loadSettings(data) {
 
     parameters_array = Object.values(parameters);
 
-    for (var i = 0; i < parameters_array.length; i++) {
+    for (var i = 1; i < parameters_array.length; i++) {
         const parameter = parameters_array[i];
 
         console.log('parameter:', parameter);

@@ -87,7 +87,8 @@ def blockly():
 @app.route('/admin_panel')
 def admin_panel():
     stop_now()
-    return render_template('panel-page.html')
+    parameters = load_parameters()
+    return render_template('panel-page.html', parameters=parameters)
 
 @socketio.on('get_admin_panel_parameters')
 def handle_get_admin_panel_parameters():

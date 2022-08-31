@@ -69,7 +69,8 @@ def error_handler(e):
 @app.route('/')
 def index():
     stop_now()
-    return render_template('home-page.html')
+    robot_name = get_robot_name()
+    return render_template('home-page.html', robot_name=robot_name)
 
 @socketio.on('get-all-projects')
 def handle_get_all_projects():
@@ -82,7 +83,8 @@ def handle_get_all_projects():
 def blockly():
     stop_now()
     id = request.args.get('id') 
-    return render_template('blockly.html', project_id=id)
+    robot_name = get_robot_name()
+    return render_template('blockly.html', project_id=id, robot_name=robot_name)
 
 @app.route('/admin_panel')
 def admin_panel():
@@ -194,7 +196,8 @@ def handle_manual_control_command(data):
 def manual_control():
     stop_script()
     execute_code(None,manual_control=True)
-    return render_template('control.html')
+    robot_name = get_robot_name()
+    return render_template('control.html', robot_name=robot_name)
 
 @socketio.on('manual_control')
 def handle_manual_control():
@@ -288,14 +291,13 @@ def save_parameters(parameters):
 
 def get_robot_name():
     parameters = load_parameters()
-    print("params :", parameters)
     print("dict params: ", parameters.items())
     for key, value in parameters.items():
         print("key ", key)
         if(key == "robot_name"):
             print(value)
             return value
-    return "robot_name_value"
+    return " "
 
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0', debug=True) 

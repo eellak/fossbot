@@ -291,6 +291,7 @@ def get_robot_name():
     print("params :", parameters)
     print("dict params: ", parameters.items())
     for key, value in parameters.items():
+        print("key ", key)
         if(key == "robot_name"):
             print(value)
             return value

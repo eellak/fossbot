@@ -1,5 +1,7 @@
 robot_name:
- - name: fossbot 003
+  - name: Όνομα ρομπότ
+  - value: fossbot 003
+  - default: fossbot 003
  
 step:
   - name: Βήμα ένα, εκατοστά

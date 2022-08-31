@@ -288,9 +288,10 @@ def save_parameters(parameters):
 
 def get_robot_name():
     parameters = load_parameters()
-    parameters = list(parameters.items())
-    for parameter in parameters:
-        print(parameter)
+    for key, value in parameters.items():
+        if(key == "robot_name"):
+            print(value)
+            return value
     return "robot_name_value"
 
 if __name__ == '__main__':

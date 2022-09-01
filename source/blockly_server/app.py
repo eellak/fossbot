@@ -300,11 +300,9 @@ def save_parameters(parameters):
 
 def get_robot_name():
     parameters = load_parameters()
-    print("dict params: ", parameters.items())
     for key, value in parameters.items():
-        print("key ", key)
         if(key == "robot_name"):
-            print(value)
+            print("Getting robot name: ", value[1]['value'] )
             return value[1]['value']
     return " "
 

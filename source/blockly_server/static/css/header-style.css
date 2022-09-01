@@ -55,8 +55,8 @@ header {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1080px) {
   #header-robot-name {
-    margin-left: 40%;
+    margin-left: 50%;
   }
 }

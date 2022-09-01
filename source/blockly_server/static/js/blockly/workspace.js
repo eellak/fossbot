@@ -640,8 +640,7 @@ Blockly.Blocks['get_timer'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Χρόνος που πέρασε");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
+    this.setOutput(true, 'Number');
     this.setColour(290);
     this.setTooltip("");
     this.setHelpUrl("");

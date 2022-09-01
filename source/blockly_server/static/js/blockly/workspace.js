@@ -649,5 +649,5 @@ Blockly.Blocks['get_timer'] = {
 
 Blockly.Python['get_timer'] = function (block) {
   var code = 'robot.get_elapsed()\n';
-  return code;
+  return [code,Blockly.Python.ORDER_NONE];
 };

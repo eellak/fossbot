@@ -305,7 +305,7 @@ def get_robot_name():
         print("key ", key)
         if(key == "robot_name"):
             print(value)
-            return value
+            return value[1]['value']
     return " "
 
 if __name__ == '__main__':

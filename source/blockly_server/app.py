@@ -14,6 +14,7 @@ import shutil
 import yaml
 from flask_socketio import SocketIO, emit
 from celery import Celery
+import glob
 
 DEBUG = os.getenv('DEBUG')
 if DEBUG is None:
@@ -84,7 +85,14 @@ def blockly():
     stop_now()
     id = request.args.get('id') 
     robot_name = get_robot_name()
-    return render_template('blockly.html', project_id=id, robot_name=robot_name)
+    sound_effects = get_sound_effects()
+    return render_template('blockly.html', project_id=id, robot_name=robot_name, sound_effects=sound_effects)
+
+def get_sound_effects():
+    if os.path.exists('data/sound_effects'):
+        mp3_sounds_list = glob.glob('/home/pi/fossbot/source/data/sound_effects*.mp3')
+        print(mp3_sounds_list)
+        return mp3_sounds_list
 
 @app.route('/admin_panel')
 def admin_panel():

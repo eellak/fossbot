@@ -217,14 +217,14 @@ class Fossbot():
     def exit(self):
         control.clean()
 
-    def stop_timer(): 
-        control.stop_timer()
+    def stop_timer(self): 
+        self.timer.stop_timer()
 
-    def start_timer():     
-        control.start_timer()
+    def start_timer(self):     
+        self.timer.start_timer()
 
     def get_elapsed(self):             
-        value = control.get_elapsed(self)
+        value = self.timer.get_elapsed()
         print(value)
         return value
 

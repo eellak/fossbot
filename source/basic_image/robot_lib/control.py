@@ -495,7 +495,7 @@ class timer():
 		if self.start == 0:
 			return 0
 		else:
-			return time.time() - self.start
+			return ( time.time() - self.start ) / 1000
 
 
 #General functions

@@ -1,4 +1,5 @@
 from crypt import methods
+from email.mime import audio
 from flask import Flask,jsonify,request,Response, render_template,redirect, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -92,9 +93,16 @@ def get_sound_effects():
     print("Getting sounds")
     if os.path.exists('data/sound_effects'):
         mp3_sounds_list = glob.glob('data/sound_effects/*.mp3')
+        sounds_names = []
+        for sound in mp3_sounds_list: 
+            split_list = sound.split("/")
+            audio_name = split_list[2] 
+            audio_name_list = audio_name.split(".")
+            audio_name = audio_name_list[0]
+            sounds_names.append(audio_name)
         print("sound effects:")
-        print(mp3_sounds_list)
-        return mp3_sounds_list
+        print(sounds_names)    
+        return sounds_names
     else : 
         return []     
 

@@ -96,6 +96,8 @@ def get_sound_effects():
         print("getting all sounds")
         print(mp3_sounds_list)
         return mp3_sounds_list
+    else : 
+        return []    
 
 @app.route('/admin_panel')
 def admin_panel():

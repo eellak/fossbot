@@ -89,7 +89,7 @@ def blockly():
     return render_template('blockly.html', project_id=id, robot_name=robot_name, sound_effects=sound_effects)
 
 def get_sound_effects():
-    if os.path.exists('data/sound_effects'):
+    if os.path.exists('/home/pi/fossbot/source/data/sound_effects'):
         mp3_sounds_list = glob.glob('/home/pi/fossbot/source/data/sound_effects/*.mp3')
         print("getting all sounds")
         print(mp3_sounds_list)

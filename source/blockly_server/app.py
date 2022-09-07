@@ -90,7 +90,7 @@ def blockly():
 
 def get_sound_effects():
     if os.path.exists('data/sound_effects'):
-        mp3_sounds_list = glob.glob('/home/pi/fossbot/source/data/sound_effects*.mp3')
+        mp3_sounds_list = glob.glob('/home/pi/fossbot/source/data/sound_effects/*.mp3')
         print("getting all sounds")
         print(mp3_sounds_list)
         return mp3_sounds_list

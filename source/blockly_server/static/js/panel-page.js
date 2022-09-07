@@ -14,6 +14,15 @@ function loadSettings(data) {
 
         console.log('parameter:', parameter);
 
+        if(parameter[0]['name'] == "Όνομα ρομπότ") {
+            document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
+            '<tr>' +
+            '<td>' + parameter[0]['name'] + '</td>' +
+            '<td>' + parameter[2]['default'] + '</td>' +
+            '<td>' +  '</td>' +
+            '</tr>';
+            return 
+        }
         document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
             '<tr>' +
             '<td>' + parameter[0]['name'] + '</td>' +

@@ -35,7 +35,7 @@ button.go-back-to-home {
 
 
 #save-panel-changes-container, #panel-title-container {
-  height: 20%;
+  height: 5%;
   position: relative;
   display: flex;
   align-items: center;

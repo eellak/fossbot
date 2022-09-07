@@ -91,13 +91,12 @@ def blockly():
 def get_sound_effects():
     print("Getting sounds")
     if os.path.exists('data/sound_effects'):
-        print("dir exists")
         mp3_sounds_list = glob.glob('data/sound_effects/*.mp3')
-        print("getting all sounds")
+        print("sound effects:")
         print(mp3_sounds_list)
         return mp3_sounds_list
     else : 
-        return []    
+        return []     
 
 @app.route('/admin_panel')
 def admin_panel():

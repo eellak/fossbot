@@ -322,7 +322,7 @@ Blockly.Python['set_color'] = function (block) {
   return 'robot.rgb_set_color(' + input_value + ')\n';
 }
 
-const jsonData = require("../../../../data/sound_effects")
+const jsonData = await fetch("../../../../data/sound_effects")
 console.log(jsonData)
 
 //PLAY SOUND

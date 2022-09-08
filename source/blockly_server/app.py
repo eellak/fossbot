@@ -313,8 +313,9 @@ def get_sound_effects():
             audio_name = audio_name_list[0]
             sounds_names.append({ "sound_name": audio_name, "sound_path": sound})
         print("sound effects:")
-        print(sounds_names)    
-        with open('data/sound_effects.json', 'w') as out_file:
+        print(sounds_names)   
+        #to do: delete first the json file if exists and then create it again 
+        with open('fossbot/source/blockly_server/blockly/sound_effects.json', 'w') as out_file:
             json.dump(sounds_names, out_file)  
             
 if __name__ == '__main__':

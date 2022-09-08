@@ -311,7 +311,7 @@ def get_sound_effects():
             audio_name = split_list[2] 
             audio_name_list = audio_name.split(".")
             audio_name = audio_name_list[0]
-            sounds_names.append({ "name": audio_name, "path": sound})
+            sounds_names.append({ "sound_name": audio_name, "sound_path": sound})
         print("sound effects:")
         print(sounds_names)    
         with open('data/sound_effects.json', 'w') as out_file:

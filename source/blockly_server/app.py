@@ -16,6 +16,7 @@ import yaml
 from flask_socketio import SocketIO, emit
 from celery import Celery
 import glob
+import json
 
 DEBUG = os.getenv('DEBUG')
 if DEBUG is None:
@@ -86,25 +87,8 @@ def blockly():
     stop_now()
     id = request.args.get('id') 
     robot_name = get_robot_name()
-    sound_effects = get_sound_effects()
-    return render_template('blockly.html', project_id=id, robot_name=robot_name, sound_effects=sound_effects)
-
-def get_sound_effects():
-    print("Getting sounds")
-    if os.path.exists('data/sound_effects'):
-        mp3_sounds_list = glob.glob('data/sound_effects/*.mp3')
-        sounds_names = []
-        for sound in mp3_sounds_list: 
-            split_list = sound.split("/")
-            audio_name = split_list[2] 
-            audio_name_list = audio_name.split(".")
-            audio_name = audio_name_list[0]
-            sounds_names.append(audio_name)
-        print("sound effects:")
-        print(sounds_names)    
-        return sounds_names
-    else : 
-        return []     
+    get_sound_effects()
+    return render_template('blockly.html', project_id=id, robot_name=robot_name)            
 
 @app.route('/admin_panel')
 def admin_panel():
@@ -317,5 +301,21 @@ def get_robot_name():
             return value[1]['value']
     return " "
 
+def get_sound_effects():
+    print("Getting sounds")
+    if os.path.exists('data/sound_effects'):
+        mp3_sounds_list = glob.glob('data/sound_effects/*.mp3')
+        sounds_names = []
+        for sound in mp3_sounds_list: 
+            split_list = sound.split("/")
+            audio_name = split_list[2] 
+            audio_name_list = audio_name.split(".")
+            audio_name = audio_name_list[0]
+            sounds_names.append({ "name": audio_name, "path": sound})
+        print("sound effects:")
+        print(sounds_names)    
+        with open('sound_effects.json', "w") as out_file:
+            json.dump(sounds_names, out_file)  
+            
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0', debug=True) 

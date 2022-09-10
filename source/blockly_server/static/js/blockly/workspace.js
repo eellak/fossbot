@@ -350,7 +350,7 @@ socket.on('sound_effects', (data) => {
         const soundsArray = received_data.data
         for (let i = 0; i < soundsArray.length; i++) {
           let obj = soundsArray[i]
-          sound_effects.push([obj.sound_name, obj.sound_path])
+          sound_effects.push([obj.sound_name, '\''+ obj.sound_path + '\''])
         }
         return sound_effects
       } else {

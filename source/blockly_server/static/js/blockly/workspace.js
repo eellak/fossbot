@@ -324,8 +324,9 @@ Blockly.Python['set_color'] = function (block) {
 
 fetch('/blockly/sound_effects.json')
 .then((data) => {
-  console.log(data)
+  data.json()
 })
+.then((json) => console.log('json file with sounds:', json))
 
 
 //PLAY SOUND

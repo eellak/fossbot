@@ -332,7 +332,9 @@ def get_sound_effects():
             sounds_names.append({ "sound_name": audio_name, "sound_path": sound})
         print("sound effects:")
         print(sounds_names)   
-        #to do: delete first the json file if exists and then create it again 
+        #delete first the json file if exists and then create it again 
+        if os.path.exists('data/sound_effects.json'):
+            os.remove('data/sound_effects.json')
         with open('data/sound_effects.json', 'w') as out_file:
             json.dump(sounds_names, out_file)  
             

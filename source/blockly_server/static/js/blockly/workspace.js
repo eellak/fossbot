@@ -334,7 +334,7 @@ socket.emit('get_sound_effects');
 let data_sounds
 socket.on('sound_effects', (data) => {
   console.log("sound_effects", data);
-
+  let received_data = data;
   Blockly.Blocks['play_sound'] = {
     init: function () {
       this.appendDummyInput()
@@ -348,10 +348,10 @@ socket.on('sound_effects', (data) => {
     },
     generateOptions: function () {
       let sound_effects = new Array()
-      if (data.status == 200) {
-        const data = data.data
-        for (let i = 0; i < data.length; i++) {
-          let obj = data[i]
+      if (received_data.status == 200) {
+        const soundsArray = received_data.data
+        for (let i = 0; i < soundsArray.length; i++) {
+          let obj = soundsArray[i]
           sound_effects.push([obj.sound_name, obj.sound_path])
         }
         return sound_effects

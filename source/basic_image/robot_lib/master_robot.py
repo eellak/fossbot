@@ -131,24 +131,8 @@ class Fossbot():
         pass
     
     #sound
-    def play_sound(self,audio_name):
-        subprocess.run(["mpg123", "../robot_lib/soundfx/" + audio_name +".mp3"])
-        # audio_id = int(audio_id)
-        # if audio_id == 1:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/geia.mp3"])
-        # elif audio_id == 2:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/mpravo.mp3"])
-        # elif audio_id == 3:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/empodio.mp3"])
-        # elif audio_id == 4:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/kalhmera.mp3"])
-        # elif audio_id == 5:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/euxaristw.mp3"])
-        # elif audio_id == 6:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/r2d2.mp3"])
-        # elif audio_id == 7:
-        #     subprocess.run(["mpg123", "../robot_lib/soundfx/machine_gun.mp3"])
-
+    def play_sound(self,audio_path):
+        subprocess.run(["mpg123",audio_path])
             
     def beep(self):
         self.buzzer.beep()

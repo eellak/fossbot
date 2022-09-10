@@ -90,6 +90,15 @@ def blockly():
     get_sound_effects()
     return render_template('blockly.html', project_id=id, robot_name=robot_name)            
 
+@app.route('/blockly/sound_effects.json')
+def blockly_get_sound_effects():
+    if os.path.exists(f'data/sound_effects.json'):
+        with open('data/sound_effects.json', 'r') as file:
+            sounds = json.load(file)  
+            return sounds 
+    else:
+        return { 'status': 404, 'data': 'file does not exist'}        
+
 @app.route('/admin_panel')
 def admin_panel():
     stop_now()
@@ -315,7 +324,7 @@ def get_sound_effects():
         print("sound effects:")
         print(sounds_names)   
         #to do: delete first the json file if exists and then create it again 
-        with open('fossbot/source/blockly_server/static/js/blockly/sound_effects.json', 'w') as out_file:
+        with open('data/sound_effects.json', 'w') as out_file:
             json.dump(sounds_names, out_file)  
             
 if __name__ == '__main__':

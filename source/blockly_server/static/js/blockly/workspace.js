@@ -330,9 +330,9 @@ socket.on("connect", function () {
 });
 
 socket.emit('get_sound_effects');
-let data_sounds
+let received_data;
 socket.on('sound_effects', (data) => {
-  let received_data = data;
+  received_data = data;
   Blockly.Blocks['play_sound'] = {
     init: function () {
       this.appendDummyInput()

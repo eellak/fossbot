@@ -322,54 +322,45 @@ Blockly.Python['set_color'] = function (block) {
   return 'robot.rgb_set_color(' + input_value + ')\n';
 }
 
-let sound_effects = new Array()
-// fetch('/blockly/sound_effects.json')
-// .then((data) => {
-//   data.json()
-// })
-// .then((json) => console.log('json file with sounds:', json))
-
-async function get_sounds() {
-  const data = await fetch('/blockly/sound_effects.json')
-  const jsonArray = await data.json()
-  for (let i = 0; i < jsonArray.length; i++) {
-    let obj = jsonArray[i]
-    sound_effects.push([obj.sound_name, obj.sound_path])
-  }
-  console.log('sound effects array: ', sound_effects)
-  return sound_effects
-}
-// async function get_sound_effects() {
-//   const result = await getSoundEffects();
-//   if(result.status == 200) {
-//     const data = result.data
-//     for (let i = 0; i < data.length; i++) {
-//       let obj = data[i]
-//       sound_effects.push([obj.sound_name, obj.sound_path])
-//     }
-//     console.log('sound effects array: ', sound_effects)
-//     return sound_effects
-//   } else return []
-// }
-
 //PLAY SOUND
-Blockly.Blocks['play_sound'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("παίξε τον ήχο")
-      .appendField(new Blockly.FieldDropdown(this.generateOptions), "option");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(290);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
+var socket = io('http://' + document.domain + ':' + location.port);
 
-  generateOptions: function () {
-    let list_sound_effects = get_sounds()
-    return list_sound_effects
-  }
-};
+socket.on("connect", function () {
+  console.log("Socket connected!");
+  socket.emit('connection', { 'data': 'I\'m connected!' });
+});
+
+socket.emit('get_sound_effects');
+let data_sounds
+socket.on('sound_effects', (data) => {
+  console.log("sound_effects", data);
+
+  Blockly.Blocks['play_sound'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField("παίξε τον ήχο")
+        .appendField(new Blockly.FieldDropdown(this.generateOptions), "option");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(290);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    },
+    generateOptions: function () {
+      let sound_effects = new Array()
+      if (data.status == 200) {
+        const data = data.data
+        for (let i = 0; i < data.length; i++) {
+          let obj = data[i]
+          sound_effects.push([obj.sound_name, obj.sound_path])
+        }
+        return sound_effects
+      } else {
+        return new Array(["","No-option"])
+      }
+    }
+  };
+});
 
 Blockly.Python['play_sound'] = function (block) {
   var input_value = block.getFieldValue('option');
@@ -377,11 +368,7 @@ Blockly.Python['play_sound'] = function (block) {
   return code;
 }
 
-
-
 //sensors 
-
-
 
 // DISTANCE
 Blockly.Blocks['distance'] = {

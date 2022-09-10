@@ -101,15 +101,3 @@ const sendParameters = function(data) {
     });
   });
 }
-
-const getSoundEffects = function() {
-  return new Promise(function (resolve, reject) {
-    socket.emit('get_sound_effects');
-
-    socket.on('sound_effects', (data) => {
-      console.log("sound_effects", data);
-      resolve(data);
-    });
-  });
-}
-

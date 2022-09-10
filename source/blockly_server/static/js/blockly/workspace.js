@@ -323,19 +323,34 @@ Blockly.Python['set_color'] = function (block) {
 }
 
 let sound_effects = []
+// fetch('/blockly/sound_effects.json')
+// .then((data) => {
+//   data.json()
+// })
+// .then((json) => console.log('json file with sounds:', json))
 
-async function get_sound_effects() {
-  const result = await getSoundEffects();
-  if(result.status == 200) {
-    const data = result.data
-    for (let i = 0; i < data.length; i++) {
-      let obj = data[i]
-      sound_effects.push([obj.sound_name, obj.sound_path])
-    }
-    console.log('sound effects array: ', sound_effects)
-    return sound_effects
-  } else return []
+async function get_sounds() {
+  const data = await fetch('/blockly/sound_effects.json')
+  const jsonArray = await data.json()
+  for (let i = 0; i < jsonArray.length; i++) {
+    let obj = jsonArray[i]
+    sound_effects.push([obj.sound_name, obj.sound_path])
+  }
+  console.log('sound effects array: ', sound_effects)
+  return sound_effects
 }
+// async function get_sound_effects() {
+//   const result = await getSoundEffects();
+//   if(result.status == 200) {
+//     const data = result.data
+//     for (let i = 0; i < data.length; i++) {
+//       let obj = data[i]
+//       sound_effects.push([obj.sound_name, obj.sound_path])
+//     }
+//     console.log('sound effects array: ', sound_effects)
+//     return sound_effects
+//   } else return []
+// }
 
 //PLAY SOUND
 Blockly.Blocks['play_sound'] = {
@@ -351,7 +366,7 @@ Blockly.Blocks['play_sound'] = {
   },
 
   generateOptions: function () {
-    let list_sound_effects = get_sound_effects()
+    let list_sound_effects = get_sounds()
     return list_sound_effects
   }
 };

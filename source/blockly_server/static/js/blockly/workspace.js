@@ -330,8 +330,6 @@ async function get_sound_effects() {
     const data = result.data
     for (let i = 0; i < data.length; i++) {
       let obj = data[i]
-      console.log('obj sound name is:', obj.sound_name)
-      console.log('obj sound path is:', obj.sound_path)
       sound_effects.push([obj.sound_name, obj.sound_path])
     }
     console.log('sound effects array: ', sound_effects)
@@ -342,15 +340,19 @@ async function get_sound_effects() {
 //PLAY SOUND
 Blockly.Blocks['play_sound'] = {
   init: function () {
-    let list_sound_effects = get_sound_effects()
     this.appendDummyInput()
       .appendField("παίξε τον ήχο")
-      .appendField(new Blockly.FieldDropdown(list_sound_effects), "option");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(290);
-      this.setTooltip("");
-      this.setHelpUrl("");
+      .appendField(new Blockly.FieldDropdown(this.generateOptions), "option");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+
+  generateOptions: function () {
+    let list_sound_effects = get_sound_effects()
+    return list_sound_effects
   }
 };
 

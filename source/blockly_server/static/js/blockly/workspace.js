@@ -326,14 +326,12 @@ Blockly.Python['set_color'] = function (block) {
 var socket = io('http://' + document.domain + ':' + location.port);
 
 socket.on("connect", function () {
-  console.log("Socket connected!");
   socket.emit('connection', { 'data': 'I\'m connected!' });
 });
 
 socket.emit('get_sound_effects');
 let data_sounds
 socket.on('sound_effects', (data) => {
-  console.log("sound_effects", data);
   let received_data = data;
   Blockly.Blocks['play_sound'] = {
     init: function () {

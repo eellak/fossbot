@@ -132,7 +132,8 @@ class Fossbot():
     
     #sound
     def play_sound(self,audio_path):
-        subprocess.run(["mpg123",audio_path])
+        if(audio_path != "No-option"):
+            subprocess.run(["mpg123",audio_path])
             
     def beep(self):
         self.buzzer.beep()

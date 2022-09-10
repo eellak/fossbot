@@ -323,23 +323,28 @@ Blockly.Python['set_color'] = function (block) {
 }
 
 let sound_effects = []
-fetch('/blockly/sound_effects.json')
-.then((data) => {
-  data.json()
-})
-.then((json) => console.log('json file with sounds:', json))
 
-const result = getSoundEffects();
-result.then((data) => {
-  console.log('result is : ', data)
-})
+async function get_sound_effects() {
+  const result = await getSoundEffects();
+  if(result.status == 200) {
+    const data = result.data
+    for (let i = 0; i < data.length; i++) {
+      let obj = data[i]
+      console.log('obj sound name is:', obj.sound_name)
+      console.log('obj sound path is:', obj.sound_path)
+      sound_effects.append([obj.sound_name, obj.sound_path])
+    }
+    return sound_effects
+  } else return []
+}
 
 //PLAY SOUND
 Blockly.Blocks['play_sound'] = {
   init: function () {
+    let list_sound_effects = get_sound_effects()
     this.appendDummyInput()
       .appendField("παίξε τον ήχο")
-      .appendField(new Blockly.FieldDropdown([["γεία", '1'], ["μπράβο", '2'], ["εμπόδιο", '3'], ["καλημέρα", '4'], ["ευχαριστώ", '5'], ["R2D2", '6'], ["laser", '7']]), "option");
+      .appendField(new Blockly.FieldDropdown(list_sound_effects), "option");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(290);

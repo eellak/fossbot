@@ -95,7 +95,7 @@ def blockly_get_sound_effects():
     if os.path.exists(f'data/sound_effects.json'):
         with open('data/sound_effects.json', 'r') as file:
             sounds = json.load(file)  
-            emit('sound_effects',  sounds)
+            emit('sound_effects',  { 'status': 200, 'data': sounds })
     else:
         emit('sound_effects', { 'status': 404, 'data': 'file does not exist'})    
 

@@ -332,8 +332,9 @@ async function get_sound_effects() {
       let obj = data[i]
       console.log('obj sound name is:', obj.sound_name)
       console.log('obj sound path is:', obj.sound_path)
-      sound_effects.append([obj.sound_name, obj.sound_path])
+      sound_effects.push([obj.sound_name, obj.sound_path])
     }
+    console.log('sound effects array: ', sound_effects)
     return sound_effects
   } else return []
 }

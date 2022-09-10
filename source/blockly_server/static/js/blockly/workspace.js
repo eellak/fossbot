@@ -329,7 +329,7 @@ fetch('/blockly/sound_effects.json')
 })
 .then((json) => console.log('json file with sounds:', json))
 
-const result = await getSoundEffects();
+const result = getSoundEffects();
 console.log('result is : ', result )
 
 //PLAY SOUND

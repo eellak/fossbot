@@ -322,12 +322,15 @@ Blockly.Python['set_color'] = function (block) {
   return 'robot.rgb_set_color(' + input_value + ')\n';
 }
 
+let sound_effects = []
 fetch('/blockly/sound_effects.json')
 .then((data) => {
   data.json()
 })
 .then((json) => console.log('json file with sounds:', json))
 
+const result = await getSoundEffects();
+console.log('result is : ', result )
 
 //PLAY SOUND
 Blockly.Blocks['play_sound'] = {

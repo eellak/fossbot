@@ -236,6 +236,7 @@ def handle_execute_blockly(data):
         stop_script()
         result = execute_code(id)  
         emit('execute_blockly_result', result)
+        emit('execute_blockly_result', { 'received data': data})
     except Exception as e:
         emit('execute_blockly_result',  {'status': 'error when creating .py file or when running the .py file'})
 

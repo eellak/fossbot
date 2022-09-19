@@ -424,7 +424,7 @@ Blockly.Blocks['check_for_obstacle'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("ύπαρξη εμποδίου");
-    this.setOutput(true, 'Number');
+    this.setOutput(true, 'Boolean');
     this.setColour(45);
     this.setTooltip("");
     this.setHelpUrl("");

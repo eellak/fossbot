@@ -117,7 +117,10 @@ def handle_save_parameters(data):
         parameters = load_parameters()
         i = 0
         for key, value in parameters.items():
-            value[1]['value'] = int(params_values[i])
+            if key == 'robot_name':
+                value[1]['value'] = params_values[i]
+            else :     
+                value[1]['value'] = int(params_values[i])
             i = i + 1
         save_parameters(parameters)
         emit('save_parameters_result', { 'status': '200', 'data': parameters})

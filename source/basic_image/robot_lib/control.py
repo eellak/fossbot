@@ -499,17 +499,18 @@ class timer():
 			return 0
 		else:
 			start_time = self.start
-			print('self.start: ', start_time)
 			now_time = datetime.now()
-			print('now_time: ', now_time)
 			elapsed = now_time - start_time
 			print('elapsed: ', elapsed)
 			print('type(elapsed): ', type(elapsed))
-			print('elapsed.total_seconds(): ', elapsed.total_seconds())
-			print('type(elapsed.total_seconds()): ', type(elapsed.total_seconds()))
-			print('elapsed.seconds(): ', elapsed.seconds())
-			print('type(elapsed.seconds()): ', type(elapsed.seconds()))
-			return elapsed.second
+			elapsed = elapsed * 1000
+			int_elapsed = int(elapsed)
+			print('int_elapsed: ', int_elapsed)
+			# print('elapsed.total_seconds(): ', elapsed.total_seconds())
+			# print('type(elapsed.total_seconds()): ', type(elapsed.total_seconds()))
+			# print('elapsed.seconds(): ', elapsed.seconds())
+			# print('type(elapsed.seconds()): ', type(elapsed.seconds()))
+			return int_elapsed
 
 #General functions
 def start_lib():

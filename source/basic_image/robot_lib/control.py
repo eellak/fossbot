@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 import math
 #import csv
@@ -484,19 +485,19 @@ class timer():
 	def stop_timer(self):
 		self.start = 0	
 	def start_timer(self):
-		self.start = time.time()
+		self.start = datetime.now()
 	def elapsed(self):
 		if self.start == 0:
 			print("Timer not started")
 		else:
-			dif = time.time() - self.start
+			dif = datetime.now() - self.start
 			print("The elapsed time in sec is {}".format(dif))
 	def get_elapsed(self):
 		if self.start == 0:
 			return 0
 		else:
-			return ( time.time() - self.start ) / 1000
-
+			elapsed = datetime.now() - self.start
+			return elapsed.seconds
 
 #General functions
 def start_lib():

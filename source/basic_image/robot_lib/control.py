@@ -500,8 +500,8 @@ class timer():
 		else:
 			format_data = "%d/%m/%y %H:%M:%S"
 
-			start_time = datetime.strptime(self.start, format_data)
-			now_time = datetime.now()
+			start_time = datetime.strptime(self.start.strftime(format_data), format_data)
+			now_time = datetime.now().strftime(format_data)
 			now_time = datetime.strptime(now_time, format_data)
 			elapsed = now_time - start_time
 			print('elapsed: ', elapsed)

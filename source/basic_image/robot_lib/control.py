@@ -506,9 +506,10 @@ class timer():
 			print('elapsed: ', elapsed)
 			print('type(elapsed): ', type(elapsed))
 			print('elapsed.total_seconds(): ', elapsed.total_seconds())
-			print('elapsed.seconds(): ', elapsed.total_seconds())
-			int_elapsed = int(elapsed.seconds())
-			return int_elapsed
+			print('type(elapsed.total_seconds()): ', type(elapsed.total_seconds()))
+			print('elapsed.seconds(): ', elapsed.seconds())
+			print('type(elapsed.seconds()): ', type(elapsed.seconds()))
+			return elapsed.seconds()
 
 #General functions
 def start_lib():

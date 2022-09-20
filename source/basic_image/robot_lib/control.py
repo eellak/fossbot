@@ -503,6 +503,8 @@ class timer():
 			now_time = datetime.now()
 			print('now_time: ', now_time)
 			elapsed = now_time - start_time
+			print('elapsed.total_seconds(): ', elapsed.total_seconds())
+			print('elapsed.seconds(): ', elapsed.total_seconds())
 			return elapsed.total_seconds()
 
 #General functions

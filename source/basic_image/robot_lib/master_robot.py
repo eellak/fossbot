@@ -225,7 +225,7 @@ class Fossbot():
 
     def get_elapsed(self):             
         value = self.timer.get_elapsed()
-        print(value)
+        # print(value)
         return value
 
 if __name__ == "__main__":

@@ -495,12 +495,12 @@ class timer():
 	def get_elapsed(self):
 		#returns the elapsed time in seconds
 		if self.start == 0:
-			print('self.start is 0 ')
 			return 0
 		else:
-			now_time = int(datetime.datetime.now().strftime("%S"))
 			start_time = int(self.start.strftime("%S"))
 			print('self.start: ', start_time)
+			now_time = int(datetime.datetime.now().strftime("%S"))
+			print('now_time: ', now_time)
 			elapsed = now_time - start_time
 			return elapsed 
 

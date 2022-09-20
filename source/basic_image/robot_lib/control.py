@@ -504,8 +504,6 @@ class timer():
 			now_time = datetime.now().strftime(format_data)
 			now_time = datetime.strptime(now_time, format_data)
 			elapsed = now_time - start_time
-			print('elapsed: ', elapsed)
-			print('type(elapsed): ', type(elapsed))
 			elapsed = elapsed.total_seconds() 
 			elapsed = int(elapsed)
 			return elapsed

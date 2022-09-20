@@ -494,10 +494,12 @@ class timer():
 			print("The elapsed time in sec is {}".format(dif))
 	def get_elapsed(self):
 		if self.start == 0:
+			print('self.start is 0 ')
 			return 0
 		else:
+			print('self.start: ', self.start)
 			elapsed = datetime.now() - self.start
-			return elapsed.seconds
+			return elapsed
 
 #General functions
 def start_lib():

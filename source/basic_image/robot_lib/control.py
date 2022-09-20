@@ -499,12 +499,12 @@ class timer():
 			return 0
 		else:
 			start_time = self.start
-			start_time = start_time.isoformat(" ", "seconds")
 			print('self.start: ', start_time)
 			now_time = datetime.now()
-			now_time = now_time.isoformat(" ", "seconds")
 			print('now_time: ', now_time)
 			elapsed = now_time - start_time
+			print('elapsed: ', elapsed)
+			print('type(elapsed): ', type(elapsed))
 			print('elapsed.total_seconds(): ', elapsed.total_seconds())
 			print('elapsed.seconds(): ', elapsed.total_seconds())
 			int_elapsed = int(elapsed.seconds())

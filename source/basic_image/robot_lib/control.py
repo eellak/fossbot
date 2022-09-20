@@ -503,7 +503,7 @@ class timer():
 			elapsed = now_time - start_time
 			print('elapsed: ', elapsed)
 			print('type(elapsed): ', type(elapsed))
-			elapsed = elapsed * 1000
+			elapsed = elapsed.total_seconds() * 1000
 			int_elapsed = int(elapsed)
 			print('int_elapsed: ', int_elapsed)
 			# print('elapsed.total_seconds(): ', elapsed.total_seconds())

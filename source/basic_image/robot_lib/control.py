@@ -507,10 +507,7 @@ class timer():
 			print('elapsed: ', elapsed)
 			print('type(elapsed): ', type(elapsed))
 			elapsed = elapsed.total_seconds() 
-			# print('elapsed.total_seconds(): ', elapsed.total_seconds())
-			# print('type(elapsed.total_seconds()): ', type(elapsed.total_seconds()))
-			# print('elapsed.seconds(): ', elapsed.seconds())
-			# print('type(elapsed.seconds()): ', type(elapsed.seconds()))
+			elapsed = int(elapsed)
 			return elapsed
 
 #General functions

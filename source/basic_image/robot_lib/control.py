@@ -499,7 +499,7 @@ class timer():
 		else:
 			print('self.start: ', self.start)
 			elapsed = datetime.now() - self.start
-			return elapsed
+			return elapsed.strftime("%S") #returns the elapsed time in seconds
 
 #General functions
 def start_lib():

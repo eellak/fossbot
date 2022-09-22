@@ -14,12 +14,21 @@ function loadSettings(data) {
 
         console.log('parameter:', parameter);
 
-        document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
+        if(parameter[0]['name'] == "Όνομα ρομπότ") {
+            document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
+            '<tr>' +
+            '<td>' + parameter[0]['name'] + '</td>' +
+            '<td>' + parameter[2]['default'] + '</td>' +
+            '<td>' + '<input type="text" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
+            '</tr>';
+        } else {
+            document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
             '<tr>' +
             '<td>' + parameter[0]['name'] + '</td>' +
             '<td>' + parameter[2]['default'] + '</td>' +
             '<td>' + '<input type="number" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
             '</tr>';
+        } 
     }
 }
 

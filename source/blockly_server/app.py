@@ -1,4 +1,5 @@
 from crypt import methods
+from email.mime import audio
 from flask import Flask,jsonify,request,Response, render_template,redirect, url_for, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -14,6 +15,8 @@ import shutil
 import yaml
 from flask_socketio import SocketIO, emit
 from celery import Celery
+import glob
+import json
 
 DEBUG = os.getenv('DEBUG')
 if DEBUG is None:
@@ -69,7 +72,8 @@ def error_handler(e):
 @app.route('/')
 def index():
     stop_now()
-    return render_template('home-page.html')
+    robot_name = get_robot_name()
+    return render_template('home-page.html', robot_name=robot_name)
 
 @socketio.on('get-all-projects')
 def handle_get_all_projects():
@@ -82,12 +86,24 @@ def handle_get_all_projects():
 def blockly():
     stop_now()
     id = request.args.get('id') 
-    return render_template('blockly.html',project_id=id)
+    robot_name = get_robot_name()
+    get_sound_effects()
+    return render_template('blockly.html', project_id=id, robot_name=robot_name)            
+
+@socketio.on('get_sound_effects')
+def blockly_get_sound_effects():
+    if os.path.exists(f'data/sound_effects.json'):
+        with open('data/sound_effects.json', 'r') as file:
+            sounds = json.load(file)  
+            emit('sound_effects',  { 'status': 200, 'data': sounds })
+    else:
+        emit('sound_effects', { 'status': 404, 'data': 'file does not exist'})       
 
 @app.route('/admin_panel')
 def admin_panel():
     stop_now()
-    return render_template('panel-page.html')
+    robot_name = get_robot_name()
+    return render_template('panel-page.html', robot_name=robot_name)
 
 @socketio.on('get_admin_panel_parameters')
 def handle_get_admin_panel_parameters():
@@ -101,7 +117,10 @@ def handle_save_parameters(data):
         parameters = load_parameters()
         i = 0
         for key, value in parameters.items():
-            value[1]['value'] = int(params_values[i])
+            if key == 'robot_name':
+                value[1]['value'] = params_values[i]
+            else :     
+                value[1]['value'] = int(params_values[i])
             i = i + 1
         save_parameters(parameters)
         emit('save_parameters_result', { 'status': '200', 'data': parameters})
@@ -193,7 +212,8 @@ def handle_manual_control_command(data):
 def manual_control():
     stop_script()
     execute_code(None,manual_control=True)
-    return render_template('control.html')
+    robot_name = get_robot_name()
+    return render_template('control.html', robot_name=robot_name)
 
 @socketio.on('manual_control')
 def handle_manual_control():
@@ -285,5 +305,32 @@ def save_parameters(parameters):
     with open(r'data/admin_parameters.yaml', 'w', encoding=('utf-8')) as file:
         parameters = yaml.dump(parameters, file)
 
+def get_robot_name():
+    parameters = load_parameters()
+    for key, value in parameters.items():
+        if(key == "robot_name"):
+            print("Getting robot name: ", value[1]['value'] )
+            return value[1]['value']
+    return " "
+
+def get_sound_effects():
+    print("Getting sounds")
+    if os.path.exists('data/sound_effects'):
+        mp3_sounds_list = glob.glob('data/sound_effects/*.mp3')
+        sounds_names = []
+        for sound in mp3_sounds_list: 
+            split_list = sound.split("/")
+            audio_name = split_list[2] 
+            audio_name_list = audio_name.split(".")
+            audio_name = audio_name_list[0]
+            sounds_names.append({ "sound_name": audio_name, "sound_path": sound})
+        print("sound effects:")
+        print(sounds_names)   
+        #delete first the json file if exists and then create it again 
+        if os.path.exists('data/sound_effects.json'):
+            os.remove('data/sound_effects.json')
+        with open('data/sound_effects.json', 'w') as out_file:
+            json.dump(sounds_names, out_file)  
+            
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0', debug=True) 

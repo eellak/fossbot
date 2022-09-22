@@ -323,18 +323,42 @@ Blockly.Python['set_color'] = function (block) {
 }
 
 //PLAY SOUND
-Blockly.Blocks['play_sound'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("παίξε τον ήχο")
-      .appendField(new Blockly.FieldDropdown([["γεία", '1'], ["μπράβο", '2'], ["εμπόδιο", '3'], ["καλημέρα", '4'], ["ευχαριστώ", '5'], ["R2D2", '6'], ["laser", '7']]), "option");
+var socket = io('http://' + document.domain + ':' + location.port);
+
+socket.on("connect", function () {
+  socket.emit('connection', { 'data': 'I\'m connected!' });
+});
+
+socket.emit('get_sound_effects');
+let received_data;
+socket.on('sound_effects', (data) => {
+  received_data = data;
+  Blockly.Blocks['play_sound'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField("παίξε τον ήχο")
+        .appendField(new Blockly.FieldDropdown(this.generateOptions), "option");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(290);
       this.setTooltip("");
       this.setHelpUrl("");
-  }
-};
+    },
+    generateOptions: function () {
+      let sound_effects = new Array()
+      if (received_data.status == 200) {
+        const soundsArray = received_data.data
+        for (let i = 0; i < soundsArray.length; i++) {
+          let obj = soundsArray[i]
+          sound_effects.push([obj.sound_name, '\''+ obj.sound_path + '\''])
+        }
+        return sound_effects
+      } else {
+        return new Array(["","No-option"])
+      }
+    }
+  };
+});
 
 Blockly.Python['play_sound'] = function (block) {
   var input_value = block.getFieldValue('option');
@@ -342,11 +366,7 @@ Blockly.Python['play_sound'] = function (block) {
   return code;
 }
 
-
-
 //sensors 
-
-
 
 // DISTANCE
 Blockly.Blocks['distance'] = {
@@ -404,7 +424,7 @@ Blockly.Blocks['check_for_obstacle'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("ύπαρξη εμποδίου");
-    this.setOutput(true, 'Number');
+    this.setOutput(true, 'Boolean');
     this.setColour(45);
     this.setTooltip("");
     this.setHelpUrl("");

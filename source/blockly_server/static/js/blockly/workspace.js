@@ -618,3 +618,56 @@ Blockly.Python['humidity'] = function (block) {
 //   var code = 'robot.get_battery()';
 //   return [code,Blockly.Python.ORDER_NONE];
 // }
+
+//TIME BLOCKS 
+Blockly.Blocks['begin_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Έναρξη μέτρησης χρόνου");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+
+Blockly.Python['begin_timer'] = function (block) {
+  var code = 'robot.start_timer()\n';
+  return code;
+};
+
+
+Blockly.Blocks['stop_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Σταμάτημα μέτρησης χρόνου");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['stop_timer'] = function (block) {
+  var code = 'robot.stop_timer()\n';
+  return code;
+};
+
+Blockly.Blocks['get_timer'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Χρόνος που πέρασε");
+    this.setOutput(true, 'Number');
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['get_timer'] = function (block) {
+  var code = 'robot.get_elapsed()\n';
+  return [code,Blockly.Python.ORDER_NONE];
+};

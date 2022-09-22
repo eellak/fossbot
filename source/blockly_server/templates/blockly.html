@@ -17,6 +17,7 @@
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
+  <script src="{{ url_for('static',filename='js/control.js')}}"></script>
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
   <script defer src="{{ url_for('static',filename='js/blockly-page.js')}}"></script>
@@ -379,6 +380,12 @@
       <block type="set_color">
       </block>
       <block type="wait">
+      </block>
+      <block type="begin_timer">
+      </block>
+      <block type="stop_timer">
+      </block>
+      <block type="get_timer">
       </block>
     </category>
 

@@ -22,7 +22,14 @@ function loadSettings(data) {
             '<td>' + '<input type="text" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
             '</tr>';
         } else if ( parameter[0]['name']  == "Γλώσσα") {
-
+            document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
+            '<tr>' +
+            '<td>' + parameter[0]['name'] + '</td>' +
+            '<td>' + parameter[2]['default'] + '</td>' +
+            '<td>' + '<input list="languages" id="' + i + '">' + 
+                ' <datalist id="languages"> <option value="Ελληνικά"> <option value="English"> </datalist>' + 
+            '</td>' +
+            '</tr>';
         }else {
             document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
             '<tr>' +

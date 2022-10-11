@@ -2,7 +2,12 @@ robot_name:
   - name: Όνομα ρομπότ
   - value: fossbot 003
   - default: fossbot 003
- 
+
+language:
+  - name: Γλώσσα  
+  - value: Ελληνικά
+  - default: Ελληνικά
+  
 step:
   - name: Βήμα ένα, εκατοστά
   - value: 15
@@ -47,8 +52,3 @@ rotate_90:
   - name: Στροφή 90 μοίρες, κλίκ 
   - value: 12
   - default: 12
-
-language:
-  - name: Γλώσσα  
-  - value: Ελληνικά
-  - default: Ελληνικά

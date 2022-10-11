@@ -21,7 +21,9 @@ function loadSettings(data) {
             '<td>' + parameter[2]['default'] + '</td>' +
             '<td>' + '<input type="text" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
             '</tr>';
-        } else {
+        } else if ( parameter[0]['name']  == "Γλώσσα") {
+
+        }else {
             document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
             '<tr>' +
             '<td>' + parameter[0]['name'] + '</td>' +

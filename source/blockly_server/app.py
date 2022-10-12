@@ -8,13 +8,10 @@ from jinja2 import Environment, FileSystemLoader
 import subprocess
 import os,signal
 import redis
-import time
-import psutil
 import textwrap
 import shutil
 import yaml
 from flask_socketio import SocketIO, emit
-from celery import Celery
 import glob
 import json
 

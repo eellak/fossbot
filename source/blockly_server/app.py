@@ -255,11 +255,22 @@ def handle_save_xml(data):
 def get_blockly_translations(data):
     try:
         language = data['language']
-        with open (f'data/el.js', "r") as myfile:
+        with open (f'data/{language}.js', "r") as myfile:
             data = myfile.readlines()
         emit('blockly_translations_result', {'status': '200', 'data': data})     
     except Exception as e:
         emit('blockly_translations_result',  {'status': 'File with translations not found'})
+
+@socketio.on('get_custom_blockly_translations')
+def get_blockly_translations(data):
+    try:
+        language = data['language']
+        filename = 'custom_blocks_' + language
+        with open (f'data/{filename}.js', "r") as myfile:
+            data = myfile.readlines()
+        emit('custom_blockly_translations_result', {'status': '200', 'data': data})     
+    except Exception as e:
+        emit('custom_blockly_translations_result',  {'status': 'File with translations not found'})
 
 def get_all_projects():
     projects = Projects.query.all()

@@ -373,10 +373,10 @@ def get_language():
                 elif value[1]['value'] == 'English':
                     return 'en'   
                 else:
-                    return 'en'      
+                    return 'el'      
     except Exception as e:
         print(e)
-        return 'en'
+        return 'el'
 
 
 if __name__ == '__main__':

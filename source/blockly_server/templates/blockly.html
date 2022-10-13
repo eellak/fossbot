@@ -41,7 +41,7 @@
   {% block javascript %}
     {% if language == 'el' %}
         <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
-    {% eliif language == 'en' %}
+    {% elif language == 'en' %}
         <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
     {% endif %}
   {% endblock %}

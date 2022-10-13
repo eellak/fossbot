@@ -16,7 +16,6 @@
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
-  <script src="{{ url_for('static',filename='modules/msg/custom_blocks_el.js')}}"></script>
   <script src="{{ url_for('static',filename='js/control-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
@@ -46,8 +45,10 @@
       <script src="{{ url_for('static',filename='modules/msg/custom_blocks_el.js')}}"></script>
     {% elif language == 'en' %}
       <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+      <script src="{{ url_for('static',filename='modules/msg/custom_blocks_en.js')}}"></script>
     {% else %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
+      <script src="{{ url_for('static',filename='modules/msg/custom_blocks_el.js')}}"></script>
     {% endif %}
   {% endblock %}
   

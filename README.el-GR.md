@@ -80,14 +80,18 @@ Engl
 
 Από την πρώτη στιγμή, το FOSSBot έχει ήδη βρει υποστήριξη από ομάδες ανοιχτού λογισμικού και του προγράμματος Google Summer of Code που χρηματοδότησε developers που συμμετέχουν στην ανάπτυξη του, και φυσικά τους φοιτητές και καθηγητές από ελληνικά πανεπιστήμια που αγκάλιασαν την όλη προσπάθεια. Ωστόσο, υπάρχει ακόμη χώρος για βελτίωση, προκειμένου να γίνει το FOSSBot ανταγωνιστικό σε σχέση με τις υπάρχοντες εμπορικές λύσεις. Ο κύριος στόχος μας είναι να λυθούν τυχόν ζητήματα που σχετίζονται με το λογισμικό του FOSSBot καθώς και να γίνει απλοποίηση της διαδικασίας της συναρμολόγησής του, με τον σχεδιασμό ειδικής πλακέτας για την ενσωμάτωση των περισσότερων καλωδιώσεων. 
 
-## Δημοσιεύσεις
-
-* Chronis C., Varlamis I., "FOSSBot: An Open Source and Open Design Educational Robot.", Electronics 2022, 11, 2606.
-[![en](https://img.shields.io/badge/PDF-Download%20Article-red)](https://www.mdpi.com/2079-9292/11/16/2606/pdf?version=1661303389)
-
 ## Ομάδα Ανάπτυξης Υλικού/Λογισμικού
 * Ηρακλής Βαρλάμης
 * Χρήστος Χρόνης
 * Θανάσης Αποστολίδης
 * Ελευθερία Παπαγεωργίου
+
+## More information on our paper: 
+https://www.mdpi.com/2079-9292/11/16/2606
+
+[![cite](https://img.shields.io/badge/PDF-Download%20Article-red)](https://www.mdpi.com/2079-9292/11/16/2606/pdf?version=1661303389)
+
+Which you can cite as follows:
+
+``` Chronis, C., & Varlamis, I. (2022). FOSSBot: An Open Source and Open Design Educational Robot. Electronics, 11(16), 2606.```
 

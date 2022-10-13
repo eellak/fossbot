@@ -84,11 +84,6 @@ FOSSBot consists of a modern architecture system, with each piece of software re
 
 From the first moment, FOSSBot has already found support from open software groups and the Google Summer of Code program that funded developers participating in its development, and of course the students and professors from Greek universities who embraced the whole effort. However, there is still room for improvement in order to make FOSSBot competitive with existing commercial solutions. Our main goal is to solve any issues related to the FOSSBot software as well as to simplify the process of assembling it by designing a special board to integrate most of the wiring.
 
-## Publications
-
-* Chronis C., Varlamis I., "FOSSBot: An Open Source and Open Design Educational Robot.", Electronics 2022, 11, 2606.
-[![en](https://img.shields.io/badge/PDF-Download%20Article-red)](https://www.mdpi.com/2079-9292/11/16/2606/pdf?version=1661303389)
-
 ## Hardware/Software Development Team
 * Iraklis Varlamis - Mentor
 * Christos Chronis
@@ -99,3 +94,11 @@ From the first moment, FOSSBot has already found support from open software grou
 * Danai Brilli
 * Manoussos Linardakis
 
+## More information on our paper: 
+https://www.mdpi.com/2079-9292/11/16/2606
+
+[![cite](https://img.shields.io/badge/PDF-Download%20Article-red)](https://www.mdpi.com/2079-9292/11/16/2606/pdf?version=1661303389)
+
+Which you can cite as follows:
+
+``` Chronis, C., & Varlamis, I. (2022). FOSSBot: An Open Source and Open Design Educational Robot. Electronics, 11(16), 2606.```

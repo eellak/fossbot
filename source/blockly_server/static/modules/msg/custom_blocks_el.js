@@ -1,6 +1,6 @@
 function get_custom_blockly_translations(key){
-    const translation = translations_el[key]
-    return translation
+    console.log('translations: ', translations_el)
+    return 'Προσχωρα'
 }
 
 const translations_el = {

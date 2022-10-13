@@ -92,8 +92,8 @@ def blockly():
     stop_now()
     id = request.args.get('id') 
     robot_name = get_robot_name()
-
-    return render_template('blockly.html', project_id=id, robot_name=robot_name)            
+    get_sound_effects()
+    return render_template('blockly.html', project_id=id, robot_name=robot_name, Flask=Flask)            
 
 @socketio.on('get_sound_effects')
 def blockly_get_sound_effects():

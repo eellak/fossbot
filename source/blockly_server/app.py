@@ -93,7 +93,8 @@ def blockly():
     id = request.args.get('id') 
     robot_name = get_robot_name()
     get_sound_effects()
-    return render_template('blockly.html', project_id=id, robot_name=robot_name, language='el')            
+    language = get_language()
+    return render_template('blockly.html', project_id=id, robot_name=robot_name, language=language)            
 
 @socketio.on('get_sound_effects')
 def blockly_get_sound_effects():
@@ -361,6 +362,22 @@ def get_sound_effects():
             os.remove(os.path.join(DATA_DIR,'sound_effects.json'))
         with open(os.path.join(DATA_DIR,'sound_effects.json'), 'w') as out_file:
             json.dump(sounds_names, out_file)  
-            
+
+def get_language(): 
+    try:
+        parameters = load_parameters()
+        for key, value in parameters.items():
+            if key == 'language':
+                if value[1]['value'] == 'Ελληνικά':
+                    return 'el'
+                elif value[1]['value'] == 'English':
+                    return 'en'   
+                else:
+                    return 'el'      
+    except Exception as e:
+        print(e)
+        return 'el'
+
+
 if __name__ == '__main__':
     socketio.run(app, host = '0.0.0.0', debug=True) 

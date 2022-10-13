@@ -38,17 +38,15 @@
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
 
-  {% if language == 'el' %}
-    {% block javascript %}
-      <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
-    {% endblock %}
-  {% endif %}
+  {% block javascript %}
+    {% if language == 'el' %}
+        <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
+    {% endif %}
 
-  {% if language == 'en' %}
-    {% block javascript %}
-      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
-    {% endblock %}
-  {% endif %}
+    {% if language == 'en' %}
+        <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+    {% endif %}
+  {% endblock %}
 
   <div id="main-container">
     <div id="back-import-export-buttons-container">

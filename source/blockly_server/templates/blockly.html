@@ -41,14 +41,13 @@
   {% if language == 'EL' %}
     {% block javascript %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
-  {% elif language == 'EN' %}
-      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
-  {% else %}
-      <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
     {% endblock %}
   {% endif %}
-
-
+ 
+  {% if language == 'EN' %}
+    {% block javascript %}
+      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+    {% endblock %}
   {% endif %}
 
   <div id="main-container">

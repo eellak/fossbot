@@ -44,6 +44,12 @@
     {% endblock %}
   {% endif %}
 
+  {% if language == 'en' %}
+    {% block javascript %}
+      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+    {% endblock %}
+  {% endif %}
+
   <div id="main-container">
     <div id="back-import-export-buttons-container">
       <div id="go-back-to-home-button-wrap">

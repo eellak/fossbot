@@ -38,16 +38,21 @@
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
 
-  {% if language == 'el' %}
+  {% if language == 'EL' %}
+    {% block javascript %}
+      <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
+    {% endblock %}
+  {% elif language == 'EN' %}
+    {% block javascript %}
+      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+    {% endblock %}
+  {% else %}
     {% block javascript %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
     {% endblock %}
   {% endif %}
 
-  {% if language == 'en' %}
-    {% block javascript %}
-      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
-    {% endblock %}
+
   {% endif %}
 
   <div id="main-container">

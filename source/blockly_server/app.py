@@ -93,7 +93,7 @@ def blockly():
     id = request.args.get('id') 
     robot_name = get_robot_name()
     get_sound_effects()
-    return render_template('blockly.html', project_id=id, robot_name=robot_name, language='el')            
+    return render_template('blockly.html', project_id=id, robot_name=robot_name, language='EN')            
 
 @socketio.on('get_sound_effects')
 def blockly_get_sound_effects():
@@ -259,17 +259,6 @@ def handle_save_xml(data):
         emit('save_xml_result', {'status': '200', 'result': 'Code saved with success'})
     except Exception as e:
         emit('save_xml_result',  {'status': 'error occured', 'result': 'Code was not saved'})
-
-@socketio.on('get_blockly_translations')
-def get_blockly_translations(data):
-    #TODO : check for system language in parameters.yaml 
-    try:
-        language = data['language']
-        with open (os.path.join(DATA_DIR,f'{language}.js'), "r") as myfile:
-            data = myfile.readlines()
-        emit('blockly_translations_result', {'status': '200', 'data': data})     
-    except Exception as e:
-        emit('blockly_translations_result',  {'status': 'File with translations not found'})
 
 @socketio.on('get_custom_blockly_translations')
 def get_blockly_translations(data):

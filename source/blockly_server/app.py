@@ -265,7 +265,7 @@ def get_blockly_translations(data):
     #TODO : check for system language in parameters.yaml 
     try:
         language = data['language']
-        with open (f'data/{language}.js', "r") as myfile:
+        with open (os.path.join(DATA_DIR,f'{language}.js'), "r") as myfile:
             data = myfile.readlines()
         emit('blockly_translations_result', {'status': '200', 'data': data})     
     except Exception as e:

@@ -8,7 +8,7 @@
   <script src="{{ url_for('static',filename='modules/blockly.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/blockly_compressed.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/blocks_compressed.js')}}"></script>
-  <!-- <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script> -->
+  <script src="{{ url_for('static',filename='modules/msg/{{ language }}}.js')}}"></script>
   <!-- <script src="{{ url_for('static',filename='modules/jquery-3.5.0.js')}}"></script> -->
   <script src="{{ url_for('static',filename='modules/jquery-3.6.1.min.map')}}"></script>
   <script src="{{ url_for('static',filename='modules/python_compressed.js')}}"></script>
@@ -37,6 +37,7 @@
   </style>
 </head>
 
+
 <script type="text/javascript" charset="utf-8">
   // $(document).ready(function () {
   //   var socket = io('http://' + document.domain + ':' + location.port);
@@ -57,7 +58,7 @@
   //     const blockly_translations = data    
   //   });
   // // });
-  $.post(Flask.url_for('modules/msg/el.js'));
+  // $.post(Flask.url_for('modules/msg/el.js'));
 
   // let scriptEle = document.createElement("script");
   // scriptEle.setAttribute("src", "../static/modules/msg/el.js");
@@ -69,11 +70,12 @@
 //      dataType: 'script',
 //      async: false
 // });
-
 </script>
 
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
+
+  {% include 'msg/el.js' %}
 
   <div id="main-container">
     <div id="back-import-export-buttons-container">

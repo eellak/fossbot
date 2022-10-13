@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
 DATA_DIR =  os.path.join(APP_DIR,'data')
-SQLITE_DIR = os.path.join(DATA_DIR,'robot_database.db')
+SQLITE_DIR = os.path.join(DATA_DIR,'robot_database.sqlite3')
 PROJECT_DIR = os.path.join(DATA_DIR,'projects')
 
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + SQLITE_DIR

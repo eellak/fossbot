@@ -1,6 +1,5 @@
 function get_custom_blockly_translations(key){
-    var translations = JSON.parse(translations_el)
-    var block_translation = translations[key]
+    var block_translation = translations_el[key]
     return block_translation
 }
 

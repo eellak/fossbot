@@ -21,7 +21,15 @@ if DEBUG is None:
 
 SCRIPT_PROCCESS = None
 app = Flask(__name__)
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
+
+APP_DIR = os.path.abspath(os.path.dirname(__file__))
+DATA_DIR =  os.path.join(APP_DIR,'data')
+SQLITE_DIR = os.path.join(DATA_DIR,'robot_database.db')
+PROJECT_DIR = os.path.join(DATA_DIR,'projects')
+
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + SQLITE_DIR
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/robot_database.sqlite3'
 
 CORS(app)
 
@@ -42,16 +50,16 @@ class Projects(db.Model, SerializerMixin):
         
 @app.before_first_request
 def before_first_request():
-    if not os.path.exists('data'):
-        os.mkdir('data')
-        os.mkdir('data/projects')
-    elif not os.path.exists('data/projects'):
-        os.mkdir('data/projects')    
+    if not os.path.exists(DATA_DIR):
+        os.mkdir(DATA_DIR)
+        os.mkdir(PROJECT_DIR)
+    elif not os.path.exists(PROJECT_DIR):
+        os.mkdir(PROJECT_DIR)    
     try:
         db.session.query(Projects).one()
     except:
         db.create_all()
-    if not os.path.exists('data/admin_parameters.yaml'):
+    if not os.path.exists(os.path.join(DATA_DIR,'admin_parameters.yaml')):
         shutil.copy('../robot_lib/code_templates/admin_parameters.yaml',f'data/admin_parameters.yaml')
 
 @socketio.on('connection')
@@ -84,13 +92,14 @@ def blockly():
     stop_now()
     id = request.args.get('id') 
     robot_name = get_robot_name()
-    get_sound_effects()
+
     return render_template('blockly.html', project_id=id, robot_name=robot_name)            
 
 @socketio.on('get_sound_effects')
 def blockly_get_sound_effects():
+    sounds =  get_sound_effects()
     if os.path.exists(f'data/sound_effects.json'):
-        with open('data/sound_effects.json', 'r') as file:
+        with open(os.path.join(DATA_DIR,'sound_effects.json'), 'r') as file:
             sounds = json.load(file)  
             emit('sound_effects',  { 'status': 200, 'data': sounds })
     else:
@@ -347,8 +356,8 @@ def get_robot_name():
 
 def get_sound_effects():
     print("Getting sounds")
-    if os.path.exists('data/sound_effects'):
-        mp3_sounds_list = glob.glob('data/sound_effects/*.mp3')
+    if os.path.exists(os.path.join(DATA_DIR,'sound_effects')):
+        mp3_sounds_list = glob.glob(os.path.join(DATA_DIR,'sound_effects/*.mp3'))
         sounds_names = []
         for sound in mp3_sounds_list: 
             split_list = sound.split("/")
@@ -359,9 +368,9 @@ def get_sound_effects():
         print("sound effects:")
         print(sounds_names)   
         #delete first the json file if exists and then create it again 
-        if os.path.exists('data/sound_effects.json'):
-            os.remove('data/sound_effects.json')
-        with open('data/sound_effects.json', 'w') as out_file:
+        if os.path.exists(os.path.join(DATA_DIR,'sound_effects.json')):
+            os.remove(os.path.join(DATA_DIR,'sound_effects.json'))
+        with open(os.path.join(DATA_DIR,'sound_effects.json'), 'w') as out_file:
             json.dump(sounds_names, out_file)  
             
 if __name__ == '__main__':

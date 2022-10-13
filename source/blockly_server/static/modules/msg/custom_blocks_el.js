@@ -1,6 +1,7 @@
 function get_custom_blockly_translations(key){
-    console.log('translations: ', translations_el)
-    return 'Προσχωρα'
+    var translations = JSON.parse(translations_el)
+    var block_translation = translations[key]
+    return block_translation
 }
 
 var translations_el = {

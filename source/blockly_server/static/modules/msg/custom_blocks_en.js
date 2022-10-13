@@ -7,6 +7,7 @@ var translations_en = {
     "move_forward": "Move forward",
     "move_forward_default": "Move one step forward",
     "move_forward_distance": "Move forward for",
+    "cms": "cms",
     "move_reverse": "Move backwards",
     "move_reverse_default": "Move one step backwards",
     "move_reverse_distance": "Move backwards for",

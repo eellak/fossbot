@@ -7,6 +7,7 @@ var translations_el = {
     "move_forward": "Προχώρησε μπροστά",
     "move_forward_default": "Προχώρησε μπροστά ένα βήμα",
     "move_forward_distance": "Προχώρησε μπροστά για",
+    "cms": "cms",
     "move_reverse": "Προχώρησε προς τα πίσω",
     "move_reverse_default": "Προχώρησε προς τα πίσω ένα βήμα",
     "move_reverse_distance": "Προχώρησε προς τα πίσω για",

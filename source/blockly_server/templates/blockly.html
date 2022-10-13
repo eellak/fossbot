@@ -62,7 +62,13 @@
   // scriptEle.setAttribute("src", "../static/modules/msg/el.js");
   // document.body.appendChild(scriptEle);
 
-  $.getScript( "msg/el.js", function() { })
+  // $.getScript( "msg/el.js", function() { })
+  $.ajax({
+     url: "msg/el.js",
+     dataType: 'script',
+     async: false
+});
+
 </script>
 
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">

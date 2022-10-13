@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Blockly Project</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
   <script src="{{ url_for('static',filename='modules/blockly.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/blockly_compressed.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/blocks_compressed.js')}}"></script>
@@ -15,6 +16,7 @@
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
+  <script src="{{ url_for('static',filename='modules/msg/custom_blocks_el.js')}}"></script>
   <script src="{{ url_for('static',filename='js/control-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
@@ -41,6 +43,7 @@
   {% block javascript %}
     {% if language == 'el' %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
+      <script src="{{ url_for('static',filename='modules/msg/custom_blocks_el.js')}}"></script>
     {% elif language == 'en' %}
       <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
     {% else %}

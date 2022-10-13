@@ -24,7 +24,7 @@ let demoWorkspace = Blockly.inject('blocklyDiv', options);
 Blockly.Blocks['move_forward'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField("Προχώρα μπροστά");
+      .appendField(get_custom_blockly_translations('move_forward'));
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(290);

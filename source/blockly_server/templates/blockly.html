@@ -75,9 +75,12 @@
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
 
-  {% block javascript %}
-    <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
-  {% endblock %}
+  {% if language is 'el' %}
+    {% block javascript %}
+      <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
+      <!-- <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script> -->
+    {% endblock %}
+  {% endif %}
 
   <div id="main-container">
     <div id="back-import-export-buttons-container">

@@ -1,3 +1,9 @@
+function get_custom_blockly_translations(key){
+    var json = JSON.parse(translations)
+    const translation = translations[key]
+    return translation
+}
+
 const translations = {
     "move_forward": "Προχώρησε μπροστά",
     "move_forward_default": "Προχώρησε μπροστά ένα βήμα",
@@ -31,10 +37,4 @@ const translations = {
     "begin_timer": "Έναρξη μέτρησης χρόνου",
     "stop_timer": "Σταμάτημα μέτρησης χρόνου",
     "get_timer": "Χρόνος που πέρασε"
-}
-
-function get_custom_blockly_translations(key){
-    var json = JSON.parse(translations)
-    const translation = json[key]
-    return translation
 }

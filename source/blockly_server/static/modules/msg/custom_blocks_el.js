@@ -3,7 +3,7 @@ function get_custom_blockly_translations(key){
     return 'Προσχωρα'
 }
 
-const translations_el = {
+var translations_el = {
     "move_forward": "Προχώρησε μπροστά",
     "move_forward_default": "Προχώρησε μπροστά ένα βήμα",
     "move_forward_distance": "Προχώρησε μπροστά για",

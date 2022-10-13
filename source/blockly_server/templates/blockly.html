@@ -75,7 +75,7 @@
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
 
-  {% if language is 'el' %}
+  {% if language == 'el' %}
     {% block javascript %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
       <!-- <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script> -->

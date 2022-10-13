@@ -40,12 +40,14 @@
 
   {% block javascript %}
     {% if language == 'el' %}
-        <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
+      <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
     {% elif language == 'en' %}
-        <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
+    {% else %}
+      <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
     {% endif %}
   {% endblock %}
-
+  
   <div id="main-container">
     <div id="back-import-export-buttons-container">
       <div id="go-back-to-home-button-wrap">

@@ -8,9 +8,7 @@
   <script src="{{ url_for('static',filename='modules/blockly.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/blockly_compressed.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/blocks_compressed.js')}}"></script>
-  <!-- <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script> -->
-  <!-- <script src="{{ url_for('static',filename='modules/jquery-3.5.0.js')}}"></script> -->
-  <script src="{{ url_for('static',filename='modules/jquery-3.6.1.min.map')}}"></script>
+  <script src="{{ url_for('static',filename='modules/jquery-3.5.0.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/python_compressed.js')}}"></script>
 
   <script src="{{ url_for('static',filename='modules/buffer@6.0.3')}}"></script>
@@ -37,48 +35,18 @@
   </style>
 </head>
 
-
-<script type="text/javascript" charset="utf-8">
-  // $(document).ready(function () {
-  //   var socket = io('http://' + document.domain + ':' + location.port);
-
-  //   socket.on("connect", function () {
-  //     console.log("Socket connected!");
-  //     socket.emit('connection', { 'data': 'I\'m connected!' });
-  //     socket.emit('get_blockly_translations', {'language': 'el'});
-  //   });
-
-  //   socket.on('disconnect', () => {
-  //     console.log("Socket disconnected");
-  //     socket.emit('disconnection', { 'data': 'I\'m disconnected!' });
-  //   });
-
-  //   socket.on("blockly_translations_result", (data) => {
-  //     console.log("blockly_translations_result data:", data);  
-  //     const blockly_translations = data    
-  //   });
-  // // });
-  // $.post(Flask.url_for('modules/msg/el.js'));
-
-  // let scriptEle = document.createElement("script");
-  // scriptEle.setAttribute("src", "../static/modules/msg/el.js");
-  // document.body.appendChild(scriptEle);
-
-  // $.getScript( "msg/el.js", function() { })
-//   $.ajax({
-//      url: "msg/el.js",
-//      dataType: 'script',
-//      async: false
-// });
-</script>
-
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% include 'header.html' %}
 
   {% if language == 'el' %}
     {% block javascript %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
-      <!-- <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script> -->
+    {% endblock %}
+  {% endif %}
+
+  {% if language == 'en' %}
+    {% block javascript %}
+      <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
     {% endblock %}
   {% endif %}
 

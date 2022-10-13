@@ -1,10 +1,10 @@
 {
     "move_forward": "Move forward",
     "move_forward_default": "Move one step forward",
-    "move_forward_distance": "Move forward",
+    "move_forward_distance": "Move forward for",
     "move_reverse": "Move backwards",
     "move_reverse_default": "Move one step backwards",
-    "move_reverse_distance": "Move backwards",
+    "move_reverse_distance": "Move backwards for",
     "stop": "Stop",
     "wait": "Wait",
     "seconds": "seconds",

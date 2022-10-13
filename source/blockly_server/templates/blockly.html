@@ -57,9 +57,12 @@
   //   });
   // // });
   // $.post(Flask.url_for('modules/msg/el.js'));
-  let scriptEle = document.createElement("script");
-  scriptEle.setAttribute("src", "../static/modules/msg/el.js");
-  document.body.appendChild(scriptEle);
+
+  // let scriptEle = document.createElement("script");
+  // scriptEle.setAttribute("src", "../static/modules/msg/el.js");
+  // document.body.appendChild(scriptEle);
+
+  $.getScript( "msg/el.js", {})
 </script>
 
 <body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">

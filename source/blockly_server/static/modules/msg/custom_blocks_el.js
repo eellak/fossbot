@@ -1,10 +1,9 @@
 function get_custom_blockly_translations(key){
-    var json = JSON.parse(translations)
-    const translation = translations[key]
+    const translation = translations_el[key]
     return translation
 }
 
-const translations = {
+const translations_el = {
     "move_forward": "Προχώρησε μπροστά",
     "move_forward_default": "Προχώρησε μπροστά ένα βήμα",
     "move_forward_distance": "Προχώρησε μπροστά για",

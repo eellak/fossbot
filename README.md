@@ -1,15 +1,20 @@
 
 ![](images/fossbot.jpg)
 
+[![el](https://img.shields.io/badge/lang-el-blue.svg)](https://github.com/eellak/fossbot/blob/master/README.el-GR.md)
+
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/eellak/fossbot/blob/master/README.md)
+
+
 ## Work in progress :warning:
 
-Εκπαιδευτικό ρομπότ ανοιχτού λογισμικού και υλισμικού για όλες τις βαθμίδες της εκπαίδευσης, αναπτύσσεται συνεργατικά από το Χαροκόπειο Πανεπιστήμιο και την ΕΕΛΛΑΚ, είναι επέκταση του "GSOC 2019 - A DIY robot kit for educators" https://github.com/eellak/gsoc2019-diyrobot.  Η χρήση του FOSSBOT στην εκπαίδευση θα υποστηριχθεί από συνεργατικά σεμινάρια προς όλους τους εκπαιδευτικούς όλων των ειδικοτήτων και βαθμίδων με βάση εκπαιδευτικό υλικό που αναπτύσσεται στο https://elearn.ellak.gr.  Στόχος της δράσης είναι να εξοικειωθούν οι εκπαιδευτικοί με σύγχρονα μοντέλα εκπαίδευσης βασισμένα στην προσέγγιση S.T.E.A.M. (Science, Technology, Engineering, Arts, Mathematics) και στη μαθητοκεντρική προσέγγιση της γνώσης,  με βάση τις ανοιχτές τεχνολογίες, ώστε να μπουν οι βάσεις για τη δημιουργία ενός ανοικτού περιβάλλοντος ανακαλυπτικής μάθησης που θα συμβάλει δημιουργικά στην μετατροπή των μαθητών σε ενεργούς πολίτες.
+An educational robot that uses open software and hardware and can be employed in all levels of education. FOSSBot has been developed collaboratively by Harokopio University of Athens and GFOSS, and is an extension of "GSOC 2019 - A DIY robot kit for educators" https://github.com/eellak/gsoc2019-diyrobot . The use of FOSSBOT in education will be supported by collaborative seminars for all teachers of all specialties and levels based on educational material developed at https://elearn.ellak.gr. The aim of the action is to familiarize teachers with modern education models based on the S.T.E.A.M approach. (Science, Technology, Engineering, Arts, Mathematics) and establish a student-centered approach to knowledge, based on open technologies, in order to lay the foundations for the creation of an open environment of discovery learning that will creatively contribute to the transformation of students into active citizens.
 
-Το FOSSBot ανήκει στην κατηγορία DIY (Do It Yourself), με την λογική ότι μπορεί εύκολα να κατασκευαστεί και από άλλα άτομα πέρα από τους δημιουργούς του ή ακόμα η διαδικασία αποσυναρμολόγησης και επανασυναρμολόγησης μπορεί να αποτελέσει κομμάτι εκπαιδευτικής διαδικασίας στα πλαίσια του σχολείου. Αυτό είναι εφικτό, καθώς το FOSSBot είναι κατασκευασμένο από ηλεκτρονικά υλικά που μπορούν να βρεθούν εύκολα στο εμπόριο με χαμηλό κόστος ενώ τα πλαστικά μέρη είναι εύκολα εκτυπώσιμα.
+FOSSBot belongs to the DIY (Do It Yourself) category, with the logic that it can easily be built by other people besides its creators, and its disassembly and reassembly process can be part of an educational process in the classroom. This is possible since  FOSSBot is made of electronic materials that can be easily found commercially at low cost while the plastic parts are printable.
 
 ![](images/front_pen.png)
 
-## Εξοπλισμός 
+## Equipment 
 #### Sensors:
 * Ultrasonic distance sensor
 * Battery Sensor
@@ -32,51 +37,60 @@
 
 ![](images/electronics.JPG)
 
-## UI 
+## User Interface 
 
 ![](images/blockly.jpg)
 
-## 3D εκτυπώσιμα μέρη 
+## 3D printed parts
 
-Τα πλαστικά μέρη, πέρα από τις ρόδες, είναι εκτυπώσιμα σε τρισδιάστατο εκτυπωτή και ο συνολικός χρόνος εκτύπωσης δεν ξεπερνά τις 36 ώρες. Αξίζει να αναφέρουμε ότι το σώμα του ρομπότ έχει σχεδιαστεί με τέτοιο τρόπο ώστε να διευκολύνει την διαδικασία συναρμολόγησης του. Αυτό έχει επιτευχθεί αφού στο εσωτερικό του ρομπότ έχουν σχεδιαστεί θήκες, προσαρμοσμένες στα ηλεκτρονικά στοιχεία, ώστε αυτά να τοποθετούνται στις αντίστοιχες θέσεις και να μην μετακινούνται κατά την διάρκεια χρήσης του ρομπότ. Ακόμα, στην εξωτερική επιφάνεια υπάρχουν εκτυπωμένα σύμβολα που υποδεικνύουν την θέση του κάθε αισθητήρα. Τα σύμβολα βοηθούν και τους εκπαιδευτικούς για να γνωρίζουν την θέση των αισθητήρων π.χ. ηχείο, led κλπ. Ο κατακόρυφος σωλήνας που διατρέχει από πάνω προς τα κάτω το κύριο σώμα του ρομπότ επιτρέπει την προσάρτηση ενός μολυβιού ή ενός μαρκαδόρου, ώστε μετακινώντας το FOSSBot σε μια περιοχή καλυμμένη με χαρτί να μπορούν να δημιουργηθούν σχήματα.
+All the plastic parts, except from the wheels, are printable on a 3D printer and the total printing time does not exceed 36 hours. It is worth mentioning that the body of the robot has been designed in such a way as to facilitate its assembly process. This has been achieved since cases have been designed inside the robot, adapted to the electronic components, so that they are placed in the corresponding positions and do not move during the use of the robot. Also, on the outer surface there are printed symbols that indicate the position of each sensor. The symbols also help teachers to know the position of the sensors, e.g. speaker, led, etc. The vertical tube that runs from top to bottom of the main body of the robot allows for the attachment of a pencil or marker, so that by moving the FOSSBot around an area covered with paper, shapes can be created.
 
-Τα τυπωμένα πλέγματα στην μπροστινή και την επάνω πλευρά του ρομπότ βοηθούν να διατηρούνται δροσερά τα ηλεκτρικά μέρη. Η υποδοχή φόρτισης του ρομπότ, ο διακόπτης on/off και ο μοναδικός βρόχος για τη ρυμούλκηση μικρών αντικειμένων βρίσκονται όλα στο πίσω μέρος. Ο βρόχος χρησιμεύει επίσης για την προστασία του ρομπότ από μικρές συγκρούσεις. Πάνω από τους τροχούς βρίσκονται δύο τυπωμένα σπόιλερ τόσο για την προστασία των τροχών όσο και για την αισθητική σχεδίαση του ρομπότ. 
+Printed meshes on the front and top of the robot help keep electrical parts cool. The robot's charging port, on/off switch, and a unique loop for towing small items are all located on the back. The loop also serves to protect the robot from minor collisions. Two printed spoilers above the wheels add to wheel protection and to the robot's aesthetic design.
 
-Η επάνω επιφάνεια του ρομπότ χωρίζεται σε δύο κομμάτια. Ένα κάλυμμα που στερεώνεται στο κύριο σώμα χρησιμοποιώντας μοναδικά κλιπ αποτελεί το αρχικό εξάρτημα. Το κύριο κάλυμμα μπορεί να ενωθεί με το πάνω κάλυμμα χρησιμοποιώντας μια εύκολη λειτουργία περιστροφικής κίνησης και κλειδώματος. Μπορεί εύκολα να αφαιρεθεί για να δώσει πρόσβαση στο εσωτερικό του ρομπότ και μπορεί επίσης να υποστηρίξει μια βάση από τούβλα Lego, επιτρέποντας την προσθήκη περισσότερων τούβλων στην κορυφή του ρομπότ. Αυτή η επιλογή δίνει τη δυνατότητα στους δασκάλους των χαμηλότερων τάξεων να συνδυάσουν FOSSBot με άλλα έργα Lego και μπορεί να βοηθήσει στην προσθήκη νέων δραστηριοτήτων στο FOSSBot.
+The top surface of the robot is divided into two pieces. A cover that attaches to the main body using unique clips is the original accessory. The main cover can be joined to the top cover using an easy twist-and-lock function. It can be easily removed to give access to the interior of the robot and can also support a base of Lego bricks, allowing bricks to be added on top of the robot. This option enables lower grade teachers to combine FOSSBot with other Lego projects and can help add new activities to FOSSBot.
 
-## Οδηγίες εκτύπωσης και συναρμολόγησης 
+## Printing and assembly instructions
 
-Η αρχική έκδοση των οδηγιών εκτύπωσης και συναρμολόγησης στο [εκτύπωσης και συναρμολόγησης 
-](https://github.com/eellak/fossbot/blob/master/electronics_instructions/draft_instructions.pdf)
+Printing and assembly instructions and figures can be found in this manual: https://github.com/eellak/fossbot/blob/master/electronics_instructions/draft_instructions.pdf
 
-## Τρόποι λειτουργίας
+## Modes of operation
 
-Υπάρχουν τέσσερις βασικοί τρόποι χρήσης του FOSSBot. Η χρήση της διεπαφής του FOSSBot επιτρέπει στον χρήστη να επιλέξει έναν από τους πιθανούς τρόπους χρήσης:
-*	της διεπαφής χρήσης του ρομπότ χωρίς τη χρήση κώδικα που είναι κατάλληλη για παιδιά προσχολικής ηλικίας και παρουσιάζει τις κύριες δυνατότητες του ρομπότ, για παράδειγμα μετακίνηση του ρομπότ προς τα μπροστά ή πίσω,
-*	της διεπαφής γραφικού προγραμματισμού που βασίζεται σε μπλοκ που εστιάζει σε μαθητές πρωτοβάθμιας εκπαίδευσης
-*	της διεπαφής συγγραφής κώδικα σε σημειωματάρια (notebooks) που μπορεί να χρησιμοποιηθεί για τη διδασκαλία μαθητών Λυκείου Μαθητές Πρωτοβάθμιας Εκπαίδευσης και διδάσκοντας στους μαθητές τις βασικές αρχές του προγραμματισμού Python (όπως βρόχους, συνθήκες, συμβάντα κ.λπ.).
-*	της διεπαφής συγγραφής κώδικα σε Python απευθείας στο κέλυφος προγραμματισμού του FOSSBot, ελέγχοντας απευθείας τα ηλεκτρονικά στοιχεία σε χαμηλό επίπεδο.
+There are four main ways to use FOSSBot. Using the FOSSBot interface allows the user to choose one of the possible modes of use:
+
+*  the user interface of the robot without any code, which is suitable for preschool children and shows the main capabilities of the robot, for example moving the robot forward or backward;
+* the block-based graphical programming interface aimed at primary school students
+* the notebook coding interface that can be used for teaching high school students Elementary students and teaching students the fundamentals of Python programming (such as loops, conditions, events, etc.).
+* the Python coding interface directly into the FOSSBot programming shell, which allows direct control to the low-level electronics.
 
 
-## Λίγα λόγια για το λογισμικό του FOSSBot
 
-Το FOSSBot βασίζεται σε μια αρθρωτή στοίβα λογισμικού που του επιτρέπει να υλοποιεί τα διάφορες λειτουργίες προγραμματισμού, να ενορχηστρώνει τα πάντα μέσω του GUI και να ελέγχει το υλικό με εύκολο τρόπο μέσω μιας βιβλιοθήκης λογισμικού που παίζει το ρόλο του λειτουργικού συστήματος FOSSBot. Η στοίβα αυτή περιλαμβάνει το Google Blockly, το Python Jupyter, το Python Flask που φιλοξενεί το GUI του FOSSBot, την βασική βιβλιοθήκη FOSSBot γραμμένη σε Python που ελέγχει το υλικό του ρομπότ και τέλος την χειροκίνητη λειτουργία που προσφέρει στους χρήστες μέσω μιας διεπαφής χρήστη, δηλαδή έναν τρόπο ελέγχου του ρομπότ χωρίς καμία γνώση προγραμματισμού. 
-Το λογισμικό του FOSSBot έχει δημιουργηθεί χρησιμοποιώντας τις πιο πρόσφατες εκδόσεις των παραπάνω τεχνολογιών, συμπεριλαμβάνοντας και του Docker, της συνεχούς ενοποίησης και της λογικής ενοποίησης μικροϋπηρεσιών (CI). Όπως αναφέρθηκε και στην εισαγωγή, ο προγραμματισμός του ρομπότ μπορεί να γίνει με διαφορετικούς τρόπους που ακολουθούν και αναλύονται. 
+
+
+
+## A few words about the FOSSBot software
+
+FOSSBot is based on a modular software stack that allows implementing the various programming functions, orchestrate everything through the GUI, and control the hardware in an easy way through a software library that plays the role of the FOSSBot operating system. This stack includes Google Blockly, Python Jupyter, Python Flask which hosts FOSSBot's GUI, the core FOSSBot library written in Python which controls the bot's hardware, and finally the manual operation it offers to users through a user interface, i.e. a way to control the robot without any programming knowledge. 
+
+FOSSBot's software is built using the latest versions of the above technologies, including Docker, continuous integration, and microservices integration (CI) logic. As mentioned in the introduction, programming the robot can be done in different ways which are followed and analyzed.
 
 
 ![](images/software_components.JPG)
 
-## Συνεχής ανάπτυξη λογισμικού και ενημερώσεις
+## Continuous software development and updates
 
-Το FOSSBot αποτελείται από ένα σύστημα μοντέρνας αρχιτεκτονικής, με κάθε κομμάτι του λογισμικού να βρίσκεται σε ξεχωριστό docker image, που επιτρέπει τη διαρκή ολοκλήρωση μέσω αναβαθμίσεων του λογισμικού του. Η προσέγγιση της διαρκούς ολοκλήρωσης (Continuous Integration - CI) επιτυγχάνεται μέσω του Github, το οποίο πέρα από ότι είναι ένα αποθετήριο κώδικα, διαθέτει και εργαλεία για την σωστή οργάνωση και συνεργασία των μελών της ομάδας αλλά και την συνεχή αναβάθμιση και ενημέρωση των αρχείων του λογισμικού του ρομπότ. Πέρα από το Github, χρησιμοποιείται και το Docker Hub, στο οποίο προωθούνται οι αλλαγές που γίνονται κάθε φορά στον κώδικα στο Github, ώστε να υπάρχει διαθέσιμη η εικόνα της τελευταίας.
+FOSSBot consists of a modern architecture system, with each piece of software residing in a separate docker image, which allows for continuous integration through software upgrades. The continuous integration (CI) approach is achieved through Github, which, in addition to being a code repository, also provides tools for the proper organization and collaboration of team members as well as the continuous upgrading and updating of software files of the robot. In addition to Github, Docker Hub is also used, in which the changes made each time to the code are pushed to Github, so that the image of the latter is available.
 
-## Συμπεράσματα και επόμενα βήματα
+## Conclusions and next steps
 
-Από την πρώτη στιγμή, το FOSSBot έχει ήδη βρει υποστήριξη από ομάδες ανοιχτού λογισμικού και του προγράμματος Google Summer of Code που χρηματοδότησε developers που συμμετέχουν στην ανάπτυξη του, και φυσικά τους φοιτητές και καθηγητές από ελληνικά πανεπιστήμια που αγκάλιασαν την όλη προσπάθεια. Ωστόσο, υπάρχει ακόμη χώρος για βελτίωση, προκειμένου να γίνει το FOSSBot ανταγωνιστικό σε σχέση με τις υπάρχοντες εμπορικές λύσεις. Ο κύριος στόχος μας είναι να λυθούν τυχόν ζητήματα που σχετίζονται με το λογισμικό του FOSSBot καθώς και να γίνει απλοποίηση της διαδικασίας της συναρμολόγησής του, με τον σχεδιασμό ειδικής πλακέτας για την ενσωμάτωση των περισσότερων καλωδιώσεων. 
+From the first moment, FOSSBot has already found support from open software groups and the Google Summer of Code program that funded developers participating in its development, and of course the students and professors from Greek universities who embraced the whole effort. However, there is still room for improvement in order to make FOSSBot competitive with existing commercial solutions. Our main goal is to solve any issues related to the FOSSBot software as well as to simplify the process of assembling it by designing a special board to integrate most of the wiring.
 
-## Ομάδα Ανάπτυξης Υλικού/Λογισμικού
-* Ηρακλής Βαρλάμης
-* Χρήστος Χρόνης
-* Θανάσης Αποστολίδης
-* Ελευθερία Παπαγεωργίου
+## Hardware/Software Development Team
+* Iraklis Varlamis - Mentor
+* Christos Chronis
+* Eleftheria Papageorgiou
+
+### Other contributors
+* Thanasis Apostolidis
+* Danai Brilli
+* Manoussos Linardakis
 

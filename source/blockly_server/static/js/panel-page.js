@@ -23,7 +23,7 @@ function loadSettings(data) {
             '<tr>' +
             '<td>' + parameter[0]['name'] + '</td>' +
             '<td>' + parameter[2]['default'] + '</td>' +
-            '<td>' + '<input list="languages" id="' + i + '"/>' + 
+            '<td>' + '<input list="languages" id="' + i + '" value="' + parameter[1]['value'] + '" />' + 
                 ' <datalist id="languages"> <option value="Ελληνικά"> <option value="English"> </datalist>' + 
             '</td>' +
             '</tr>';

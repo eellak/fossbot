@@ -1,5 +1,9 @@
-{
-    "blockly_project_page_title": "Blockly project name",
+function get_string_translation(key){
+    var string_translation = translations_en[key]
+    return string_translation
+}
+
+var translations_en = {
     "go_back_to_home_page": "Back to home page",
     "save": "Save",
     "run_the_program": "Run the program!",

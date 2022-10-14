@@ -1,5 +1,9 @@
-{
-    "blockly_project_page_title": "Όνομα σεναρίου",
+function get_string_translation(key){
+    var string_translation = translations_el[key]
+    return string_translation
+}
+
+var translations_el = {
     "go_back_to_home_page": "Επιστροφή στην αρχική σελίδα",
     "save": "Αποθήκευση",
     "run_the_program": "Τρέξε το πρόγραμμα!",

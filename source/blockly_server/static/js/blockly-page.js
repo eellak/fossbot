@@ -82,5 +82,4 @@ function setStrings() {
   document.getElementById("footer-str").value = get_string_translation("footer_string");
   document.getElementById("modal-error-text").value = get_string_translation("error_txt");
   document.getElementById("modal-success-text").value = get_string_translation("success");
-  //document.getElementById("").value = get_string_translation("");
 }

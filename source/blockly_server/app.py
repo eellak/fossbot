@@ -78,7 +78,8 @@ def error_handler(e):
 def index():
     stop_now()
     robot_name = get_robot_name()
-    return render_template('home-page.html', robot_name=robot_name)
+    language = get_language()
+    return render_template('home-page.html', robot_name=robot_name, language=language)
 
 @socketio.on('get-all-projects')
 def handle_get_all_projects():
@@ -110,7 +111,8 @@ def blockly_get_sound_effects():
 def admin_panel():
     stop_now()
     robot_name = get_robot_name()
-    return render_template('panel-page.html', robot_name=robot_name)
+    language = get_language()
+    return render_template('panel-page.html', robot_name=robot_name, language=language)
 
 @socketio.on('get_admin_panel_parameters')
 def handle_get_admin_panel_parameters():
@@ -220,7 +222,8 @@ def manual_control():
     stop_script()
     execute_code(None,manual_control=True)
     robot_name = get_robot_name()
-    return render_template('control.html', robot_name=robot_name)
+    language = get_language()
+    return render_template('control.html', robot_name=robot_name, language=language)
 
 @socketio.on('manual_control')
 def handle_manual_control():

@@ -261,30 +261,6 @@ def handle_save_xml(data):
     except Exception as e:
         emit('save_xml_result',  {'status': 'error occured', 'result': 'Code was not saved'})
 
-@socketio.on('get_custom_blockly_translations')
-def get_blockly_translations(data):
-    #TODO : check for system language in parameters.yaml 
-    try:
-        language = data['language']
-        filename = 'custom_blocks_' + language
-        with open (f'data/{filename}.js', "r") as myfile:
-            data = myfile.readlines()
-        emit('custom_blockly_translations_result', {'status': '200', 'data': data})     
-    except Exception as e:
-        emit('custom_blockly_translations_result',  {'status': 'File with translations not found'})
-
-@socketio.on('get_translations')
-def get_blockly_translations(data):
-    #TODO : check for system language in parameters.yaml 
-    try:
-        language = data['language']
-        filename = 'strings_' + language
-        with open (f'data/{filename}.js', "r") as myfile:
-            data = myfile.readlines()
-        emit('translations_result', {'status': '200', 'data': data})     
-    except Exception as e:
-        emit('translations_result',  {'status': 'File with translations not found'})
-
 def get_all_projects():
     projects = Projects.query.all()
     projects_list = [pr.to_dict() for pr in projects]

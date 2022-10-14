@@ -297,7 +297,6 @@
       </block>
       <block type="lists_sort"></block>
     </category>
-
     <category name="Αλληλεπίδραση" colour="#995ba5">
       <block type="play_sound">
       </block>
@@ -312,11 +311,7 @@
       <block type="get_timer">
       </block>
     </category>
-
     <category name="Αισθητήρες" colour="#A5935B">
-      <!--<block type="temperature"> </block>
-      <block type="humidity"> </block>-->
-      <!-- <block type="battery"> </block> -->
       <block type="distance"> </block>
       <block type="light_sensor"> </block>
       <block type="noise_detection"> </block>

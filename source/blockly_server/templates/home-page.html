@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Home Page</title>
+  <title>Home</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
 
@@ -54,7 +54,7 @@
   <div id="main-container">
     <div id="home-page-title-wrap">
       <div id="home-page-title">
-        <strong>Μέσα απο την σελίδα αυτή, μπορείς να δεις όλα τα προτζεκτ που έχουν δημιουργηθεί και αποθηκευτεί πάνω
+        <strong id="page-decription">Μέσα απο την σελίδα αυτή, μπορείς να δεις όλα τα προτζεκτ που έχουν δημιουργηθεί και αποθηκευτεί πάνω
           στο συνδεδεμμένο ρομπότ καθώς και τους φακέλους στους οποίους ανήκουν. Μπορείς να δημιουργήσεις καινούριο
           φάκελο ή προτζεκτ.
           Υπάρχει ακόμα η δυνατότητα να μεταβείς στην σελίδα του διαχειριστικού για την παραμετροποίηση τιμών που
@@ -68,18 +68,18 @@
 
       <div id="manual-control-wrap">
         <button type="button" class="manual-control">
-          <a href='/manual_control' style="color: white; text-decoration: none;">Χειροκίνητη λειτουργία</a></button>
+          <a href='/manual_control' id="manual-control-id" style="color: white; text-decoration: none;">Χειροκίνητη λειτουργία</a></button>
       </div>
 
 
       <div id="open-panel-wrap">
         <button type="button" class="open-panel">
-          <a href='/admin_panel' style="color: white; text-decoration: none;">Άνοιξε το διαχειριστικό
+          <a href='/admin_panel' id="open-panel-id-txt" style="color: white; text-decoration: none;">Άνοιξε το διαχειριστικό
             περιβάλλον</a></button>
       </div>
 
       <div id="create-new-project-Button-wrap">
-        <button onclick="createNewProject()" type="button" class="create-new-project" id="create-new-project">
+        <button onclick="createNewProject()" id="add-new-project" type="button" class="create-new-project" id="create-new-project">
           Πρόσθεσε ένα νέο πρότζεκτ
         </button>
       </div>
@@ -90,8 +90,8 @@
         <table id="table-projects" role="grid">
           <thead id="head-table-projects" role="grid">
             <tr role="row">
-              <th class="head-title" tabindex="0" rowspan="1" colspan="1">Τίτλος</th>
-              <th class="head-title" tabindex="0" rowspan="1" colspan="1">Περιγραφή</th>
+              <th class="head-title" id="head-title-id" tabindex="0" rowspan="1" colspan="1">Τίτλος</th>
+              <th class="head-title" id="head-info-id" tabindex="0" rowspan="1" colspan="1">Περιγραφή</th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
               <th class="head-title" tabindex="0" rowspan="1" colspan="1"></th>
@@ -108,7 +108,7 @@
 
     <div id="stop-Blockly-Button-container">
       <div id="stop-Blockly-Button-wrap">
-        <button onclick="stop_script()" type="button" class="stop-Blockly">
+        <button onclick="stop_script()" id="stop-blockly-button" type="button" class="stop-Blockly">
           'Αμεση διακοπή</button>
       </div>
     </div>

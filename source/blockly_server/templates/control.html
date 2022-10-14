@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Control page</title>
+  <title>Manual control</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
@@ -26,6 +26,13 @@
 </head>
 
 <body>
+  {% block javascript %}
+    {% if language == 'en' %}
+      <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
+      setStrings()
+    {% endif %}
+  {% endblock %}
+
   {% include 'header.html' %}
 
   <div id="main-container">

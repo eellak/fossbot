@@ -135,17 +135,10 @@ function showRobotName() {
 }
 
 function setStrings() {
-    document.getElementById("").value = get_string_translation("");
-    document.getElementById("").value = get_string_translation("");
-    document.getElementById("").value = get_string_translation("");
-    document.getElementById("").value = get_string_translation("");
-    document.getElementById("").value = get_string_translation("");
     document.getElementById("page-decription").value = get_string_translation("home_title");
     document.getElementById("manual-control-id").value = get_string_translation("manual_use");
     document.getElementById("open-panel-id-txt").value = get_string_translation("open_control_page");
     document.getElementById("add-new-project").value = get_string_translation("add_new_project");
-    
-    
     document.getElementById("head-title-id").value = get_string_translation("title");
     document.getElementById("head-info-id").value = get_string_translation("info");
     document.getElementById("stop-blockly-button").value = get_string_translation("stop_immediately");

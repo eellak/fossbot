@@ -50,11 +50,20 @@
 </script>
 
 <body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+
+  {% block javascript %}
+  {% if language == 'en' %}
+  <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
+  setStrings()
+  {% endif %}
+  {% endblock %}
+
   {% include 'header.html' %}
   <div id="main-container">
     <div id="home-page-title-wrap">
       <div id="home-page-title">
-        <strong id="page-decription">Μέσα απο την σελίδα αυτή, μπορείς να δεις όλα τα προτζεκτ που έχουν δημιουργηθεί και αποθηκευτεί πάνω
+        <strong id="page-decription">Μέσα απο την σελίδα αυτή, μπορείς να δεις όλα τα προτζεκτ που έχουν δημιουργηθεί
+          και αποθηκευτεί πάνω
           στο συνδεδεμμένο ρομπότ καθώς και τους φακέλους στους οποίους ανήκουν. Μπορείς να δημιουργήσεις καινούριο
           φάκελο ή προτζεκτ.
           Υπάρχει ακόμα η δυνατότητα να μεταβείς στην σελίδα του διαχειριστικού για την παραμετροποίηση τιμών που
@@ -68,18 +77,21 @@
 
       <div id="manual-control-wrap">
         <button type="button" class="manual-control">
-          <a href='/manual_control' id="manual-control-id" style="color: white; text-decoration: none;">Χειροκίνητη λειτουργία</a></button>
+          <a href='/manual_control' id="manual-control-id" style="color: white; text-decoration: none;">Χειροκίνητη
+            λειτουργία</a></button>
       </div>
 
 
       <div id="open-panel-wrap">
         <button type="button" class="open-panel">
-          <a href='/admin_panel' id="open-panel-id-txt" style="color: white; text-decoration: none;">Άνοιξε το διαχειριστικό
+          <a href='/admin_panel' id="open-panel-id-txt" style="color: white; text-decoration: none;">Άνοιξε το
+            διαχειριστικό
             περιβάλλον</a></button>
       </div>
 
       <div id="create-new-project-Button-wrap">
-        <button onclick="createNewProject()" id="add-new-project" type="button" class="create-new-project" id="create-new-project">
+        <button onclick="createNewProject()" id="add-new-project" type="button" class="create-new-project"
+          id="create-new-project">
           Πρόσθεσε ένα νέο πρότζεκτ
         </button>
       </div>
@@ -122,7 +134,7 @@
 
   <!-- modal : success while loading/ saving settings -->
   {% include 'modal-success.html' %}
-  
+
   <!-- modal : ask for new project name  -->
   {% include 'modal-project-name.html' %}
 

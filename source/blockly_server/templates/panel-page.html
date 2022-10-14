@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Panel page</title>
+  <title>Control panel</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
@@ -52,6 +52,13 @@
 </script>
 
 <body onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+  {% block javascript %}
+  {% if language == 'en' %}
+  <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
+  setStrings()
+  {% endif %}
+  {% endblock %}
+
   {% include 'header.html' %}
   <div id="main-container">
     <div id="go-back-to-home-button-container">
@@ -72,7 +79,8 @@
 
       <div id="blocks-title-wrap">
         <div id="blocks-title">
-          <strong>Μέσα απο την σελίδα του διαχειριστικού υπάρχει η δυνατότητα να γίνουν αλλαγές σε τιμές που αφορούν το
+          <strong id="panel-description-txt">Μέσα απο την σελίδα του διαχειριστικού υπάρχει η δυνατότητα να γίνουν
+            αλλαγές σε τιμές που αφορούν το
             ρομπότ όπως το όνομα του ή τιμές ορισμένων μπλοκς</strong>
         </div>
       </div>
@@ -84,9 +92,9 @@
             <table class="table table-responsive">
               <thead>
                 <tr>
-                  <th scope="col">Όνομα παραμέτρου</th>
-                  <th scope="col">Προεπιλεγμένη τιμή</th>
-                  <th scope="col">Τιμή</th>
+                  <th id="parameter-name-id" scope="col">Όνομα παραμέτρου</th>
+                  <th id="default-value-id" scope="col">Προεπιλεγμένη τιμή</th>
+                  <th id="value-id" scope="col">Τιμή</th>
                 </tr>
               </thead>
               <tbody id="body-table-parameters">
@@ -98,7 +106,8 @@
 
       <div id="Blockly-Button-container">
         <div id="Blockly-Button-wrap">
-          <button onclick="saveSettings()" name="submit" type="submit" class="save-panel-changes">Αποθήκευση
+          <button onclick="saveSettings()" id="save-settings-id" name="submit" type="submit"
+            class="save-panel-changes">Αποθήκευση
             αλλαγών</button>
         </div>
       </div>

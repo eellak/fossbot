@@ -74,7 +74,7 @@ function stop_script() {
   stopScript();
 }
 
-function setStringsInEn() {
+function setStrings() {
   document.getElementById("open-home-href").value = get_string_translation("go_back_to_home_page");
   document.getElementById("save-code-button").value = get_string_translation("save");
   document.getElementById("run-code-button").value = get_string_translation("run_the_program");
@@ -82,26 +82,5 @@ function setStringsInEn() {
   document.getElementById("footer-str").value = get_string_translation("footer_string");
   document.getElementById("modal-error-text").value = get_string_translation("error_txt");
   document.getElementById("modal-success-text").value = get_string_translation("success");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-  document.getElementById("").value = get_string_translation("");
-
+  //document.getElementById("").value = get_string_translation("");
 }
-
-function setStringsInEl() { }

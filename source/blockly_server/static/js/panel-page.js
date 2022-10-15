@@ -54,15 +54,21 @@ async function saveSettings() {
     }
 }
 
-function setStrings() {
-    document.getElementById("open-home-href").value = get_string_translation("go_back_to_home_page");
-    document.getElementById("panel-title-wrap").value = get_string_translation("panel_title");
-    document.getElementById("panel-description-txt").value = get_string_translation("blocks_title");
-    document.getElementById("parameter-name-id").value = get_string_translation("parameter_name");
-    document.getElementById("default-value-id").value = get_string_translation("default_value");
-    document.getElementById("value-id").value = get_string_translation("value");
-    document.getElementById("footer-str").value = get_string_translation("footer_string");
-    document.getElementById("save-settings-id").value = get_string_translation("save_changes");
-    document.getElementById("modal-error-text").value = get_string_translation("error_txt");
-    document.getElementById("modal-success-text").value = get_string_translation("success");
+function setStringsEn() {
+    document.getElementById("open-home-href").innerHTML = get_string_translation_en("go_back_to_home_page");
+    document.getElementById("panel-title-wrap").innerHTML = get_string_translation_en("panel_title");
+    document.getElementById("panel-description-txt").innerHTML = get_string_translation_en("blocks_title");
+    document.getElementById("parameter-name-id").innerHTML = get_string_translation_en("parameter_name");
+    document.getElementById("default-value-id").innerHTML = get_string_translation_en("default_value");
+    document.getElementById("value-id").innerHTML = get_string_translation_en("value");
+    document.getElementById("footer-str").innerHTML = get_string_translation_en("footer_string");
+    document.getElementById("save-settings-id").innerHTML = get_string_translation_en("save_changes");
+    document.getElementById("modal-error-text").innerHTML = get_string_translation_en("error_txt");
+    document.getElementById("modal-success-text").innerHTML = get_string_translation_en("success");
 }
+
+function setStringsInChosenLanguage(language) {
+    if(language=='en') {
+      setStringsEn()
+    }
+  }

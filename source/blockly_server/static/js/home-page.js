@@ -145,6 +145,8 @@ function setStringsEn() {
     document.getElementById("modal-projectname-space-text").innerHTML = get_string_translation_en("title_for_new_project");
     document.getElementById("button-project-name").innerHTML = get_string_translation_en("ok");
     document.getElementById("modal-project-description-space-text").innerHTML = get_string_translation_en("info_for_new_project");
+
+    document.getElementById("open-Blockly").innerHTML = get_string_translation_en("execution");
 }
 
 function setStringsInChosenLanguage(language) {

@@ -41,5 +41,6 @@ var translations_en = {
     "button_up": "Forward",
     "button_left": "Left",
     "button_right": "Right",
-    "button_down": "Backwards"
+    "button_down": "Backwards",
+    "execution": "Execution"
 }

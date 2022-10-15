@@ -41,5 +41,6 @@ var translations_el = {
     "button_up": "Μπροστά",
     "button_left": "Αριστερά",
     "button_right": "Δεξιά",
-    "button_down": "Πίσω"
+    "button_down": "Πίσω",
+    "execution": "Εκτέλεση"
 }

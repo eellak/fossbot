@@ -331,10 +331,11 @@ def get_sound_effects():
     print("Getting sounds")
     if os.path.exists(os.path.join(DATA_DIR,'sound_effects')):
         mp3_sounds_list = glob.glob(os.path.join(DATA_DIR,'sound_effects/*.mp3'))
+        print("Getting sounds")
         sounds_names = []
         for sound in mp3_sounds_list: 
             split_list = sound.split("/")
-            audio_name = split_list[2] 
+            audio_name = split_list[3] 
             audio_name_list = audio_name.split(".")
             audio_name = audio_name_list[0]
             sounds_names.append({ "sound_name": audio_name, "sound_path": sound})

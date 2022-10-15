@@ -14,7 +14,6 @@ function loadSettings(data) {
         const parameter = parameters_array[i];
         if (parameter[0]['name_el'] == "Γλώσσα") {
             current_language = parameter[2]['value']
-            return
         }
     }
     console.log('current language:', current_language);

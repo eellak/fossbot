@@ -75,6 +75,8 @@ function stop_script() {
 }
 
 function setStringsEn() {
+  console.log('go_back_to_home_page: ', get_string_translation_en("go_back_to_home_page"))
+
   document.getElementById("open-home-page-href").innerHTML = get_string_translation_en("go_back_to_home_page");
   document.getElementById("save-code-button").innerHTML = get_string_translation_en("save");
   document.getElementById("run-code-button").innerHTML = get_string_translation_en("run_the_program");

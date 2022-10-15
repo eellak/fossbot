@@ -16,7 +16,11 @@ body {
 body {
   background-color: #fff;
   font-family: sans-serif;
-  /* overflow: hidden; */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #buttons-container {

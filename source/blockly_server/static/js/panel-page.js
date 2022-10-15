@@ -21,7 +21,7 @@ function loadSettings(data) {
     for (var i = 0; i < parameters_array.length; i++) {
         const parameter = parameters_array[i];
         console.log('parameter:', parameter);
-        if (parameter[0]['name'] == "Όνομα ρομπότ") {
+        if (parameter[0]['name_el'] == "Όνομα ρομπότ") {
             let name = '';
             if (current_language == 'English') {
                 name = parameter[1]['name_en'];
@@ -34,7 +34,7 @@ function loadSettings(data) {
                 '<td>' + parameter[3]['default'] + '</td>' +
                 '<td>' + '<input type="text" id="' + i + '" value="' + parameter[2]['value'] + '">' + '</td>' +
                 '</tr>';
-        } else if (parameter[0]['name'] == "Γλώσσα") {
+        } else if (parameter[0]['name_el'] == "Γλώσσα") {
             if (current_language == 'English') {
                 document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
                     '<tr>' +

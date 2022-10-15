@@ -19,6 +19,7 @@ function setStringsEn() {
 function setStringsInChosenLanguage(language) {
   console.log('lang: ', language)
   if(language=='el') {
+    console.log('Load translations')
     setStringsEn()
   }
 }

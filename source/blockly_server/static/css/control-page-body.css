@@ -7,6 +7,11 @@ body {
 body {
   background-color: #fff;
   font-family: sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;  
 }
 
 #go-back-to-home-button-container {

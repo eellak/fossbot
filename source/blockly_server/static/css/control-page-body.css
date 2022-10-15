@@ -127,26 +127,3 @@ button.up, button.left, button.right, button.down {
   text-align:center;
   width:480px;
 }
-
-
-#stop-Blockly-Button-container{
-  /* height: 20%; */
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#stop-Blockly-Button-wrap {
-  margin: 0;
-  padding: 2%;
-}
-
-button.stop-Blockly {
-  text-align: center;
-  border: 1px solid #dd4b39;
-  background-color: #dd4b39;
-  color: #fff;
-  min-width: 200px;
-  min-height: 40px;
-}

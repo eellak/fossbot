@@ -151,6 +151,7 @@ function setStrings() {
 }
 
 function setStringsInChosenLanguage(language) {
+    console.log("language: ", language)
     if (language == 'en') {
         setStrings()
     }

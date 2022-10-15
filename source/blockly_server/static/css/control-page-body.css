@@ -42,7 +42,6 @@ button.go-back-to-home {
 #panel-title-container {
   height: 20%;
   top: 20%;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,8 +80,8 @@ button.go-back-to-home {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  padding: 1rem;
-  margin-top: 1%;
+  padding: 2rem;
+  margin-top: 2%;
 }
 
 .block-container {

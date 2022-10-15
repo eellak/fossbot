@@ -9,35 +9,56 @@ function loadSettings(data) {
 
     parameters_array = Object.values(parameters);
 
+    let current_language;
+    for (var i = 0; i < parameters_array.length; i++) {
+        const parameter = parameters_array[i];
+        if (parameter[0]['name'] == "Γλώσσα") {
+            current_language = parameter[1]['value']
+            return 
+        } 
+    }
+
     for (var i = 0; i < parameters_array.length; i++) {
         const parameter = parameters_array[i];
         if(parameter[0]['name'] == "Όνομα ρομπότ") {
+            let name = '';
+            if(language == 'English') { 
+                name = parameter[0]['name_en'];
+            } else {
+                name = parameter[0]['name_el'];
+            }
             document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
-            '<tr>' +
-            '<td>' + parameter[0]['name'] + '</td>' +
-            '<td>' + parameter[2]['default'] + '</td>' +
-            '<td>' + '<input type="text" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
-            '</tr>';
-        } else if ( parameter[0]['name']  == "Γλώσσα") {
-            if(parameter[1]['value'] == "English") {
+                '<tr>' +
+                '<td>' + name + '</td>' +
+                '<td>' + parameter[2]['default'] + '</td>' +
+                '<td>' + '<input type="text" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
+                '</tr>';
+        } else if (parameter[0]['name'] == "Γλώσσα") {
+            if (parameter[1]['value'] == "English") {
                 document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
                 '<tr>' +
-                '<td>' + parameter[0]['name'] + '</td>' +
+                '<td>' + parameter[0]['name_en'] + '</td>' +
                 '<td>' + parameter[2]['default'] + '</td>' +
                 '<td>' + '<select name="languages" id="' + i + '"> <option>Ελληνικά</option> <option selected>English</option> </select>' + '</td>' +
                 '</tr>';
             } else {
                 document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
                 '<tr>' +
-                '<td>' + parameter[0]['name'] + '</td>' +
+                '<td>' + parameter[0]['name_el'] + '</td>' +
                 '<td>' + parameter[2]['default'] + '</td>' +
                 '<td>' + '<select name="languages" id="' + i + '"> <option selected>Ελληνικά</option> <option>English</option> </select>' + '</td>' +
                 '</tr>';               
             }
         }else {
+            let name = '';
+            if(language == 'English') { 
+                name = parameter[0]['name_en'];
+            } else {
+                name = parameter[0]['name_el'];
+            }
             document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
             '<tr>' +
-            '<td>' + parameter[0]['name'] + '</td>' +
+            '<td>' + name + '</td>' +
             '<td>' + parameter[2]['default'] + '</td>' +
             '<td>' + '<input type="number" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
             '</tr>';

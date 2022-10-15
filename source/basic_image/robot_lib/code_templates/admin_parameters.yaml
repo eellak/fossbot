@@ -1,54 +1,65 @@
 robot_name:
-  - name: Όνομα ρομπότ
+  - name_el: Όνομα ρομπότ
+  - name_en: Robot name    
   - value: fossbot 003
   - default: fossbot 003
 
 language:
-  - name: Γλώσσα  
+  - name_el: Γλώσσα 
+  - name_en: Language   
   - value: Ελληνικά
   - default: Ελληνικά
   
 step:
-  - name: Βήμα ένα, εκατοστά
+  - name_el: Βήμα ένα, εκατοστά
+  - name_en: One step, centimeters
   - value: 15
   - default: 15
   
 motor_left:
-  - name: Ταχύτητα αριστερού μοτέρ
+  - name_el: Ταχύτητα αριστερού μοτέρ
+  - name_en: Speed of left motor
   - value: 22
   - default: 22
 
 motor_right:
-  - name: Ταχύτητα δεξιού μοτέρ
+  - name_el: Ταχύτητα δεξιού μοτέρ
+  - name_en: Speed of right motor
   - value: 23
   - default: 23
 
 sensor_distance:
-  - name: Αισθητήρας απόστασης, εμπόδιο μικρότερη από 
+  - name_el: Αισθητήρας απόστασης, εμπόδιο μικρότερη από 
+  - name_en: Distance sensor, obstacle less than 
   - value: 15
   - default: 15
 
 light_sensor:
-  - name: Αισθητήρας φωτός σκοτάδι τιμή μεγαλύτερη από 
+  - name_el: Αισθητήρας φωτός, σκοτάδι τιμή μεγαλύτερη από
+  - name_en: Light sensor, darkness value greater than 
   - value: 700
   - default: 700
 
 line_sensor_center:
-  - name: Αισθητήρας γραμμής κεντρικός, τιμή εντοπισμού 
+  - name_el: Αισθητήρας γραμμής κεντρικός, τιμή εντοπισμού 
+  - name_en: Main line following sensor, detection value 
   - value: 50
   - default: 50
 
 line_sensor_left:
-  - name: Αισθητήρας γραμμής αριστερός, τιμή εντοπισμού 
+  - name_el: Αισθητήρας γραμμής αριστερός, τιμή εντοπισμού 
+  - name_en: Left line following sensor, detection value 
   - value: 50
   - default: 50
 
 line_sensor_right:
-  - name: Αισθητήρας γραμμής δεξιός, τιμή εντοπισμού 
+  - name_el: Αισθητήρας γραμμής δεξιός, τιμή εντοπισμού 
+  - name_en: Right line following sensor, detection value 
   - value: 50
   - default: 50
 
 rotate_90:
-  - name: Στροφή 90 μοίρες, κλίκ 
+  - name_el: Στροφή 90 μοίρες, κλίκ 
+  - name_en: Turn 90 deegres, click 
   - value: 12
   - default: 12

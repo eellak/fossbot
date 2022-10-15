@@ -75,6 +75,7 @@ function stop_script() {
 }
 
 function setStringsEn() {
+  console.log('all translations: ', get_all_string_translations())
   console.log('go_back_to_home_page: ', get_string_translation_en("go_back_to_home_page"))
 
   document.getElementById("open-home-page-href").innerHTML = "Back to home page";

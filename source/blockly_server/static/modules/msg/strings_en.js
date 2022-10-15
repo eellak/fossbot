@@ -1,9 +1,11 @@
 function get_string_translation_en(key){
     console.log('lets translate key: ', key)
-    console.log('translations_en: ', translations_en)
     var string_translation = translations_en[key]
-    console.log('translation: ', string_translation)
     return string_translation
+}
+
+function get_all_string_translations(){
+    return translations_en
 }
 
 var translations_en = {

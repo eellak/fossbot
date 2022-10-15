@@ -127,11 +127,11 @@ def handle_save_parameters(data):
         i = 0
         for key, value in parameters.items():
             if key == 'robot_name':
-                value[1]['value'] = params_values[i]
+                value[2]['value'] = params_values[i]
             elif key == 'language':
-                value[1]['value'] = params_values[i]    
+                value[2]['value'] = params_values[i]    
             else :     
-                value[1]['value'] = int(params_values[i])
+                value[2]['value'] = int(params_values[i])
             i = i + 1
         save_parameters(parameters)
         emit('save_parameters_result', { 'status': '200', 'data': parameters})
@@ -321,7 +321,7 @@ def get_robot_name():
     parameters = load_parameters()
     for key, value in parameters.items():
         if(key == "robot_name"):
-            print("Getting robot name: ", value[1]['value'] )
+            print("Getting robot name: ", value[2]['value'] )
             return value[1]['value']
     return " "
 
@@ -349,9 +349,9 @@ def get_language():
         parameters = load_parameters()
         for key, value in parameters.items():
             if key == 'language':
-                if value[1]['value'] == 'Ελληνικά':
+                if value[2]['value'] == 'Ελληνικά':
                     return 'el'
-                elif value[1]['value'] == 'English':
+                elif value[2]['value'] == 'English':
                     return 'en'   
                 else:
                     return 'el'      

@@ -37,5 +37,9 @@ var translations_en = {
     "parameter_name": "Parameter name",
     "default_value": "Default value",
     "value": "Value",
-    "save_changes": "Save changes"
+    "save_changes": "Save changes",
+    "button_up": "Forward",
+    "button_left": "Left",
+    "button_right": "Right",
+    "button_down": "Backwards"
 }

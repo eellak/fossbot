@@ -37,5 +37,9 @@ var translations_el = {
     "parameter_name": "Όνομα παραμέτρου",
     "default_value": "Προεπιλεγμένη τιμή",
     "value": "Τιμή",
-    "save_changes": "Αποθήκευση αλλαγών"
+    "save_changes": "Αποθήκευση αλλαγών",
+    "button_up": "Μπροστά",
+    "button_left": "Αριστερά",
+    "button_right": "Δεξιά",
+    "button_down": "Πίσω"
 }

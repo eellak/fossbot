@@ -75,7 +75,7 @@ function stop_script() {
 }
 
 var translations_en = get_all_string_translations()
-
+console.log("translations_en: ", translations_en)
 function get_translation_en(key) {
   var string_translation = translations_en[key]
   return string_translation

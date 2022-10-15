@@ -17,9 +17,11 @@ function loadSettings(data) {
             return
         }
     }
+    console.log('current language:', current_language);
 
     for (var i = 0; i < parameters_array.length; i++) {
         const parameter = parameters_array[i];
+        console.log('parameter:', parameter);
         if (parameter[0]['name'] == "Όνομα ρομπότ") {
             let name = '';
             if (language == 'English') {

@@ -7,7 +7,7 @@ robot_name:
 language:
   - name_el: Γλώσσα 
   - name_en: Language   
-  - value: Ελληνικά
+  - value: English
   - default: Ελληνικά
   
 step:

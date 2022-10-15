@@ -12,6 +12,7 @@
   <script src="{{ url_for('static',filename='modules/bootstrap.bundle.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
+  <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/control-page.js')}}"></script>
 
@@ -24,13 +25,7 @@
   </style>
 </head>
 
-<body>
-  {% block javascript %}
-    {% if language == 'en' %}
-      <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
-      setStrings()
-    {% endif %}
-  {% endblock %}
+<body onload="setStringsInChosenLanguage('{{ language }}')">
 
   {% include 'header.html' %}
 

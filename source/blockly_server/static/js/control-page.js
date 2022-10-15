@@ -7,11 +7,17 @@ function send_command_for_manual_control(command) {
 }
 
 
-function setStrings() {
-  document.getElementById("open-home-href").value = get_string_translation("go_back_to_home_page");
-  document.getElementById("panel-title-wrap").value = get_string_translation("manual_use");
-  document.getElementById("button-up").value = get_string_translation("button_up");
-  document.getElementById("button-down").value = get_string_translation("button_down");
-  document.getElementById("button-left").value = get_string_translation("button_left");
-  document.getElementById("button-right").value = get_string_translation("button_right");
+function setStringsEn() {
+  document.getElementById("open-home-href").innerHTML = get_string_translation_en("go_back_to_home_page");
+  document.getElementById("panel-title-wrap").innerHTML = get_string_translation_en("manual_use");
+  document.getElementById("button-up").innerHTML = get_string_translation_en("button_up");
+  document.getElementById("button-down").innerHTML = get_string_translation_en("button_down");
+  document.getElementById("button-left").innerHTML = get_string_translation_en("button_left");
+  document.getElementById("button-right").innerHTML = get_string_translation_en("button_right");
+}
+
+function setStringsInChosenLanguage(language) {
+  if(language=='el') {
+    setStringsEn()
+  }
 }

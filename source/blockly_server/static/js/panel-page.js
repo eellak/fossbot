@@ -3,10 +3,7 @@ let parameters_array = [];
 
 function loadSettings(data) {
     console.log('Loading settings of the projects');
-
     parameters = data.parameters;
-    console.log('parameters:', Object.values(parameters));
-
     parameters_array = Object.values(parameters);
 
     let current_language;
@@ -16,11 +13,9 @@ function loadSettings(data) {
             current_language = parameter[2]['value']
         }
     }
-    console.log('current language:', current_language);
 
     for (var i = 0; i < parameters_array.length; i++) {
         const parameter = parameters_array[i];
-        console.log('parameter:', parameter);
         if (parameter[0]['name_el'] == "Όνομα ρομπότ") {
             let name = '';
             if (current_language == 'English') {

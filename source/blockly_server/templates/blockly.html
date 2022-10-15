@@ -37,28 +37,6 @@
   </style>
 </head>
 
-<script> 
-  $(document).ready(function () {
-    var socket = io('http://' + document.domain + ':' + location.port);
-
-    socket.on("connect", function () {
-      console.log("Socket connected!");
-      socket.emit('connection', { 'data': 'I\'m connected!' });
-      socket.emit('get-all-projects');
-    });
-    socket.on('disconnect', () => {
-      console.log("Socket disconnected");
-      socket.emit('disconnection', { 'data': 'I\'m disconnected!' });
-    });
-
-    socket.on("all-projects", (data) => {
-      console.log("all-projects data:", data);
-      loadProjects(data);
-    });
-
-  });
-
-</script>
 <body onload="loadProjectAndStrings('{{language}}')" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% block javascript %}
     {% if language == 'el' %}

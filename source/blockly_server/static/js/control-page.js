@@ -14,6 +14,7 @@ function setStringsEn() {
   document.getElementById("button-down").innerHTML = get_string_translation_en("button_down");
   document.getElementById("button-left").innerHTML = get_string_translation_en("button_left");
   document.getElementById("button-right").innerHTML = get_string_translation_en("button_right");
+  document.getElementById("footer-str").innerHTML = get_string_translation_en("footer_string");
 }
 
 function setStringsInChosenLanguage(language) {

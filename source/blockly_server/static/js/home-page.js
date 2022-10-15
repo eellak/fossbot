@@ -150,7 +150,7 @@ function setStrings() {
     document.getElementById("modal-project-description-space-text").value = get_string_translation_en("info_for_new_project");
 }
 
-function setStringsInChosenLanguage() {
+function setStringsInChosenLanguage(language) {
     if (language == 'en') {
         setStrings()
     }

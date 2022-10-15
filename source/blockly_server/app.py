@@ -322,7 +322,7 @@ def get_robot_name():
     for key, value in parameters.items():
         if(key == "robot_name"):
             print("Getting robot name: ", value[2]['value'] )
-            return value[1]['value']
+            return value[2]['value']
     return " "
 
 def get_sound_effects():

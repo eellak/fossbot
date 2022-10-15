@@ -85,9 +85,8 @@ function setStringsEn() {
 }
 
 
-async function loadProjectAndStrings(language) {
+async function setStringsInChosenLanguage(language) {
   if(language=='en') {
     setStringsEn();
   }
-  await loadProject();
 }

@@ -37,7 +37,13 @@
   </style>
 </head>
 
-<body onload="loadProjectAndStrings('{{language}}')" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+<script> 
+  $(document).ready(async function () {
+    await loadProject();
+  });
+</script>
+
+<body onload="setStringsInChosenLanguage('{{language}}')" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% block javascript %}
     {% if language == 'el' %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>

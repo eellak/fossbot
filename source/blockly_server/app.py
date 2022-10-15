@@ -335,7 +335,7 @@ def get_sound_effects():
         sounds_names = []
         for sound in mp3_sounds_list: 
             split_list = sound.split("/")
-            audio_name = split_list[3] 
+            audio_name = split_list[4] 
             audio_name_list = audio_name.split(".")
             audio_name = audio_name_list[0]
             sounds_names.append({ "sound_name": audio_name, "sound_path": sound})

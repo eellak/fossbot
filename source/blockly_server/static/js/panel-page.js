@@ -23,7 +23,7 @@ function loadSettings(data) {
             '<tr>' +
             '<td>' + parameter[0]['name'] + '</td>' +
             '<td>' + parameter[2]['default'] + '</td>' +
-            '<td>' + '<select name="languages" id="' + i + '" value="' + parameter[1]['value'] + '"> <option>Ελληνικά</option> <option>English</option> </select>' + '</td>' +
+            '<td>' + '<select name="languages" id="' + i + '"> <option>Ελληνικά</option> <option selected>English</option> </select>' + '</td>' +
             '</tr>';
         }else {
             document.getElementById("body-table-parameters").insertRow(-1).innerHTML =

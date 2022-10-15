@@ -75,7 +75,7 @@ function stop_script() {
 }
 
 function setStringsEn() {
-  document.getElementById("open-home-href").innerHTML = get_string_translation_en("go_back_to_home_page");
+  document.getElementById("open-home-page-href").innerHTML = get_string_translation_en("go_back_to_home_page");
   document.getElementById("save-code-button").innerHTML = get_string_translation_en("save");
   document.getElementById("run-code-button").innerHTML = get_string_translation_en("run_the_program");
   document.getElementById("stop-running-code-button").innerHTML = get_string_translation_en("stop_the_program");
@@ -85,8 +85,10 @@ function setStringsEn() {
 }
 
 
-async function setStringsInChosenLanguage(language) {
+function setStringsInChosenLanguage(language) {
+  console.log('lang: ', language)
   if(language=='en') {
+    console.log('set strings')
     setStringsEn();
   }
 }

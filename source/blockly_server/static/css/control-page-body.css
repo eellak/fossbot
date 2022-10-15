@@ -7,11 +7,11 @@ body {
 body {
   background-color: #fff;
   font-family: sans-serif;
-  line-height: 1.5;
+  /* line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;   */
 }
 
 #go-back-to-home-button-container {
@@ -41,6 +41,7 @@ button.go-back-to-home {
 
 #panel-title-container {
   height: 20%;
+  top: 20%;
   position: relative;
   display: flex;
   align-items: center;
@@ -51,9 +52,8 @@ button.go-back-to-home {
 #panel-title-wrap {
   margin: 0;
   position: absolute;
-  top: 20%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  /* -ms-transform: translateY(-50%);
+  transform: translateY(-50%); */
   color: black;
   font-weight: bold;
   font-size: 2rem;
@@ -81,8 +81,8 @@ button.go-back-to-home {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  padding: 2rem;
-  margin-top: 2%;
+  padding: 1rem;
+  margin-top: 1%;
 }
 
 .block-container {

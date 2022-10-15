@@ -1,4 +1,4 @@
-function get_string_translation(key){
+function get_string_translation_en(key){
     var string_translation = translations_en[key]
     return string_translation
 }

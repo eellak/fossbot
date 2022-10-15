@@ -135,17 +135,23 @@ function showRobotName() {
 }
 
 function setStrings() {
-    document.getElementById("page-decription").value = get_string_translation("home_title");
-    document.getElementById("manual-control-id").value = get_string_translation("manual_use");
-    document.getElementById("open-panel-id-txt").value = get_string_translation("open_control_page");
-    document.getElementById("add-new-project").value = get_string_translation("add_new_project");
-    document.getElementById("head-title-id").value = get_string_translation("title");
-    document.getElementById("head-info-id").value = get_string_translation("info");
-    document.getElementById("stop-blockly-button").value = get_string_translation("stop_immediately");
-    document.getElementById("footer-str").value = get_string_translation("footer_string");
-    document.getElementById("modal-error-text").value = get_string_translation("error_txt");
-    document.getElementById("modal-success-text").value = get_string_translation("success");
-    document.getElementById("modal-projectname-space-text").value = get_string_translation("title_for_new_project");
-    document.getElementById("button-project-name").value = get_string_translation("ok");
-    document.getElementById("modal-project-description-space-text").value = get_string_translation("info_for_new_project");
+    document.getElementById("page-decription").value = get_string_translation_en("home_title");
+    document.getElementById("manual-control-id").value = get_string_translation_en("manual_use");
+    document.getElementById("open-panel-id-txt").value = get_string_translation_en("open_control_page");
+    document.getElementById("add-new-project").value = get_string_translation_en("add_new_project");
+    document.getElementById("head-title-id").value = get_string_translation_en("title");
+    document.getElementById("head-info-id").value = get_string_translation_en("info");
+    document.getElementById("stop-blockly-button").value = get_string_translation_en("stop_immediately");
+    document.getElementById("footer-str").value = get_string_translation_en("footer_string");
+    document.getElementById("modal-error-text").value = get_string_translation_en("error_txt");
+    document.getElementById("modal-success-text").value = get_string_translation_en("success");
+    document.getElementById("modal-projectname-space-text").value = get_string_translation_en("title_for_new_project");
+    document.getElementById("button-project-name").value = get_string_translation_en("ok");
+    document.getElementById("modal-project-description-space-text").value = get_string_translation_en("info_for_new_project");
+}
+
+function setStringsInChosenLanguage() {
+    if (language == 'en') {
+        setStrings()
+    }
 }

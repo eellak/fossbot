@@ -17,8 +17,6 @@ footer {
 
 .hua-ellak {
     display: flex;
-    /* -webkit-box-orient: vertical;
-    -webkit-box-direction: normal; */
     flex-direction: column;
     color: white;
     margin-top: 5px;

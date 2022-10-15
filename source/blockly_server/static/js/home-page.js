@@ -7,9 +7,9 @@ function loadProjects(data) {
 
     //get the array with the projects
     const projects_array = data.data;
-    const currennt_language = data.language;
-    console.log('lang: ', language)
-    
+    const current_language = data.language;
+    console.log('lang: ', current_language)
+
     // const rows = document.getElementById("body-table-projects").rows.length;
     // if(rows >0){
     //     for(var i=1; i<=rows; i++) {

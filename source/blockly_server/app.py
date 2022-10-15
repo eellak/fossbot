@@ -128,6 +128,8 @@ def handle_save_parameters(data):
         for key, value in parameters.items():
             if key == 'robot_name':
                 value[1]['value'] = params_values[i]
+            elif key == 'language':
+                value[1]['value'] = params_values[i]    
             else :     
                 value[1]['value'] = int(params_values[i])
             i = i + 1

@@ -74,27 +74,18 @@ function stop_script() {
   stopScript();
 }
 
-var translations_en = get_all_string_translations()
-console.log("translations_en: ", translations_en)
-function get_translation_en(key) {
-  var string_translation = translations_en[key]
-  return string_translation
-}
-
 function setStringsEn() {
-  document.getElementById("open-home-page-href").innerHTML = get_translation_en("go_back_to_home_page");
-  document.getElementById("save-code-button").innerHTML = get_translation_en("save");
-  document.getElementById("run-code-button").innerHTML = get_string_translation_en("run_the_program");
-  document.getElementById("stop-running-code-button").innerHTML = get_string_translation_en("stop_the_program");
-  document.getElementById("footer-str").innerHTML = get_string_translation_en("footer_string");
-  document.getElementById("modal-error-text").innerHTML = get_string_translation_en("error_txt");
-  document.getElementById("modal-success-text").innerHTML = get_string_translation_en("success");
+  document.getElementById("open-home-page-href").innerHTML = "Back to home page";
+  document.getElementById("save-code-button").innerHTML = "Save";
+  document.getElementById("run-code-button").innerHTML = "Run the program!";
+  document.getElementById("stop-running-code-button").innerHTML = "Stop the program!";
+  document.getElementById("footer-str").innerHTML = "Has been designed by Harokopio University of Athens and the Greek Free Open Source Society";
+  document.getElementById("modal-error-text").innerHTML = "A problem was detected";
+  document.getElementById("modal-success-text").innerHTML = "Success!";
 }
 
 function setStringsInChosenLanguage(language) {
-  console.log('lang: ', language)
   if(language=='en') {
-    console.log('set strings')
     setStringsEn();
   }
 }

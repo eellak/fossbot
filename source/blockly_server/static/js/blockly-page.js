@@ -74,19 +74,22 @@ function stop_script() {
   stopScript();
 }
 
-function setStringsEn() {
-  console.log('all translations: ', get_all_string_translations())
-  console.log('go_back_to_home_page: ', get_string_translation_en("go_back_to_home_page"))
+var translations_en = get_all_string_translations()
 
-  document.getElementById("open-home-page-href").innerHTML = "Back to home page";
-  document.getElementById("save-code-button").innerHTML = get_string_translation_en("save");
+function get_translation_en(key) {
+  var string_translation = translations_en[key]
+  return string_translation
+}
+
+function setStringsEn() {
+  document.getElementById("open-home-page-href").innerHTML = get_translation_en("go_back_to_home_page");
+  document.getElementById("save-code-button").innerHTML = get_translation_en("save");
   document.getElementById("run-code-button").innerHTML = get_string_translation_en("run_the_program");
   document.getElementById("stop-running-code-button").innerHTML = get_string_translation_en("stop_the_program");
   document.getElementById("footer-str").innerHTML = get_string_translation_en("footer_string");
   document.getElementById("modal-error-text").innerHTML = get_string_translation_en("error_txt");
   document.getElementById("modal-success-text").innerHTML = get_string_translation_en("success");
 }
-
 
 function setStringsInChosenLanguage(language) {
   console.log('lang: ', language)

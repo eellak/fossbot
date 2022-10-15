@@ -1,5 +1,4 @@
 function get_string_translation_en(key){
-    console.log('lets translate key: ', key)
     var string_translation = translations_en[key]
     return string_translation
 }

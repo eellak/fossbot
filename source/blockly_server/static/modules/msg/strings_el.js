@@ -1,4 +1,4 @@
-function get_string_translation(key){
+function get_string_translation_el(key){
     var string_translation = translations_el[key]
     return string_translation
 }
@@ -42,5 +42,7 @@ var translations_el = {
     "button_left": "Αριστερά",
     "button_right": "Δεξιά",
     "button_down": "Πίσω",
-    "execution": "Εκτέλεση"
+    "execution": "Εκτέλεση",
+    "edit": "Επεξεργασία",
+    "delete": "Διαγραφή"
 }

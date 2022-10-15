@@ -20,50 +20,49 @@ function loadProjects(data) {
     for (var i = 0; i < projects_array.length; i++) {
         const project = projects_array[i];
         if (current_language == 'en') {
-            showNewProject(project['title'], project['info'], project['project_id'], "Execution", "Edit", "Delete");
+            showNewProject(project['title'], project['info'], project['project_id'], get_string_translation_en("execution"), get_string_translation_en("edit"), get_string_translation_en("delete"));
         } else {
-            showNewProject(project['title'], project['info'], project['project_id'], "Εκτέλεση", "Επεξεργασία", "Διαγραφή");
+            showNewProject(project['title'], project['info'], project['project_id'], get_string_translation_el("execution"), get_string_translation_el("edit"), get_string_translation_el("delete"));
         }
     }
-
 }
 
 function showNewProject(title, info, project_id, string_execution, string_edit, string_delete) {
     //add every time the the project name as the last row
     document.getElementById("body-table-projects").insertRow(-1).innerHTML =
-    '<tr>' +
-    '<td>' + title + '</td>' +
-    '<td>' + info + '</td>' +
-    '<td>' + project_id + '</td>' +
-    '<td> <div id="run-Blockly-Button-container" class="run-Blockly-Button-container">' +
-    '<div id="run-Blockly-Button-wrap" class="run-Blockly-Button-wrap">' +
-    '<button onclick="execute_script(' + project_id + ')" type="button" class="run-Blockly" id="open-Blockly">' +
-    string_execution +
-    '</button>' +
-    '</div>' +
-    '</div>' +
-    '</td>' +
-    '<td> <div id="open-Blockly-Button-container" class="open-Blockly-Button-container">' +
-    '<div id="open-Blockly-Button-wrap" class="open-Blockly-Button-wrap">' +
-    '<button type="button" class="open-Blockly" id="open-Blockly">' +
-    '<a href="/blockly?id=' + project_id + '" id="open-Blockly-href" style="color: white; text-decoration: none;">' + 
-    string_edit +
-    '</a>' +
-    '</button>' +
-    '</div>' +
-    '</div>' +
-    '</td>' +
-    '<td>   <div id="delete-Blockly-Button-container" class="delete-Blockly-Button-container">' +
-    '<div id="delete-Blockly-Button-wrap" class="delete-Blockly-Button-wrap">' +
-    '<button onclick="deleteElement(this,' + project_id + ')" type="button" class="delete-Blockly" id="open-Blockly">' +
-    '<a id="open-Blockly-href" style="color: white; text-decoration: none;">' + 
-    string_delete + 
-    '</a>' +
-    '</button>' +
-    '</div>' +
-    '</div>' +
-    '</td>' +
-    '</tr>';
+        '<tr>' +
+        '<td>' + title + '</td>' +
+        '<td>' + info + '</td>' +
+        '<td>' + project_id + '</td>' +
+        '<td> <div id="run-Blockly-Button-container" class="run-Blockly-Button-container">' +
+        '<div id="run-Blockly-Button-wrap" class="run-Blockly-Button-wrap">' +
+        '<button onclick="execute_script(' + project_id + ')" type="button" class="run-Blockly" id="open-Blockly">' +
+        string_execution +
+        '</button>' +
+        '</div>' +
+        '</div>' +
+        '</td>' +
+        '<td> <div id="open-Blockly-Button-container" class="open-Blockly-Button-container">' +
+        '<div id="open-Blockly-Button-wrap" class="open-Blockly-Button-wrap">' +
+        '<button type="button" class="open-Blockly" id="open-Blockly">' +
+        '<a href="/blockly?id=' + project_id + '" id="open-Blockly-href" style="color: white; text-decoration: none;">' +
+        string_edit +
+        '</a>' +
+        '</button>' +
+        '</div>' +
+        '</div>' +
+        '</td>' +
+        '<td>   <div id="delete-Blockly-Button-container" class="delete-Blockly-Button-container">' +
+        '<div id="delete-Blockly-Button-wrap" class="delete-Blockly-Button-wrap">' +
+        '<button onclick="deleteElement(this,' + project_id + ')" type="button" class="delete-Blockly" id="open-Blockly">' +
+        '<a id="open-Blockly-href" style="color: white; text-decoration: none;">' +
+        string_delete +
+        '</a>' +
+        '</button>' +
+        '</div>' +
+        '</div>' +
+        '</td>' +
+        '</tr>';
 }
 
 function createNewProject() {

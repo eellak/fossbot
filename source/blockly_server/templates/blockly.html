@@ -16,6 +16,7 @@
   <script src="{{ url_for('static',filename='modules/axios.min.js')}}"></script>
   <script src="{{ url_for('static',filename='modules/socket.io@4.0.1.js')}}"></script>
 
+  <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
   <script src="{{ url_for('static',filename='js/control-page.js')}}"></script>
   <script src="{{ url_for('static',filename='js/socket-client.js')}}"></script>
   <script src="{{ url_for('static',filename='js/modals.js')}}"></script>
@@ -58,7 +59,7 @@
   });
 
 </script>
-<body onload="loadProject()" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
+<body onload="loadProjectAndStrings('{{language}}')" onclick="closeModalSuccessOrErrorwhenClickAnywhere()">
   {% block javascript %}
     {% if language == 'el' %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>
@@ -67,8 +68,6 @@
     {% elif language == 'en' %}
       <script src="{{ url_for('static',filename='modules/msg/en.js')}}"></script>
       <script src="{{ url_for('static',filename='modules/msg/custom_blocks_en.js')}}"></script>
-      <script src="{{ url_for('static',filename='modules/msg/strings_en.js')}}"></script>
-      setStrings()
       {% include 'blockly-workspace-en.xml' %}  
     {% else %}
       <script src="{{ url_for('static',filename='modules/msg/el.js')}}"></script>

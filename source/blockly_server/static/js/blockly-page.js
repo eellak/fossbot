@@ -74,12 +74,20 @@ function stop_script() {
   stopScript();
 }
 
-function setStrings() {
-  document.getElementById("open-home-href").value = get_string_translation("go_back_to_home_page");
-  document.getElementById("save-code-button").value = get_string_translation("save");
-  document.getElementById("run-code-button").value = get_string_translation("run_the_program");
-  document.getElementById("stop-running-code-button").value = get_string_translation("stop_the_program");
-  document.getElementById("footer-str").value = get_string_translation("footer_string");
-  document.getElementById("modal-error-text").value = get_string_translation("error_txt");
-  document.getElementById("modal-success-text").value = get_string_translation("success");
+function setStringsEn() {
+  document.getElementById("open-home-href").innerHTML = get_string_translation_en("go_back_to_home_page");
+  document.getElementById("save-code-button").innerHTML = get_string_translation_en("save");
+  document.getElementById("run-code-button").innerHTML = get_string_translation_en("run_the_program");
+  document.getElementById("stop-running-code-button").innerHTML = get_string_translation_en("stop_the_program");
+  document.getElementById("footer-str").innerHTML = get_string_translation_en("footer_string");
+  document.getElementById("modal-error-text").innerHTML = get_string_translation_en("error_txt");
+  document.getElementById("modal-success-text").innerHTML = get_string_translation_en("success");
+}
+
+
+async function loadProjectAndStrings(language) {
+  await loadProject();
+  if(language=='en') {
+    setStringsEn();
+  }
 }

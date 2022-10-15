@@ -35,7 +35,7 @@ function loadSettings(data) {
                 '<td>' + '<input type="text" id="' + i + '" value="' + parameter[2]['value'] + '">' + '</td>' +
                 '</tr>';
         } else if (parameter[0]['name'] == "Γλώσσα") {
-            if (parameter[2]['value'] == "English") {
+            if (current_language == 'English') {
                 document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
                     '<tr>' +
                     '<td>' + parameter[1]['name_en'] + '</td>' +

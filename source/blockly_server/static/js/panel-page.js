@@ -19,12 +19,21 @@ function loadSettings(data) {
             '<td>' + '<input type="text" id="' + i + '" value="' + parameter[1]['value'] + '">' + '</td>' +
             '</tr>';
         } else if ( parameter[0]['name']  == "Γλώσσα") {
-            document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
-            '<tr>' +
-            '<td>' + parameter[0]['name'] + '</td>' +
-            '<td>' + parameter[2]['default'] + '</td>' +
-            '<td>' + '<select name="languages" id="' + i + '"> <option>Ελληνικά</option> <option selected>English</option> </select>' + '</td>' +
-            '</tr>';
+            if(parameter[1]['value'] == "English") {
+                document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
+                '<tr>' +
+                '<td>' + parameter[0]['name'] + '</td>' +
+                '<td>' + parameter[2]['default'] + '</td>' +
+                '<td>' + '<select name="languages" id="' + i + '"> <option>Ελληνικά</option> <option selected>English</option> </select>' + '</td>' +
+                '</tr>';
+            } else {
+                document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
+                '<tr>' +
+                '<td>' + parameter[0]['name'] + '</td>' +
+                '<td>' + parameter[2]['default'] + '</td>' +
+                '<td>' + '<select name="languages" id="' + i + '"> <option selected>Ελληνικά</option> <option>English</option> </select>' + '</td>' +
+                '</tr>';               
+            }
         }else {
             document.getElementById("body-table-parameters").insertRow(-1).innerHTML =
             '<tr>' +

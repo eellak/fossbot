@@ -7,7 +7,9 @@ function loadProjects(data) {
 
     //get the array with the projects
     const projects_array = data.data;
-
+    const currennt_language = data.language;
+    console.log('lang: ', language)
+    
     // const rows = document.getElementById("body-table-projects").rows.length;
     // if(rows >0){
     //     for(var i=1; i<=rows; i++) {
@@ -145,8 +147,6 @@ function setStringsEn() {
     document.getElementById("modal-projectname-space-text").innerHTML = get_string_translation_en("title_for_new_project");
     document.getElementById("button-project-name").innerHTML = get_string_translation_en("ok");
     document.getElementById("modal-project-description-space-text").innerHTML = get_string_translation_en("info_for_new_project");
-
-    document.getElementById("open-Blockly").innerHTML = get_string_translation_en("execution");
 }
 
 function setStringsInChosenLanguage(language) {

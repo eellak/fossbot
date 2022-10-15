@@ -7,7 +7,6 @@ function loadProjects(data) {
 
     //get the array with the projects
     const projects_array = data.data;
-    console.log('projects:', projects_array);
 
     // const rows = document.getElementById("body-table-projects").rows.length;
     // if(rows >0){
@@ -99,7 +98,6 @@ async function deleteElement(el,id) {
     var row = el.parentNode.parentNode.parentNode.parentNode.rowIndex;    
 
     const result = await deleteProject(id)
-    console.log('result is ', result)
     if(result.status == '200') {
         tbl.deleteRow(row);
         location.reload();
@@ -108,7 +106,6 @@ async function deleteElement(el,id) {
 
 async function execute_script(project_id) {
     const result = await executeScript(project_id)
-    console.log('execute script result is ', result)
     if (result == "file not found") {
         showModalError("Δεν βρέθηκε εκτελέσιμος κώδικας!")
     } else if (result == "started") {
@@ -151,7 +148,6 @@ function setStringsEn() {
 }
 
 function setStringsInChosenLanguage(language) {
-    console.log("language: ", language)
     if (language == 'en') {
         setStringsEn()
     }

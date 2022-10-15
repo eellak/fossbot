@@ -23,7 +23,7 @@ function loadSettings(data) {
         console.log('parameter:', parameter);
         if (parameter[0]['name'] == "Όνομα ρομπότ") {
             let name = '';
-            if (language == 'English') {
+            if (current_language == 'English') {
                 name = parameter[1]['name_en'];
             } else {
                 name = parameter[0]['name_el'];
@@ -52,7 +52,7 @@ function loadSettings(data) {
             }
         } else {
             let name = '';
-            if (language == 'English') {
+            if (current_language == 'English') {
                 name = parameter[1]['name_en'];
             } else {
                 name = parameter[0]['name_el'];

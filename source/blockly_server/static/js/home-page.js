@@ -134,7 +134,7 @@ function showRobotName() {
     }
 }
 
-function setStrings() {
+function setStringsEn() {
     document.getElementById("page-decription").innerHTML = get_string_translation_en("home_title");
     document.getElementById("manual-control-id").innerHTML = get_string_translation_en("manual_use");
     document.getElementById("open-panel-id-txt").innerHTML = get_string_translation_en("open_control_page");
@@ -153,6 +153,6 @@ function setStrings() {
 function setStringsInChosenLanguage(language) {
     console.log("language: ", language)
     if (language == 'en') {
-        setStrings()
+        setStringsEn()
     }
 }

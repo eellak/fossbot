@@ -20,9 +20,9 @@ function loadProjects(data) {
     for (var i = 0; i < projects_array.length; i++) {
         const project = projects_array[i];
         if (current_language == 'en') {
-            showNewProject(project['title'], project['info'], project['project_id'], "Εκτέλεση", "Επεξεργασία", "Διαγραφή");
-        } else {
             showNewProject(project['title'], project['info'], project['project_id'], "Execution", "Edit", "Delete");
+        } else {
+            showNewProject(project['title'], project['info'], project['project_id'], "Εκτέλεση", "Επεξεργασία", "Διαγραφή");
         }
     }
 

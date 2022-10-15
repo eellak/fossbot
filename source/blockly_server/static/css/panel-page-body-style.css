@@ -9,7 +9,9 @@ body {
   font-family: sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  min-height: 130vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #go-back-to-home-button-container { 

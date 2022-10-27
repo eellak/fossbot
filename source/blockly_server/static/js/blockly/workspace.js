@@ -266,7 +266,7 @@ Blockly.Blocks['set_color'] = {
   init: function () {
     this.appendDummyInput()
       .appendField(get_custom_blockly_translations('set'))
-      .appendField(new Blockly.FieldDropdown([["κόκκινο", "'red'"], ["πράσινο", "'green'"], ["μπλε", "'blue'"], ["άσπρο", "'white'"], ["βιολετί", "'violet'"], ["κυανό", "'cyan'"], ["κίτρινο", "'yellow'"], ["κλειστό", "'closed'"]]), "color_option")
+      .appendField(new Blockly.FieldDropdown([[get_custom_blockly_translations('red'), "'red'"], [get_custom_blockly_translations('green'), "'green'"], [get_custom_blockly_translations('blue'), "'blue'"], [get_custom_blockly_translations('white'), "'white'"], [get_custom_blockly_translations('violet'), "'violet'"], [get_custom_blockly_translations('cyan'), "'cyan'"], [get_custom_blockly_translations('yellow'), "'yellow'"], [get_custom_blockly_translations('closed'), "'closed'"]]), "color_option")
       .appendField(get_custom_blockly_translations('color'))
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

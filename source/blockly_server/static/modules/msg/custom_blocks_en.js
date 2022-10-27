@@ -39,5 +39,13 @@ var translations_en = {
     "get_timer": "Time that has passed",
     "left_sensor": "left",
     "right_sensor": "right",
-    "middle_sensor": "middle"
+    "middle_sensor": "middle",
+    "red": "red",
+    "green": "green",
+    "blue": "blue",
+    "white": "white",
+    "violet": "violet",
+    "cyan": "cyan",
+    "yellow": "yellow",
+    "closed": "closed"
 }

@@ -39,5 +39,13 @@ var translations_el = {
     "get_timer": "Χρόνος που πέρασε",
     "left_sensor": "αριστερός",
     "right_sensor": "δεξιός",
-    "middle_sensor": "μεσαίος"
+    "middle_sensor": "μεσαίος",
+    "red": "κόκκινο",
+    "green": "πράσινο",
+    "blue": "μπλε",
+    "white": "άσπρο",
+    "violet": "βιολετί",
+    "cyan": "κυανό",
+    "yellow": "κίτρινο",
+    "closed": "κλειστό"
 }

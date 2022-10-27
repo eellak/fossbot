@@ -36,5 +36,8 @@ var translations_el = {
     "humidity": "Yγρασία",
     "begin_timer": "Έναρξη μέτρησης χρόνου",
     "stop_timer": "Σταμάτημα μέτρησης χρόνου",
-    "get_timer": "Χρόνος που πέρασε"
+    "get_timer": "Χρόνος που πέρασε",
+    "left_sensor": "αριστερός",
+    "right_sensor": "δεξιός",
+    "middle_sensor": "μεσαίος"
 }

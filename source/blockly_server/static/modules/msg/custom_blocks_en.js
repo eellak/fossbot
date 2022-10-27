@@ -36,5 +36,8 @@ var translations_en = {
     "humidity": "Humidity",
     "begin_timer": "Begin timer",
     "stop_timer": "Stop timer",
-    "get_timer": "Time that has passed"
+    "get_timer": "Time that has passed",
+    "left_sensor": "left",
+    "right_sensor": "right",
+    "middle_sensor": "middle"
 }

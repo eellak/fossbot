@@ -399,7 +399,7 @@ Blockly.Python['check_for_obstacle'] = function (block) {
 Blockly.Blocks['check_for_line'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([["αριστερός", "1"], ["μεσαίος", "2"], ["δεξιός", "3"]]), "check_for_line_option")
+      .appendField(new Blockly.FieldDropdown([[get_custom_blockly_translations("left_sensor"), "1"], [get_custom_blockly_translations("middle_sensor"), "2"], [get_custom_blockly_translations("right_sensor"), "3"]]), "check_for_line_option")
       .appendField(get_custom_blockly_translations('check_for_line'))
     this.setOutput(true, 'Boolean');
     this.setColour(45);
@@ -418,7 +418,7 @@ Blockly.Python['check_for_line'] = function (block) {
 Blockly.Blocks['floor_sensor'] = {
   init: function () {
     this.appendDummyInput()
-      .appendField(new Blockly.FieldDropdown([["αριστερός", "3"], ["μεσαίος", "1"], ["δεξιός", "2"]]), "floor_sensor_option")
+      .appendField(new Blockly.FieldDropdown([[get_custom_blockly_translations("left_sensor"), "1"], [get_custom_blockly_translations("middle_sensor"), "2"], [get_custom_blockly_translations("right_sensor"), "3"]]), "floor_sensor_option")
       .appendField(get_custom_blockly_translations('floor_sensor'))
       this.setOutput(true, 'Number');
     this.setColour(45);

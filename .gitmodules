@@ -1,0 +1,9 @@
+[submodule "fossbot-app"]
+	path = fossbot-app
+	url = https://github.com/chronis10/fossbot-app.git
+[submodule "fossbot-hardware"]
+	path = fossbot-hardware
+	url = https://github.com/chronis10/fossbot-hardware.git
+[submodule "fossbot-source"]
+	path = fossbot-source
+	url = https://github.com/chronis10/fossbot-source.git

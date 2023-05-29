@@ -1,5 +1,5 @@
 
-![](images/fossbot.jpg)
+![](images/superlogo.png)
 
 [![el](https://img.shields.io/badge/lang-el-blue.svg)](https://github.com/eellak/fossbot/blob/master/README.el-GR.md)
 

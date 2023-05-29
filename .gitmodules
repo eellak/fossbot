@@ -7,3 +7,9 @@
 [submodule "fossbot-source"]
 	path = fossbot-source
 	url = https://github.com/chronis10/fossbot-source.git
+[submodule "fossbot-platform"]
+	path = fossbot-platform
+	url = https://github.com/eellak/fossbot-platform.git
+[submodule "fossbot-web-simulator"]
+	path = fossbot-web-simulator
+	url = https://github.com/eellak/fossbot-web-simulator.git

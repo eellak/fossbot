@@ -50,7 +50,7 @@ Printed meshes on the front and top of the robot help keep electrical parts cool
 The top surface of the robot is divided into two pieces. A cover that attaches to the main body using unique clips is the original accessory. The main cover can be joined to the top cover using an easy twist-and-lock function. It can be easily removed to give access to the interior of the robot and can also support a base of Lego bricks, allowing bricks to be added on top of the robot. This option enables lower grade teachers to combine FOSSBot with other Lego projects and can help add new activities to FOSSBot.
 
 
-Printing and assembly instructions and figures can be found in this manual: https://github.com/chronis10/fossbot-hardware
+Printing and assembly instructions and figures can be found in: https://github.com/chronis10/fossbot-hardware
 
 ## Modes of operation
 

@@ -41,7 +41,7 @@ FOSSBot belongs to the DIY (Do It Yourself) category, with the logic that it can
 
 ![](images/blockly.jpg)
 
-## 3D printed parts
+## 3D printed files and assembly instructions
 
 All the plastic parts, except from the wheels, are printable on a 3D printer and the total printing time does not exceed 36 hours. It is worth mentioning that the body of the robot has been designed in such a way as to facilitate its assembly process. This has been achieved since cases have been designed inside the robot, adapted to the electronic components, so that they are placed in the corresponding positions and do not move during the use of the robot. Also, on the outer surface there are printed symbols that indicate the position of each sensor. The symbols also help teachers to know the position of the sensors, e.g. speaker, led, etc. The vertical tube that runs from top to bottom of the main body of the robot allows for the attachment of a pencil or marker, so that by moving the FOSSBot around an area covered with paper, shapes can be created.
 
@@ -49,9 +49,8 @@ Printed meshes on the front and top of the robot help keep electrical parts cool
 
 The top surface of the robot is divided into two pieces. A cover that attaches to the main body using unique clips is the original accessory. The main cover can be joined to the top cover using an easy twist-and-lock function. It can be easily removed to give access to the interior of the robot and can also support a base of Lego bricks, allowing bricks to be added on top of the robot. This option enables lower grade teachers to combine FOSSBot with other Lego projects and can help add new activities to FOSSBot.
 
-## Printing and assembly instructions
 
-Printing and assembly instructions and figures can be found in this manual: https://github.com/eellak/fossbot/blob/master/electronics_instructions/draft_instructions.pdf
+Printing and assembly instructions and figures can be found in this manual: https://github.com/chronis10/fossbot-hardware
 
 ## Modes of operation
 

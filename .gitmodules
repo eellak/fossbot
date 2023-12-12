@@ -4,6 +4,7 @@
 [submodule "fossbot-hardware"]
 	path = fossbot-hardware
 	url = https://github.com/chronis10/fossbot-hardware.git
+	branch = main
 [submodule "fossbot-source"]
 	path = fossbot-source
 	url = https://github.com/chronis10/fossbot-source.git
@@ -13,3 +14,4 @@
 [submodule "fossbot-web-simulator"]
 	path = fossbot-web-simulator
 	url = https://github.com/eellak/fossbot-web-simulator.git
+	branch = main

@@ -53,7 +53,7 @@ Engl
 ## Οδηγίες εκτύπωσης και συναρμολόγησης 
 
 Η αρχική έκδοση των οδηγιών εκτύπωσης και συναρμολόγησης στο [εκτύπωσης και συναρμολόγησης 
-](https://github.com/eellak/fossbot/blob/master/electronics_instructions/draft_instructions.pdf)
+](https://github.com/chronis10/fossbot-hardware/tree/main/electronics_instructions)
 
 ## Τρόποι λειτουργίας
 
